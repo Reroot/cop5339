@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.7.0_25" class="java.beans.XMLDecoder">
+ <object class="com.horstmann.violet.StateDiagramGraph">
+  <void method="addNode">
+   <object class="com.horstmann.violet.StateNode" id="StateNode0">
+    <void property="name">
+     <void property="text">
+      <string>logging In</string>
+     </void>
+    </void>
+   </object>
+   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double0">
+    <void class="java.awt.geom.Point2D$Double" method="getField">
+     <string>x</string>
+     <void method="set">
+      <object idref="Point2D$Double0"/>
+      <double>769.0</double>
+     </void>
+    </void>
+    <void class="java.awt.geom.Point2D$Double" method="getField">
+     <string>y</string>
+     <void method="set">
+      <object idref="Point2D$Double0"/>
+      <double>314.0</double>
+     </void>
+    </void>
+    <void method="setLocation">
+     <double>769.0</double>
+     <double>314.0</double>
+    </void>
+   </object>
+  </void>
+  <void method="addNode">
+   <object class="com.horstmann.violet.StateNode" id="StateNode1">
+    <void property="name">
+     <void property="text">
+      <string>seller</string>
+     </void>
+    </void>
+   </object>
+   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double1">
+    <void class="java.awt.geom.Point2D$Double" method="getField">
+     <string>x</string>
+     <void method="set">
+      <object idref="Point2D$Double1"/>
+      <double>655.0</double>
+     </void>
+    </void>
+    <void class="java.awt.geom.Point2D$Double" method="getField">
+     <string>y</string>
+     <void method="set">
+      <object idref="Point2D$Double1"/>
+      <double>496.0</double>
+     </void>
+    </void>
+    <void method="setLocation">
+     <double>655.0</double>
+     <double>496.0</double>
+    </void>
+   </object>
+  </void>
+  <void method="addNode">
+   <object class="com.horstmann.violet.StateNode" id="StateNode2">
+    <void property="name">
+     <void property="text">
+      <string>customer</string>
+     </void>
+    </void>
+   </object>
+   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double2">
+    <void class="java.awt.geom.Point2D$Double" method="getField">
+     <string>x</string>
+     <void method="set">
+      <object idref="Point2D$Double2"/>
+      <double>852.0</double>
+     </void>
+    </void>
+    <void class="java.awt.geom.Point2D$Double" method="getField">
+     <string>y</string>
+     <void method="set">
+      <object idref="Point2D$Double2"/>
+      <double>116.0</double>
+     </void>
+    </void>
+    <void method="setLocation">
+     <double>852.0</double>
+     <double>116.0</double>
+    </void>
+   </object>
+  </void>
+  <void method="connect">
+   <object class="com.horstmann.violet.StateTransitionEdge">
+    <void property="label">
+     <string>logged out</string>
+    </void>
+   </object>
+   <object idref="StateNode1"/>
+   <object idref="StateNode0"/>
+  </void>
+  <void method="connect">
+   <object class="com.horstmann.violet.StateTransitionEdge">
+    <void property="label">
+     <string>customer logged in</string>
+    </void>
+   </object>
+   <object idref="StateNode0"/>
+   <object idref="StateNode2"/>
+  </void>
+  <void method="connect">
+   <object class="com.horstmann.violet.StateTransitionEdge">
+    <void property="label">
+     <string>logged out</string>
+    </void>
+   </object>
+   <object idref="StateNode2"/>
+   <object idref="StateNode0"/>
+  </void>
+  <void method="connect">
+   <object class="com.horstmann.violet.StateTransitionEdge">
+    <void property="label">
+     <string>seller logged in</string>
+    </void>
+   </object>
+   <object idref="StateNode0"/>
+   <object idref="StateNode1"/>
+  </void>
+ </object>
+</java>
