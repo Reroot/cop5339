@@ -1,3 +1,6 @@
+.project
+.git
+
 *.class
 
 # Package Files #
