@@ -5,7 +5,7 @@
    <object class="com.horstmann.violet.ClassNode" id="ClassNode0">
     <void property="name">
      <void property="text">
-      <string>:UI</string>
+      <string>UI</string>
      </void>
     </void>
    </object>
@@ -65,7 +65,7 @@ List instance)</string>
    <object class="com.horstmann.violet.ClassNode" id="ClassNode2">
     <void property="name">
      <void property="text">
-      <string>:ProductList</string>
+      <string>ProductList</string>
      </void>
     </void>
    </object>

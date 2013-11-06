@@ -13,7 +13,7 @@
     </void>
     <void property="name">
      <void property="text">
-      <string>:RealUser</string>
+      <string>RealUser</string>
      </void>
     </void>
    </object>
@@ -52,7 +52,7 @@ updateRevenues(total)</string>
     </void>
     <void property="name">
      <void property="text">
-      <string>:NullUser</string>
+      <string>NullUser</string>
      </void>
     </void>
    </object>
@@ -81,7 +81,7 @@ updateRevenues(total)</string>
    <object class="com.horstmann.violet.ClassNode" id="ClassNode2">
     <void property="name">
      <void property="text">
-      <string>:CartSystem</string>
+      <string>CartSystem</string>
      </void>
     </void>
    </object>

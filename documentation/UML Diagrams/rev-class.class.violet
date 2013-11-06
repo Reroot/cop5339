@@ -10,7 +10,7 @@
     </void>
     <void property="name">
      <void property="text">
-      <string>:PaymentValidator</string>
+      <string>PaymentValidator</string>
      </void>
     </void>
    </object>
@@ -55,7 +55,7 @@ displaySaleConfirmation()
     </void>
     <void property="name">
      <void property="text">
-      <string>:UI</string>
+      <string>UI</string>
      </void>
     </void>
    </object>
@@ -89,7 +89,7 @@ displaySaleConfirmation()
     </void>
     <void property="name">
      <void property="text">
-      <string>:Product</string>
+      <string>Product</string>
      </void>
     </void>
    </object>
@@ -166,7 +166,7 @@ delete(product)
     </void>
     <void property="name">
      <void property="text">
-      <string>:CartSystem</string>
+      <string>CartSystem</string>
      </void>
     </void>
    </object>
@@ -201,7 +201,7 @@ save(data)</string>
     </void>
     <void property="name">
      <void property="text">
-      <string>:DBManager</string>
+      <string>DBManager</string>
      </void>
     </void>
    </object>
@@ -237,7 +237,7 @@ save(data)</string>
     </void>
     <void property="name">
      <void property="text">
-      <string>:UserList</string>
+      <string>UserList</string>
      </void>
     </void>
    </object>
@@ -279,7 +279,7 @@ delete(product)
     </void>
     <void property="name">
      <void property="text">
-      <string>:ListManager</string>
+      <string>ListManager</string>
      </void>
     </void>
    </object>
@@ -319,7 +319,7 @@ delete(product)
     </void>
     <void property="name">
      <void property="text">
-      <string>:ProductList</string>
+      <string>ProductList</string>
      </void>
     </void>
    </object>
@@ -391,7 +391,7 @@ delete(product)
     </void>
     <void property="name">
      <void property="text">
-      <string>:RealUser</string>
+      <string>RealUser</string>
      </void>
     </void>
    </object>
