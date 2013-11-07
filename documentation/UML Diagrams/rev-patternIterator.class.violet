@@ -5,7 +5,11 @@
    <object class="com.horstmann.violet.ClassNode" id="ClassNode0">
     <void property="name">
      <void property="text">
+<<<<<<< HEAD
       <string>:UI</string>
+=======
+      <string>UI</string>
+>>>>>>> b376d53e5965711ad7a215015bf95abf6a304ee9
      </void>
     </void>
    </object>
@@ -65,7 +69,11 @@ List instance)</string>
    <object class="com.horstmann.violet.ClassNode" id="ClassNode2">
     <void property="name">
      <void property="text">
+<<<<<<< HEAD
       <string>:ProductList</string>
+=======
+      <string>ProductList</string>
+>>>>>>> b376d53e5965711ad7a215015bf95abf6a304ee9
      </void>
     </void>
    </object>
