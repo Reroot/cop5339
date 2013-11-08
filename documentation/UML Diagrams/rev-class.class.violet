@@ -10,12 +10,7 @@
     </void>
     <void property="name">
      <void property="text">
-<<<<<<< HEAD
-      <string>:PaymentValidator</string>
-=======
-      <string>PaymentValidator</string>
->>>>>>> b376d53e5965711ad7a215015bf95abf6a304ee9
-     </void>
+      <string>PaymentValidator</string></void>
     </void>
    </object>
    <object class="java.awt.geom.Point2D$Double" id="Point2D$Double0">
@@ -59,11 +54,7 @@ displaySaleConfirmation()
     </void>
     <void property="name">
      <void property="text">
-<<<<<<< HEAD
-      <string>:UI</string>
-=======
       <string>UI</string>
->>>>>>> b376d53e5965711ad7a215015bf95abf6a304ee9
      </void>
     </void>
    </object>
@@ -97,11 +88,7 @@ displaySaleConfirmation()
     </void>
     <void property="name">
      <void property="text">
-<<<<<<< HEAD
-      <string>:Product</string>
-=======
       <string>Product</string>
->>>>>>> b376d53e5965711ad7a215015bf95abf6a304ee9
      </void>
     </void>
    </object>
@@ -178,11 +165,7 @@ delete(product)
     </void>
     <void property="name">
      <void property="text">
-<<<<<<< HEAD
-      <string>:CartSystem</string>
-=======
       <string>CartSystem</string>
->>>>>>> b376d53e5965711ad7a215015bf95abf6a304ee9
      </void>
     </void>
    </object>
@@ -217,11 +200,7 @@ save(data)</string>
     </void>
     <void property="name">
      <void property="text">
-<<<<<<< HEAD
-      <string>:DBManager</string>
-=======
       <string>DBManager</string>
->>>>>>> b376d53e5965711ad7a215015bf95abf6a304ee9
      </void>
     </void>
    </object>
@@ -257,11 +236,7 @@ save(data)</string>
     </void>
     <void property="name">
      <void property="text">
-<<<<<<< HEAD
-      <string>:UserList</string>
-=======
       <string>UserList</string>
->>>>>>> b376d53e5965711ad7a215015bf95abf6a304ee9
      </void>
     </void>
    </object>
@@ -303,11 +278,7 @@ delete(product)
     </void>
     <void property="name">
      <void property="text">
-<<<<<<< HEAD
-      <string>:ListManager</string>
-=======
       <string>ListManager</string>
->>>>>>> b376d53e5965711ad7a215015bf95abf6a304ee9
      </void>
     </void>
    </object>
@@ -347,11 +318,7 @@ delete(product)
     </void>
     <void property="name">
      <void property="text">
-<<<<<<< HEAD
-      <string>:ProductList</string>
-=======
       <string>ProductList</string>
->>>>>>> b376d53e5965711ad7a215015bf95abf6a304ee9
      </void>
     </void>
    </object>
@@ -423,11 +390,7 @@ delete(product)
     </void>
     <void property="name">
      <void property="text">
-<<<<<<< HEAD
-      <string>:RealUser</string>
-=======
       <string>RealUser</string>
->>>>>>> b376d53e5965711ad7a215015bf95abf6a304ee9
      </void>
     </void>
    </object>
