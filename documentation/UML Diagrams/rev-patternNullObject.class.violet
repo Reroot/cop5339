@@ -13,11 +13,7 @@
     </void>
     <void property="name">
      <void property="text">
-<<<<<<< HEAD
-      <string>:RealUser</string>
-=======
       <string>RealUser</string>
->>>>>>> b376d53e5965711ad7a215015bf95abf6a304ee9
      </void>
     </void>
    </object>
@@ -56,11 +52,7 @@ updateRevenues(total)</string>
     </void>
     <void property="name">
      <void property="text">
-<<<<<<< HEAD
-      <string>:NullUser</string>
-=======
       <string>NullUser</string>
->>>>>>> b376d53e5965711ad7a215015bf95abf6a304ee9
      </void>
     </void>
    </object>
@@ -89,11 +81,7 @@ updateRevenues(total)</string>
    <object class="com.horstmann.violet.ClassNode" id="ClassNode2">
     <void property="name">
      <void property="text">
-<<<<<<< HEAD
-      <string>:CartSystem</string>
-=======
       <string>CartSystem</string>
->>>>>>> b376d53e5965711ad7a215015bf95abf6a304ee9
      </void>
     </void>
    </object>
