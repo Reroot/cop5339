@@ -1,30 +1,20 @@
 package shoppingCart;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 /** A class that manages a list of products.
- *  @author Seth Moore and Newman Souza
+ *  @author Newman Souza
+ *  @author Seth Moore
  */ 
-public class ProductList {
+public abstract class ProductList {
 	
     /** Constructs a ProductList object.
      *  @precondition none
      *  @postcondition object created
      */
     public ProductList() {
-
-    	// code
-    	
-    }
-
-    /** Populates a list of Products.
-     *  @param 
-     *  @return ?
-     *  @precondition 
-     *  @postcondition 
-     */
-    public void populate() {
-
-    	// code
-    	
+    	products = new ArrayList<>();
     }
 
     /** Clears the state of the cart.
@@ -75,28 +65,25 @@ public class ProductList {
     	
     }
 
-    /** Deletes a Product from the ProductList
+    /** Removes a Product from the ProductList
      *  @param 
      *  @return ?
      *  @precondition 
      *  @postcondition 
      */
-    public void delete(Product product) {
+    public void remove(Product product) {
 
     	// code
     	
     }
-
-    /** Retrieves the number of items in the list and it's total amount.
-     *  @param 
-     *  @return ?
-     *  @precondition 
-     *  @postcondition 
+    
+    /**
+     * 
+     * @return
      */
-    public void getTotal() {
-
-    	// code
-    	
+    public Iterator<Product> iterator(){
+    	return products.iterator();
     }
 
+    private ArrayList<Product> products;
 }
