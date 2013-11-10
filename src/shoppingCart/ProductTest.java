@@ -5,6 +5,8 @@ package shoppingCart;
 
 import static org.junit.Assert.*;
 
+import java.math.BigDecimal;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,6 +19,11 @@ import org.junit.Test;
  */
 public class ProductTest {
 
+	int ID = 1, quantity = 2;
+	String name = "apple", description = "crisp";
+	BigDecimal sellPrice = new BigDecimal("1.25"), invoicePrice = new BigDecimal("0.40");
+	Product product;
+	
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -36,6 +43,7 @@ public class ProductTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		product = new Product(ID, name, description, sellPrice, invoicePrice, quantity);
 	}
 
 	/**
@@ -58,7 +66,16 @@ public class ProductTest {
 	 */
 	@Test
 	public void testProduct() {
-		fail("Not yet implemented");
+		int ID = 1, quantity = 2;
+		String name = "apple", description = "crisp";
+		BigDecimal sellPrice = new BigDecimal("1.25"), invoicePrice = new BigDecimal("0.40");
+		Product p = new Product(ID, name, description, sellPrice, invoicePrice, quantity);
+		assertEquals(p.getID(), ID);
+		assertEquals(p.getName(), name);
+		assertEquals(p.getDescription(), description);
+		assertEquals(p.getSellPrice(), sellPrice);
+		assertEquals(p.getInvoicePrice(), invoicePrice);
+		assertEquals(p.getQuantity(), quantity);
 	}
 
 	/**
@@ -154,7 +171,12 @@ public class ProductTest {
 	 */
 	@Test
 	public void testEqualsObject() {
-		fail("Not yet implemented");
+		Product p = new Product(ID, name, description, sellPrice, invoicePrice, quantity);
+		assertTrue(p.equals(product));
+		p = new Product(ID, name, description, sellPrice, invoicePrice, 0);
+		assertTrue(p.equals(product));
+		p = new Product(ID, "not an apple", description, sellPrice, invoicePrice, 0);
+		assertFalse(p.equals(product));
 	}
 
 }
