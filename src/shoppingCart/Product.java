@@ -2,14 +2,18 @@ package shoppingCart;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
+import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 /**
  * A class that manages Product state.
  * 
- * @author Seth Moore and Newman Souza
+ * @author Newman Souza
+ * @author Seth Moore
  */
+@SuppressWarnings("serial")
 public class Product implements Cloneable, Serializable{
 
 	/**
@@ -39,11 +43,12 @@ public class Product implements Cloneable, Serializable{
 		this.sellPrice = sellPrice;
 		this.invoicePrice = invoicePrice;
 		this.quantity = quantity;
+		listeners = new ArrayList<>();
 
 	}
 	
 	/**
-	 * Updates the product.
+	 * Updates the Product.
 	 * 
 	 * @param ID
 	 *            Product's ID
@@ -71,7 +76,7 @@ public class Product implements Cloneable, Serializable{
 		this.invoicePrice = invoicePrice;
 		this.quantity = quantity;
 		
-		// TODO: Notify change listeners
+		notifyListeners();
 	}
 	
 	/**
@@ -82,6 +87,7 @@ public class Product implements Cloneable, Serializable{
 	 */
 	public void increment(){
 		quantity++;
+		notifyListeners();
 	}
 	
 	/**
@@ -92,9 +98,12 @@ public class Product implements Cloneable, Serializable{
 	 */
 	public void decrement(){
 		quantity--;
+		notifyListeners();
 	}
 	
 	/**
+	 * Getter for ID
+	 * 
 	 * @return the ID
 	 */
 	public int getID() {
@@ -102,6 +111,8 @@ public class Product implements Cloneable, Serializable{
 	}
 
 	/**
+	 * Getter for name
+	 * 
 	 * @return the name
 	 */
 	public String getName() {
@@ -109,6 +120,8 @@ public class Product implements Cloneable, Serializable{
 	}
 
 	/**
+	 * Getter for description
+	 * 
 	 * @return the description
 	 */
 	public String getDescription() {
@@ -116,6 +129,8 @@ public class Product implements Cloneable, Serializable{
 	}
 
 	/**
+	 * Getter for sellPrice
+	 * 
 	 * @return the sellPrice
 	 */
 	public BigDecimal getSellPrice() {
@@ -123,6 +138,8 @@ public class Product implements Cloneable, Serializable{
 	}
 
 	/**
+	 * Getter for invoicePrice
+	 * 
 	 * @return the invoicePrice
 	 */
 	public BigDecimal getInvoicePrice() {
@@ -130,6 +147,8 @@ public class Product implements Cloneable, Serializable{
 	}
 
 	/**
+	 * Getter for quantity
+	 * 
 	 * @return the quantity
 	 */
 	public int getQuantity() {
@@ -143,32 +162,32 @@ public class Product implements Cloneable, Serializable{
 	 * @return the clone of this object.
 	 * @precondition none
 	 */
+	@Override
 	public Object clone(){
 		Product cloned = null;
 		try {
 			cloned = (Product)super.clone();
-//			cloned.ID = ID;
-//			cloned.name = name;
-//			cloned.description = description;
-//			cloned.sellPrice = sellPrice;
-//			cloned.invoicePrice = invoicePrice;
 			cloned.quantity = 0;
+			cloned.listeners = new ArrayList<>();
 		} catch (CloneNotSupportedException e) {
 		}
 		return cloned;
 	}
 	
 	/**
+	 * Adds a ChangeListener to the ChangeListeners that will be notified
+	 * whenever this Product changes state.
 	 * 
-	 * @param listener
+	 * @param listener the ChangeListener to add
 	 */
 	public void addListener(ChangeListener listener){
-		// TODO: Implement addListener.
-		throw new UnsupportedOperationException("addListener is not yet supported");
+		listeners.add(listener);
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
+	/**
+	 * Calculates and returns the Product's hash code.
+	 * 
+	 * @return the Product's hash code.
 	 */
 	@Override
 	public int hashCode() {
@@ -185,8 +204,13 @@ public class Product implements Cloneable, Serializable{
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/**
+	 * Checks for equality between this Product and the obj parameter, and
+	 * returns the result.
+	 * 
+	 * @param obj the Object that is being compared to this Product.
+	 * @return true if obj and this are equivalent (does not take quantity
+	 * into account), otherwise false
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -233,6 +257,19 @@ public class Product implements Cloneable, Serializable{
 		}
 		return true;
 	}
+	
+	/**
+	 * Notifies the listeners that the state has changed.
+	 * 
+	 * @precondition none
+	 * @postcondition all ChangeListeners in listeners have been notified
+	 * that the state has changed.
+	 */
+	private void notifyListeners(){
+		for (ChangeListener listener : listeners){
+			listener.stateChanged(new ChangeEvent(this));
+		}
+	}
 
 	private int ID;
 	private String name;
@@ -240,5 +277,6 @@ public class Product implements Cloneable, Serializable{
 	private BigDecimal sellPrice;
 	private BigDecimal invoicePrice;
 	private int quantity;
+	private ArrayList<ChangeListener> listeners;
 
 }
