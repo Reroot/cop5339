@@ -2,6 +2,12 @@ package shoppingCart;
 
 import java.math.BigDecimal;
 
+/**
+ * A ProductList that manages the Products in a customer's shopping cart.
+ * 
+ * @author Seth Moore
+ *
+ */
 @SuppressWarnings("serial")
 public class Cart extends ProductList {
 	

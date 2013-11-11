@@ -37,7 +37,7 @@ public abstract class ProductList implements Iterable<Product>, Serializable{
      * 
      *  @param the Product whose matching Product will be incremented.
      *  @precondition none
-     *  @postcondition there is a matching Product with getQuantity > 0
+     *  @postcondition getMatchingProduct(product).getQuantity() > 0
      */
     public void increment(Product product) {
 
