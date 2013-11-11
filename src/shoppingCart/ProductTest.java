@@ -7,6 +7,9 @@ import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -14,15 +17,16 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * @author Seth
+ * @author Seth Moore
  *
  */
 public class ProductTest {
 
-	int ID = 1, quantity = 2;
-	String name = "apple", description = "crisp";
-	BigDecimal sellPrice = new BigDecimal("1.25"), invoicePrice = new BigDecimal("0.40");
+	final int ID = 1, quantity = 2;
+	final String name = "apple", description = "crisp";
+	final BigDecimal sellPrice = new BigDecimal("1.25"), invoicePrice = new BigDecimal("0.40");
 	Product product;
+	String changeListenerString; 
 	
 	/**
 	 * @throws java.lang.Exception
@@ -44,6 +48,15 @@ public class ProductTest {
 	@Before
 	public void setUp() throws Exception {
 		product = new Product(ID, name, description, sellPrice, invoicePrice, quantity);
+		product.addListener(new
+				ChangeListener(){
+
+					@Override
+					public void stateChanged(ChangeEvent arg0) {
+						changeListenerString = ((Product)arg0.getSource()).getName();
+					}
+		});
+		changeListenerString = "FAIL";
 	}
 
 	/**
@@ -58,7 +71,14 @@ public class ProductTest {
 	 */
 	@Test
 	public void testHashCode() {
-		fail("Not yet implemented");
+		Product p = new Product(ID, name, description, sellPrice, invoicePrice, quantity);
+		assertTrue(p.hashCode() == product.hashCode());
+		p.update(ID, name, description, sellPrice, invoicePrice, 20);
+		assertTrue(p.hashCode() == product.hashCode());
+		p.update(33, name, description, sellPrice, invoicePrice, 20);
+		assertFalse(p.hashCode() == product.hashCode());
+		p.update(ID, name, description, new BigDecimal("33.33"), invoicePrice, 20);
+		assertFalse(p.hashCode() == product.hashCode());
 	}
 
 	/**
@@ -83,7 +103,18 @@ public class ProductTest {
 	 */
 	@Test
 	public void testUpdate() {
-		fail("Not yet implemented");
+		assertEquals(changeListenerString, "FAIL");
+		int testInt = 5;
+		String testString = "test";
+		BigDecimal testDec = new BigDecimal("1.99");
+		product.update(testInt, testString, testString, testDec, testDec, testInt);
+		assertEquals(product.getID(), testInt);
+		assertEquals(product.getName(), testString);
+		assertEquals(product.getDescription(), testString);
+		assertEquals(product.getSellPrice(), testDec);
+		assertEquals(product.getInvoicePrice(), testDec);
+		assertEquals(product.getQuantity(), testInt);
+		assertEquals(changeListenerString, product.getName());
 	}
 
 	/**
@@ -91,7 +122,10 @@ public class ProductTest {
 	 */
 	@Test
 	public void testIncrement() {
-		fail("Not yet implemented");
+		assertEquals(changeListenerString, "FAIL");
+		product.increment();
+		assertTrue(product.getQuantity() == quantity + 1);
+		assertEquals(changeListenerString, product.getName());
 	}
 
 	/**
@@ -99,7 +133,10 @@ public class ProductTest {
 	 */
 	@Test
 	public void testDecrement() {
-		fail("Not yet implemented");
+		assertEquals(changeListenerString, "FAIL");
+		product.decrement();
+		assertTrue(product.getQuantity() == quantity -1);
+		assertEquals(changeListenerString, product.getName());
 	}
 
 	/**
@@ -107,7 +144,7 @@ public class ProductTest {
 	 */
 	@Test
 	public void testGetID() {
-		fail("Not yet implemented");
+		assertTrue(product.getID() == ID);
 	}
 
 	/**
@@ -115,7 +152,7 @@ public class ProductTest {
 	 */
 	@Test
 	public void testGetName() {
-		fail("Not yet implemented");
+		assertEquals(product.getName(), name);
 	}
 
 	/**
@@ -123,7 +160,7 @@ public class ProductTest {
 	 */
 	@Test
 	public void testGetDescription() {
-		fail("Not yet implemented");
+		assertEquals(product.getDescription(), description);
 	}
 
 	/**
@@ -131,7 +168,7 @@ public class ProductTest {
 	 */
 	@Test
 	public void testGetSellPrice() {
-		fail("Not yet implemented");
+		assertEquals(product.getSellPrice(), sellPrice);
 	}
 
 	/**
@@ -139,7 +176,7 @@ public class ProductTest {
 	 */
 	@Test
 	public void testGetInvoicePrice() {
-		fail("Not yet implemented");
+		assertEquals(product.getInvoicePrice(), invoicePrice);
 	}
 
 	/**
@@ -147,7 +184,7 @@ public class ProductTest {
 	 */
 	@Test
 	public void testGetQuantity() {
-		fail("Not yet implemented");
+		assertTrue(product.getQuantity() == quantity);
 	}
 
 	/**
@@ -155,7 +192,10 @@ public class ProductTest {
 	 */
 	@Test
 	public void testClone() {
-		fail("Not yet implemented");
+		Product p = (Product)product.clone();
+		assertFalse(p == product);
+		assertEquals(p, product);
+		assertEquals(p.getQuantity(), 0);
 	}
 
 	/**
@@ -163,7 +203,15 @@ public class ProductTest {
 	 */
 	@Test
 	public void testAddListener() {
-		fail("Not yet implemented");
+		product.addListener(new
+				ChangeListener(){
+
+					@Override
+					public void stateChanged(ChangeEvent arg0) {
+						// Do nothing.
+					}
+		});
+		// TODO: Make some kind of assertion to make sure this works?
 	}
 
 	/**
@@ -175,6 +223,7 @@ public class ProductTest {
 		assertTrue(p.equals(product));
 		p = new Product(ID, name, description, sellPrice, invoicePrice, 0);
 		assertTrue(p.equals(product));
+		assertTrue(p.hashCode() == product.hashCode());
 		p = new Product(ID, "not an apple", description, sellPrice, invoicePrice, 0);
 		assertFalse(p.equals(product));
 	}

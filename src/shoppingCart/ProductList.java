@@ -1,102 +1,141 @@
 package shoppingCart;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+
 /** A class that manages a list of products.
- *  @author Seth Moore and Newman Souza
+ *  @author Newman Souza
+ *  @author Seth Moore
  */ 
-public class ProductList {
+@SuppressWarnings("serial")
+public abstract class ProductList implements Iterable<Product>, Serializable{
 	
     /** Constructs a ProductList object.
      *  @precondition none
      *  @postcondition object created
      */
     public ProductList() {
-
-    	// code
-    	
+    	products = new ArrayList<>();
     }
 
-    /** Populates a list of Products.
-     *  @param 
-     *  @return ?
-     *  @precondition 
-     *  @postcondition 
-     */
-    public void populate() {
-
-    	// code
-    	
-    }
-
-    /** Clears the state of the cart.
-     *  @param 
-     *  @return ?
-     *  @precondition 
-     *  @postcondition 
+    /** 
+     * Removes all the Products from this ProductList.
+     * 
+     *  @precondition none
+     *  @postcondition iterator().hasNext() == false
      */
     public void clear() {
 
-    	// code
-    	
+    	products.clear();
     }
 
-    /** Increments the quantity of a Product in the cart.
-     *  @param 
-     *  @return ?
-     *  @precondition 
-     *  @postcondition 
+    /** 
+     * Increments, by one, the quantity of a Product that equals the
+     * supplied Product.
+     * 
+     *  @param the Product whose matching Product will be incremented.
+     *  @precondition none
+     *  @postcondition getMatchingProduct(product).getQuantity() > 0
      */
     public void increment(Product product) {
 
-    	// code
-    	
+    	for (Product p : products) {
+			if (p.equals(product)){
+				p.increment();
+				return;
+			}
+		}
+    	// If product wasn't already in this ProductList, create a clone
+    	// (which will have quantity == 0), increment the clone, and add
+    	// to this ProductList.
+    	Product p = (Product)product.clone();
+    	p.increment();
+    	add(p);
     }
 
-    /** Decrements the quantity of a Product in the cart.
-     *  @param 
-     *  @return ?
-     *  @precondition 
-     *  @postcondition 
+    /** 
+     * Decrements, by one, the quantity of a Product that equals the
+     * supplied Product.
+     * 
+     *  @param the Product whose matching Product will be decremented.
+     *  @precondition getMatchingProduct(product) != null
+     *  @precondition getMatchingProduct(product).getQuantity() > 0
+     *  @postcondition getMatchingProduct(product).getQuantity() >= 0
      */
     public void decrement(Product product) {
 
-    	// code
-    	
+    	for (Product p : products) {
+			if (p.equals(product)){
+				p.decrement();
+			}
+		}
+    }
+    
+    /**
+     * Gets the Product in this ProductList that equals the supplied Product,
+     * if it exists, else returns null.
+     * 
+     * @param product the Product whose matching product will be retrieved
+     * @return the matching Product, or null if matching product not found
+     */
+    public Product getMatchingProduct(Product product){
+    	for (Product p : products) {
+			if (p.equals(product)){
+				return p;
+			}
+		}
+		return null;
     }
 
-    /** Adds a Product to the ProductList.
-     *  @param 
-     *  @return ?
-     *  @precondition 
-     *  @postcondition 
+    /** 
+     * Adds a copy (including quantity) of the supplied Product to the
+     * ProductList.
+     *  
+     *  @param product the Product whose copy will be added to this ProductList
+     *  
+     *  @precondition getMatchingProduct(product) == null
+     *  @postcondition getMatchingProduct(product).equals(product) == true
+     *  @postcondition getMatchingProduct(product).getQuantity() == product.getQuantity()
      */
     public void add(Product product) {
 
-    	// code
+    	Product p = new Product(product.getID(),
+    							product.getName(),
+    							product.getDescription(),
+    							product.getSellPrice(),
+    							product.getInvoicePrice(),
+    							product.getQuantity());
     	
+    	products.add(p);
     }
 
-    /** Deletes a Product from the ProductList
-     *  @param 
-     *  @return ?
-     *  @precondition 
-     *  @postcondition 
+    /** 
+     * Removes a Product that matches supplied Product from the ProductList
+     * 
+     *  @param product whose match will be removed from this ProductList
+     *  @precondition getMatchingProduct(product) != null 
+     *  @postcondition getMatchingProduct(product) == null
      */
-    public void delete(Product product) {
+    public void remove(Product product) {
 
-    	// code
-    	
+    	Iterator<Product> it = products.iterator();
+    	while (it.hasNext()) {
+			Product p = (Product) it.next();
+			if (p.equals(product)){
+				it.remove();
+			}
+		}
     }
-
-    /** Retrieves the number of items in the list and it's total amount.
-     *  @param 
-     *  @return ?
-     *  @precondition 
-     *  @postcondition 
+    
+    /**
+     * 
+     * @return
      */
-    public void getTotal() {
-
-    	// code
-    	
+    public Iterator<Product> iterator(){
+		return Collections.unmodifiableList(products).iterator();
     }
 
+    private ArrayList<Product> products;
 }
