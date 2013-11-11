@@ -94,19 +94,20 @@ displaySaleConfirmation()
     </void>
     <void property="methods">
      <void property="text">
-      <string>+clone() : Object
+      <string>+Product(ID, name, description,sellPrice, invoicePrice, quantity)
++clone() : Object
 +getID() : integer
 +getName() : String
 +getDescription() : String
 +getSellPrice() : BigDecimal
 +getInvoicePrice() : BigDecimal
 +getQuantity() : integer
-+update(ID, name, description,
-sellPrice, invoicePrice, quantity) : void
++update(ID, name, description,sellPrice, invoicePrice, quantity) : void
 +increment() : void
 +decrement() : void
 +addListener( l : Listener) : void
-</string>
++equals(obj : Object) : boolean
++hashCode() : int</string>
      </void>
     </void>
     <void property="name">
@@ -120,19 +121,19 @@ sellPrice, invoicePrice, quantity) : void
      <string>x</string>
      <void method="set">
       <object idref="Point2D$Double2"/>
-      <double>1304.0</double>
+      <double>1275.0</double>
      </void>
     </void>
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>y</string>
      <void method="set">
       <object idref="Point2D$Double2"/>
-      <double>310.0</double>
+      <double>320.0</double>
      </void>
     </void>
     <void method="setLocation">
-     <double>1304.0</double>
-     <double>310.0</double>
+     <double>1275.0</double>
+     <double>320.0</double>
     </void>
    </object>
   </void>
@@ -290,7 +291,9 @@ sellPrice, invoicePrice, quantity) : void
    <object class="com.horstmann.violet.ClassNode" id="ClassNode7">
     <void property="methods">
      <void property="text">
-      <string>+decrement(product : Product) : void
+      <string>+ProductList()
++getMatchingProduct(product : Product) Product
++decrement(product : Product) : void
 +increment(product : Product) : void
 +iterator() : Iterator&lt;Product&gt;
 +add(product : Product) : void
@@ -310,19 +313,19 @@ ProductList</string>
      <string>x</string>
      <void method="set">
       <object idref="Point2D$Double7"/>
-      <double>972.0</double>
+      <double>944.0</double>
      </void>
     </void>
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>y</string>
      <void method="set">
       <object idref="Point2D$Double7"/>
-      <double>393.0</double>
+      <double>403.0</double>
      </void>
     </void>
     <void method="setLocation">
-     <double>972.0</double>
-     <double>393.0</double>
+     <double>944.0</double>
+     <double>403.0</double>
     </void>
    </object>
   </void>
@@ -371,11 +374,13 @@ ProductList</string>
     </void>
     <void property="methods">
      <void property="text">
-      <string>+getCosts() : BigDecimal
-+getRevenues : BigDecimal
-+getProfits : BigDecimal
+      <string>+Inventory()
++getCosts() : BigDecimal
++getRevenues() : BigDecimal
++getProfits() : BigDecimal
 +decrement(product : Product) : void
-+increment(product : Product) : void</string>
++increment(product : Product) : void
++add(product : Product) : void</string>
      </void>
     </void>
     <void property="name">
