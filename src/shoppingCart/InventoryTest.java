@@ -46,6 +46,22 @@ public class InventoryTest {
 	}
 
 	/**
+	 * Test method for {@link shoppingCart.Inventory#ProductList()}.
+	 */
+	@Test
+	public void testProductList() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link shoppingCart.Inventory#clear()}.
+	 */
+	@Test
+	public void testClear() {
+		fail("Not yet implemented");
+	}
+
+	/**
 	 * Test method for {@link shoppingCart.Inventory#increment(shoppingCart.Product)}.
 	 */
 	@Test
@@ -61,6 +77,38 @@ public class InventoryTest {
 		fail("Not yet implemented");
 	}
 
+	/**
+	 * Test method for {@link shoppingCart.Inventory#getMatchingProduct(shoppingCart.Product)}.
+	 */
+	@Test
+	public void testGetMatchingProduct() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link shoppingCart.Inventory#add(shoppingCart.Product)}.
+	 */
+	@Test
+	public void testAdd() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link shoppingCart.Inventory#remove(shoppingCart.Product)}.
+	 */
+	@Test
+	public void testRemove() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link shoppingCart.Inventory#iterator()}.
+	 */
+	@Test
+	public void testIterator() {
+		fail("Not yet implemented");
+	}
+	
 	/**
 	 * Test method for {@link shoppingCart.Inventory#Inventory()}.
 	 */

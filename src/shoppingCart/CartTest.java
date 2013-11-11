@@ -46,6 +46,70 @@ public class CartTest {
 	}
 
 	/**
+	 * Test method for {@link shoppingCart.Cart#ProductList()}.
+	 */
+	@Test
+	public void testProductList() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link shoppingCart.Cart#clear()}.
+	 */
+	@Test
+	public void testClear() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link shoppingCart.Cart#increment(shoppingCart.Product)}.
+	 */
+	@Test
+	public void testIncrement() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link shoppingCart.Cart#decrement(shoppingCart.Product)}.
+	 */
+	@Test
+	public void testDecrement() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link shoppingCart.Cart#getMatchingProduct(shoppingCart.Product)}.
+	 */
+	@Test
+	public void testGetMatchingProduct() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link shoppingCart.Cart#add(shoppingCart.Product)}.
+	 */
+	@Test
+	public void testAdd() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link shoppingCart.Cart#remove(shoppingCart.Product)}.
+	 */
+	@Test
+	public void testRemove() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link shoppingCart.Cart#iterator()}.
+	 */
+	@Test
+	public void testIterator() {
+		fail("Not yet implemented");
+	}
+	
+	/**
 	 * Test method for {@link shoppingCart.Cart#getTotal()}.
 	 */
 	@Test
