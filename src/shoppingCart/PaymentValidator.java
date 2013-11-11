@@ -1,28 +1,24 @@
 package shoppingCart;
 
+import java.math.BigDecimal;
+
 /** A class that validates payments for the Shopping Cart application.
- *  @author Seth Moore and Newman Souza
+ * @author Newman Souza
+ * @author Seth Moore
  */ 
 public class PaymentValidator {
 
-    /** Constructs a PaymentValidator object
+    /** 
+     * Validates a payment.
+     * 
+     *  @param cardNumber the customer's credit card number.
+     *  @param total the monetary amount being validated.
+     *  @return true if the payment is approved.
      *  @precondition none
-     *  @postcondition object created
+     *  @postcondition none
      */
-    public PaymentValidator() {
+    public boolean validate(String cardNumber, BigDecimal total) {
 
-    	// code
-    	
-    }
-
-    /** .
-     *  @param 
-     *  @precondition 
-     *  @postcondition 
-     */
-    public boolean validate(String data) {
-
-    	// code
     	return true;
     	
     }
