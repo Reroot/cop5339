@@ -74,6 +74,23 @@ public class Inventory extends ProductList {
 		super.increment(product);
 		revenues.subtract(product.getSellPrice());
 	}
+	
+	/**
+	 * Adds a copy (including quantity) of the supplied Product to the
+     * ProductList, and increases costs by the invoicePrice times quantity
+     * of the Product.
+     *  
+     *  @param product the Product whose copy will be added to this ProductList
+     *  
+     *  @precondition getMatchingProduct(product) == null
+     *  @postcondition getMatchingProduct(product).equals(product) == true
+     *  @postcondition getMatchingProduct(product).getQuantity() == product.getQuantity()
+	 */
+	@Override
+	public void add(Product product){
+		super.add(product);
+		costs = costs.add(product.getInvoicePrice().multiply(BigDecimal.valueOf(product.getQuantity())));
+	}
 
 	private BigDecimal costs;
 	private BigDecimal revenues;
