@@ -58,7 +58,7 @@ public class Inventory extends ProductList {
 	 */
 	public void decrement(Product product){
 		super.decrement(product);
-		revenues.add(product.getSellPrice());
+		revenues = revenues.add(product.getSellPrice());
 	}
 	
 	/**
@@ -72,7 +72,7 @@ public class Inventory extends ProductList {
 	 */
 	public void increment(Product product){
 		super.increment(product);
-		revenues.subtract(product.getSellPrice());
+		revenues = revenues.subtract(product.getSellPrice());
 	}
 	
 	/**
