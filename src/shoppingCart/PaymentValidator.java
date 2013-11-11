@@ -3,7 +3,8 @@ package shoppingCart;
 import java.math.BigDecimal;
 
 /** A class that validates payments for the Shopping Cart application.
- *  @author Seth Moore and Newman Souza
+ * @author Newman Souza
+ * @author Seth Moore
  */ 
 public class PaymentValidator {
 
