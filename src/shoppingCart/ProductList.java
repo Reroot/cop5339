@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 /** A class that manages a list of products.
  *  @author Newman Souza
  *  @author Seth Moore
@@ -18,6 +21,7 @@ public abstract class ProductList implements Iterable<Product>, Serializable{
      */
     public ProductList() {
     	products = new ArrayList<>();
+    	listeners = new ArrayList<>();
     }
 
     /** 
@@ -29,6 +33,7 @@ public abstract class ProductList implements Iterable<Product>, Serializable{
     public void clear() {
 
     	products.clear();
+    	notifyListeners();
     }
 
     /** 
@@ -53,6 +58,7 @@ public abstract class ProductList implements Iterable<Product>, Serializable{
     	Product p = (Product)product.clone();
     	p.increment();
     	add(p);
+    	notifyListeners();
     }
 
     /** 
@@ -71,6 +77,7 @@ public abstract class ProductList implements Iterable<Product>, Serializable{
 				p.decrement();
 			}
 		}
+    	notifyListeners();
     }
     
     /**
@@ -109,6 +116,7 @@ public abstract class ProductList implements Iterable<Product>, Serializable{
     							product.getQuantity());
     	
     	products.add(p);
+    	//notifyListeners();
     }
 
     /** 
@@ -127,6 +135,7 @@ public abstract class ProductList implements Iterable<Product>, Serializable{
 				it.remove();
 			}
 		}
+    	notifyListeners();
     }
     
     /**
@@ -136,6 +145,30 @@ public abstract class ProductList implements Iterable<Product>, Serializable{
     public Iterator<Product> iterator(){
 		return Collections.unmodifiableList(products).iterator();
     }
+    
+    /**
+	 * Adds a ChangeListener to the ChangeListeners that will be notified
+	 * whenever this ProductList changes state.
+	 * 
+	 * @param listener the ChangeListener to add
+	 */
+	public void addListener(ChangeListener listener){
+		listeners.add(listener);
+	}
+	
+	/**
+	 * Notifies the listeners that the state has changed.
+	 * 
+	 * @precondition none
+	 * @postcondition all ChangeListeners in listeners have been notified
+	 * that the state has changed.
+	 */
+	protected void notifyListeners(){
+		for (ChangeListener listener : listeners){
+			listener.stateChanged(new ChangeEvent(this));
+		}
+	}
 
     private ArrayList<Product> products;
+    private ArrayList<ChangeListener> listeners;
 }

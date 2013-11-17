@@ -382,8 +382,7 @@ ProductList</string>
 +decrement(product : Product) : void
 +increment(product : Product) : void
 +add(product : Product) : void
-+update(product : Product) : void
-+delete(product : Product) : void</string>
++update(product : Product) : void</string>
      </void>
     </void>
     <void property="name">
