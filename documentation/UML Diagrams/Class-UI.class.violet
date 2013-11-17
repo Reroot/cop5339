@@ -169,7 +169,7 @@
 +displaySellerScreen()
 +displaySellerScreen(inventory : Inventory) : void
 +displayCustomerScreen() : void
-+displayCustomerScreen(cart : Inventory) : void
++displayCustomerScreen(inventory : Inventory) : void
 +displayCheckoutScreen() : void
 +displayProductForm(product : Product) : void
 +displayProductForm() : void</string>
