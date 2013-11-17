@@ -100,10 +100,17 @@ public class Inventory extends ProductList {
 	}
 	
 	public void update(Product product){
-		// TODO: code!
+		Product p = getMatchingProduct(product);
+		int oldQuantity = p.getQuantity();
+		int newQuantity = product.getQuantity();
+		if (oldQuantity < newQuantity){
+			costs = costs.add(product.getInvoicePrice().multiply(BigDecimal.valueOf(newQuantity - oldQuantity)));
+		}
+		p.update(product.getID(), product.getName(), product.getDescription(), product.getSellPrice(), product.getInvoicePrice(), product.getQuantity());
+		notifyListeners();
 	}
-
-	private BigDecimal costs;
+	
+		private BigDecimal costs;
 	private BigDecimal revenues;
 	private static Inventory instance = null;
 }
