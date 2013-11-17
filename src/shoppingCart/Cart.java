@@ -11,6 +11,19 @@ import java.math.BigDecimal;
 @SuppressWarnings("serial")
 public class Cart extends ProductList {
 	
+	
+	
+	private Cart(){
+		super();
+	}
+
+	public static Cart getInstance(){
+		if (instance == null){
+			instance = new Cart();
+		}
+		return instance;
+	}
+	
 	/**
 	 * Gets the Cart's total, which is the sum of the sell price times quantity
 	 * of each Product in the cart.
@@ -37,5 +50,7 @@ public class Cart extends ProductList {
 		}
 		return quantity;
 	}
+	
+	private static Cart instance;
 
 }

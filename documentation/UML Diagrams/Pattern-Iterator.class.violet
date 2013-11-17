@@ -5,7 +5,7 @@
    <object class="com.horstmann.violet.ClassNode" id="ClassNode0">
     <void property="name">
      <void property="text">
-      <string>UI</string>
+      <string>AbstractBrowsePanel</string>
      </void>
     </void>
    </object>
@@ -14,19 +14,19 @@
      <string>x</string>
      <void method="set">
       <object idref="Point2D$Double0"/>
-      <double>664.0</double>
+      <double>629.0</double>
      </void>
     </void>
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>y</string>
      <void method="set">
       <object idref="Point2D$Double0"/>
-      <double>274.0</double>
+      <double>273.0</double>
      </void>
     </void>
     <void method="setLocation">
-     <double>664.0</double>
-     <double>274.0</double>
+     <double>629.0</double>
+     <double>273.0</double>
     </void>
    </object>
   </void>
@@ -35,7 +35,7 @@
     <void property="name">
      <void property="text">
       <string>(iterator from
-ProducList&apos;s
+Inventory&apos;s
 List instance)</string>
      </void>
     </void>
@@ -65,7 +65,7 @@ List instance)</string>
    <object class="com.horstmann.violet.ClassNode" id="ClassNode2">
     <void property="name">
      <void property="text">
-      <string>ProductList</string>
+      <string>Inventory</string>
      </void>
     </void>
    </object>
@@ -74,19 +74,19 @@ List instance)</string>
      <string>x</string>
      <void method="set">
       <object idref="Point2D$Double2"/>
-      <double>488.0</double>
+      <double>476.0</double>
      </void>
     </void>
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>y</string>
      <void method="set">
       <object idref="Point2D$Double2"/>
-      <double>439.0</double>
+      <double>441.0</double>
      </void>
     </void>
     <void method="setLocation">
-     <double>488.0</double>
-     <double>439.0</double>
+     <double>476.0</double>
+     <double>441.0</double>
     </void>
    </object>
   </void>
@@ -101,7 +101,7 @@ next()</string>
     <void property="name">
      <void property="text">
       <string>«interface»
-java.util.Iterator</string>
+Iterator</string>
      </void>
     </void>
    </object>
@@ -136,7 +136,7 @@ java.util.Iterator</string>
     <void property="name">
      <void property="text">
       <string>«interface»
-java.lang.Iterable</string>
+Iterable</string>
      </void>
     </void>
    </object>

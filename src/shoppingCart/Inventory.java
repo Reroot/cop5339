@@ -15,10 +15,17 @@ public class Inventory extends ProductList {
 	/**
 	 * Constructor
 	 */
-	public Inventory(){
+	private Inventory(){
 		super();
 		costs = new BigDecimal("0.00");
 		revenues = new BigDecimal("0.00");
+	}
+	
+	public static Inventory getInstance(){
+		if (instance == null){
+			instance = new Inventory();
+		}
+		return instance;
 	}
 	
 	/**
@@ -91,7 +98,12 @@ public class Inventory extends ProductList {
 		super.add(product);
 		costs = costs.add(product.getInvoicePrice().multiply(BigDecimal.valueOf(product.getQuantity())));
 	}
+	
+	public void update(Product product){
+		// TODO: code!
+	}
 
 	private BigDecimal costs;
 	private BigDecimal revenues;
+	private static Inventory instance = null;
 }

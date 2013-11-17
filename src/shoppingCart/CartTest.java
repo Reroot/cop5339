@@ -45,6 +45,13 @@ public class CartTest {
 	public void tearDown() throws Exception {
 	}
 
+	@Test
+	public void testGetInstance(){
+		Cart cart1 = Cart.getInstance();
+		Cart cart2 = Cart.getInstance();
+		assertTrue(cart1 == cart2);
+	}
+	
 	/**
 	 * Test method for {@link shoppingCart.Cart#ProductList()}.
 	 */
