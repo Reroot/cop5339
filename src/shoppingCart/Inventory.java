@@ -110,7 +110,31 @@ public class Inventory extends ProductList {
 		notifyListeners();
 	}
 	
-		private BigDecimal costs;
+	/**
+	 * This method should make the Singleton Pattern play nicely with
+	 * deserialization in our application. Since deserialization creates
+	 * a new object, we clear the old instance, and add all the Products
+	 * from the deserialized object (this) to the instance, then return
+	 * the instance, rather than this.
+	 * 
+	 * @return the Inventory instance
+	 */
+	private Object readResolve(){
+		if (instance == null){
+			instance = this;
+		}
+		else{
+			instance.clear();
+			for (Product p : this) {
+				instance.add(p);
+			}
+			instance.costs = this.costs;
+			instance.revenues = this.revenues;
+		}
+		return instance;
+	}
+	
+	private BigDecimal costs;
 	private BigDecimal revenues;
 	private static Inventory instance = null;
 }
