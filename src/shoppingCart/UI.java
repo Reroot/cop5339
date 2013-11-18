@@ -185,16 +185,21 @@ public class UI extends JFrame{
     			MouseAdapter(){
     				public void mouseClicked(MouseEvent e) {
     					// cartSystem.login(usernameField.getText(), passwordField.getText())
-    					displayCustomerScreen();
-//    					if (usernameField.getText().equals("username") && passwordField.getText().equals("password")){
-//    						((CardLayout)(screenCards.getLayout())).show(screenCards, USINGPANEL);
-//    					}
-//    					else {
-//    						JOptionPane.showMessageDialog(screenCards, "Try again!");
-//    						usernameField.setText("");
-//    						passwordField.setText("");
-//    						
-//    					}
+    					//displayCustomerScreen();
+//    					String userType = cartSystem.login(usernameField.getText(), passwordField.getText());
+    					String userType = "customer";
+    					if (userType.equals("customer")){
+    						displayCustomerScreen();
+    					}
+    					else if (userType.equals("seller")){
+    						displaySellerScreen();
+    					}
+    					else {
+    						JOptionPane.showMessageDialog(screenCards, "Invalid username/password pair.\nPlease try again.");
+    						usernameField.setText("");
+    						passwordField.setText("");
+    						
+    					}
     					
     				};
     			}

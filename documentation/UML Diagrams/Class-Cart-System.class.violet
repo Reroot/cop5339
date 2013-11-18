@@ -112,7 +112,7 @@
    <object class="com.horstmann.violet.ClassNode" id="ClassNode3">
     <void property="methods">
      <void property="text">
-      <string>+login(username : String, password : String) : void
+      <string>+login(username : String, password : String) : String
 +pay(cardNumber : String, total : BigDecimal) : boolean
 +saveInventory(inventory : Inventory) : void</string>
      </void>
