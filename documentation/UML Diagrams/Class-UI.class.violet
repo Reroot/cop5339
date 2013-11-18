@@ -167,9 +167,7 @@
      <void property="text">
       <string>+displayLoginScreen() : void
 +displaySellerScreen()
-+displaySellerScreen(inventory : Inventory) : void
 +displayCustomerScreen() : void
-+displayCustomerScreen(inventory : Inventory) : void
 +displayCheckoutScreen() : void
 +displayProductForm(product : Product) : void
 +displayProductForm() : void</string>
