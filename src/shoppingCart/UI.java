@@ -21,7 +21,9 @@ import javax.swing.border.EtchedBorder;
 public class UI extends JFrame{
 	
 	final static String LOGINPANEL = "LoginScreen";
-	final static String USINGPANEL = "UsingScreen";
+	final static String CUSTOMERPANEL = "CustomerScreen";
+	final static String SELLERPANEL = "SellerScreen";
+	final static String CARTPANEL = "CartScreen";
 	
     /** Constructs a UI object.
      *  @precondition none
@@ -39,24 +41,8 @@ public class UI extends JFrame{
     	JPanel loginScreen = createLoginScreen();
     	screenCards.add(loginScreen, LOGINPANEL);
     	
-    	JPanel usingScreen = new JPanel();
-    	usingScreen.setLayout(new BorderLayout());
-    	screenCards.add(usingScreen, USINGPANEL);
-    	
-    	JPanel screenNamePanel = new JPanel();
-    	screenNamePanel.setPreferredSize(new Dimension(400, 50));
-    	screenNamePanel.setBorder(new EtchedBorder());
-    	usingScreen.add(screenNamePanel, BorderLayout.PAGE_START);
-    	
-    	JPanel browsePanel = new JPanel();
-    	browsePanel.setPreferredSize(new Dimension(300, 350));
-    	browsePanel.setBorder(new EtchedBorder());
-    	usingScreen.add(browsePanel, BorderLayout.CENTER);
-    	
-    	JPanel sidePanel = new JPanel();
-    	sidePanel.setPreferredSize(new Dimension(100, 350));
-    	sidePanel.setBorder(new EtchedBorder());
-    	usingScreen.add(sidePanel, BorderLayout.LINE_END);
+    	JPanel customerScreen = createSellerScreen();
+    	screenCards.add(customerScreen, CUSTOMERPANEL);
     	
     	add(screenCards, BorderLayout.CENTER);
     	
@@ -67,6 +53,29 @@ public class UI extends JFrame{
     	
     	displayLoginScreen();
     }
+
+
+
+	private JPanel createSellerScreen() {
+		JPanel customerScreen = new JPanel();
+    	customerScreen.setLayout(new BorderLayout());
+    	
+    	JPanel screenNamePanel = new JPanel();
+    	screenNamePanel.setPreferredSize(new Dimension(400, 50));
+    	screenNamePanel.setBorder(new EtchedBorder());
+    	customerScreen.add(screenNamePanel, BorderLayout.PAGE_START);
+    	
+    	JPanel browsePanel = new JPanel();
+    	browsePanel.setPreferredSize(new Dimension(300, 350));
+    	browsePanel.setBorder(new EtchedBorder());
+    	customerScreen.add(browsePanel, BorderLayout.CENTER);
+    	
+    	JPanel sidePanel = new JPanel();
+    	sidePanel.setPreferredSize(new Dimension(100, 350));
+    	sidePanel.setBorder(new EtchedBorder());
+    	customerScreen.add(sidePanel, BorderLayout.LINE_END);
+		return customerScreen;
+	}
 
 	
 
@@ -139,7 +148,7 @@ public class UI extends JFrame{
     public void displayCustomerScreen() {
     	PrunningIterator PIter = new PrunningIterator(inventory.iterator());
 //    	customerBrowsePanel.populate(PIter);
-    	((CardLayout)(screenCards.getLayout())).show(screenCards, USINGPANEL);
+    	((CardLayout)(screenCards.getLayout())).show(screenCards, CUSTOMERPANEL);
     }
 
     /** .
