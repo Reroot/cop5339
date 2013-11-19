@@ -79,7 +79,6 @@ public class UI extends JFrame{
     public void displayLoginScreen() {
 
     	// code
-    	
     }
 
     /** .
@@ -187,11 +186,12 @@ public class UI extends JFrame{
     					// cartSystem.login(usernameField.getText(), passwordField.getText())
     					//displayCustomerScreen();
 //    					String userType = cartSystem.login(usernameField.getText(), passwordField.getText());
-    					String userType = "customer";
-    					if (userType.equals("customer")){
+    			    	String userType = cartSystem.login("Newman", "newman");
+//    					String userType = "customer";
+    					if (userType.equals("Customer")){
     						displayCustomerScreen();
     					}
-    					else if (userType.equals("seller")){
+    					else if (userType.equals("Seller")){
     						displaySellerScreen();
     					}
     					else {

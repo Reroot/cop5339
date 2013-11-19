@@ -1,54 +1,65 @@
 package shoppingCart;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+
 /** A class that manages a list of users.
- *  @author Seth Moore and Newman Souza
+ *  @author Newman Souza
+ *  @author Seth Moore
  */ 
-public class UserList {
+public class UserList implements Iterable<User>, Serializable {
 	
     /** Constructs a UserList object.
-     *  @precondition none
-     *  @postcondition object created
+     *  @precondition 		none
+     *  @postcondition 		object created
      */
     public UserList() {
-
-    	// code
-    	
+    	users = new ArrayList<User>();
     }
 
-    /** Adds a user to the UserList.
-     *  @param user the user to be added to the list
-     *  @return ?
-     *  @precondition user is a valid reference
-     *  @postcondition  user added to the list
+    // TODO TO BE DELETED
+    public void addUser(String username, String password, String type) {
+		User user = new User(username, password, type);
+		users.add(user);
+    }
+
+    // TODO TO BE DELETED
+    /** Deletes all users from UserList.
      */
-    public void addUser(User user) {
-
-    	// code
-    	
+    public void clear() {
+    	users.clear();
     }
 
-    /** Retrieves a User from the UserList.
-     *  @param data the user's username and password
-     *  @return user information
-     *  @precondition none
-     *  @postcondition user information is available
-     */
-    public void getUser(String data) {
 
-    	// code
-    	
-    }
+    /** Validates user credentials.
+	 *  @param username		User's username
+	 *  @param password		User's password
+	 *  @return 			The User's type if user is in the list and null otherwise
+	 *  @precondition 		username and password are valid references
+	 *  @postcondition  	User's type is determined
+	 */
+	public String validate(String username, String password) {
+    	Iterator<User> userList = users.iterator();
+    	while (userList.hasNext()) {
+    		User user = (User)userList.next();
+    		if (user.getUsername() == username) {
+    			if (user.checkPassword(password)) {
+    				return user.getType();
+    			}
+    		}
+    	}
+   		return null;
+	}
 
-    /** ? ? ?
-     *  @param ?
-     *  @return ?
-     *  @precondition ?
-     *  @postcondition ?
-     */
-    public void getSeller() {
-
-    	// code
-    	
-    }
-
+	/** Provides an iterator for the User list.
+	 *  @return 			An iterator for the User list
+	 */
+	public Iterator<User> iterator() {
+		return Collections.unmodifiableList(users).iterator();
+	}
+	
+    private ArrayList<User> users;
+    
 }
