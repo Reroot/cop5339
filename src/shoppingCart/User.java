@@ -1,72 +1,64 @@
 package shoppingCart;
 
+import java.io.Serializable;
+
 /** A class that manages User state.
- *  @author Seth Moore and Newman Souza
+ *  @author Newman Souza
+ *  @author Seth Moore
  */ 
-public class User {
+public class User implements Serializable {
 	
-    /** Constructs a User object.
-     *  @param data the user's information
-     *  @precondition none
-     *  @postcondition object created
+	/** Constructs a User object.
+     *  @param username		User's username
+     *  @param password		User's password
+     *  @param type			User's type
+     *  @precondition 		none
+     *  @postcondition 		object created
      */
-    public User(String data) {
-
-    	// code
-    	
+    public User(String username, String password, String type) {
+    	this.username = username;
+    	this.password = password;
+    	this.type = type;
     }
-
     
-    // methods for add and remove user?
-
-    
-    /** Determines which type of user has logged in.
-     *  @param the type of user that has logged in
-     *  @return ?
-     *  @precondition none
-     *  @postcondition type of user determined
+    /** Retrieves the User's username.
+     *  @return 			The User's username 
+     *  @precondition 		none
      */
-    public void getType() {
-
-    	// code
-    	
+    public String getUsername() {
+    	return this.username;
     }
 
-    /** Updates Seller's costs.
-     *  @param cost the amount to be updated to Seller's costs
-     *  @return ?
-     *  @precondition costs will only be updated when a new product is added to inventory
-     *  @postcondition costs updated
+    /** Accessor - Retrieves the User's type.
+     *  @return 			The User's type
+     *  @precondition 		none
      */
-    public void updateCosts(Double cost) {
-
-    	// code
-    	
+    public String getType() {
+    	return this.type;
     }
 
-    /** Updates Seller's revenues.
-     *  @param total the amount to be updated to Seller's revenues
-     *  @return ?
-     *  @precondition none
-     *  @postcondition revenues updated
+    /** Validates the User's password.
+     *  @param password		The User's password
+     *  @return 			True if password is correct and False otherwise
+     *  @precondition 		password is a valid reference
      */
-    public void updateRevenues(Double total) {
-
-    	// code
-    	
+    public boolean checkPassword(String password) {
+    	return (this.password == password);
     }
 
-    /** Retrieves Seller's financial information (costs and revenues).
-     *  @return ?
-     *  @precondition 
-     *  @postcondition 
-     */
-    public void getFinancials() {
-
-    	// code
-    	
+    // TODO TO BE DELETED
+    public String getPassword() {
+    	return this.password;
     }
 
-	
+    /** The User's username. 
+     */
+    private String username;
+    /** The User's password. 
+     */
+    private String password;
+    /** The User's type. 
+     */
+    private String type;
 
 }
