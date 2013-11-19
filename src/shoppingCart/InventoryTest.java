@@ -45,6 +45,13 @@ public class InventoryTest {
 	public void tearDown() throws Exception {
 	}
 
+	@Test
+	public void testGetInstance(){
+		Inventory inv1 = Inventory.getInstance();
+		Inventory inv2 = Inventory.getInstance();
+		assertTrue(inv1 == inv2);
+	}
+	
 	/**
 	 * Test method for {@link shoppingCart.Inventory#ProductList()}.
 	 */

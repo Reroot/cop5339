@@ -15,10 +15,17 @@ public class Inventory extends ProductList {
 	/**
 	 * Constructor
 	 */
-	public Inventory(){
+	private Inventory(){
 		super();
 		costs = new BigDecimal("0.00");
 		revenues = new BigDecimal("0.00");
+	}
+	
+	public static Inventory getInstance(){
+		if (instance == null){
+			instance = new Inventory();
+		}
+		return instance;
 	}
 	
 	/**
@@ -91,7 +98,43 @@ public class Inventory extends ProductList {
 		super.add(product);
 		costs = costs.add(product.getInvoicePrice().multiply(BigDecimal.valueOf(product.getQuantity())));
 	}
-
+	
+	public void update(Product product){
+		Product p = getMatchingProduct(product);
+		int oldQuantity = p.getQuantity();
+		int newQuantity = product.getQuantity();
+		if (oldQuantity < newQuantity){
+			costs = costs.add(product.getInvoicePrice().multiply(BigDecimal.valueOf(newQuantity - oldQuantity)));
+		}
+		p.update(product.getID(), product.getName(), product.getDescription(), product.getSellPrice(), product.getInvoicePrice(), product.getQuantity());
+		notifyListeners();
+	}
+	
+	/**
+	 * This method should make the Singleton Pattern play nicely with
+	 * deserialization in our application. Since deserialization creates
+	 * a new object, we clear the old instance, and add all the Products
+	 * from the deserialized object (this) to the instance, then return
+	 * the instance, rather than this.
+	 * 
+	 * @return the Inventory instance
+	 */
+	private Object readResolve(){
+		if (instance == null){
+			instance = this;
+		}
+		else{
+			instance.clear();
+			for (Product p : this) {
+				instance.add(p);
+			}
+			instance.costs = this.costs;
+			instance.revenues = this.revenues;
+		}
+		return instance;
+	}
+	
 	private BigDecimal costs;
 	private BigDecimal revenues;
+	private static Inventory instance = null;
 }
