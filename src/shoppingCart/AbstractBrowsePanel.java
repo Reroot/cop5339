@@ -2,11 +2,14 @@ package shoppingCart;
 
 import java.util.Iterator;
 
+import javax.swing.JPanel;
+
 /** A class that assembles Jpanels for the UI.
  *  @author Newman Souza
  *  @author Seth Moore
  */ 
-public abstract class AbstractBrowsePanel {
+@SuppressWarnings("serial")
+public abstract class AbstractBrowsePanel extends JPanel {
 	
     /** Constructs a AbstractBrowsePanel object.
      *  @precondition 		none

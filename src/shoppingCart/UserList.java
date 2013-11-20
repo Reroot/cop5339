@@ -44,7 +44,7 @@ public class UserList implements Iterable<User>, Serializable {
     	Iterator<User> userList = users.iterator();
     	while (userList.hasNext()) {
     		User user = (User)userList.next();
-    		if (user.getUsername() == username) {
+    		if (user.getUsername().equals(username)) {
     			if (user.checkPassword(password)) {
     				return user.getType();
     			}

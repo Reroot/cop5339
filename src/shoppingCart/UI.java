@@ -30,9 +30,10 @@ public class UI extends JFrame{
      *  @precondition none
      *  @postcondition object created
      */
-    public UI() {
+    public UI(CartSystem cartSystem) {
     	super("Shopping Cart");
     	inventory = Inventory.getInstance();
+    	this.cartSystem = cartSystem;
     	cart = Cart.getInstance();
     	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //    	setPreferredSize(new Dimension(400, 400));
@@ -108,7 +109,7 @@ public class UI extends JFrame{
      */
     public void displaySellerScreen() {
     	Iterator<Product> iter = inventory.iterator();
-//    	customerBrowsePanel.populate(PIter);
+//    	customerBrowsePanel.populate(iter);
     	((CardLayout)(screenCards.getLayout())).show(screenCards, SELLERPANEL);
     }
 
@@ -157,23 +158,20 @@ public class UI extends JFrame{
     	loginButton.addMouseListener(new
     			MouseAdapter(){
     				public void mouseClicked(MouseEvent e) {
-//    					String userType = cartSystem.login(usernameField.getText(), passwordField.getText());
-    			    	String userType = cartSystem.login("Newman", "newman");
-//    					String userType = "customer";
-    					if (userType.equals("Customer")){
-    					String userType = "customer";
-    					if (userType.equals("customer")){
+    					String userType = cartSystem.login(usernameField.getText(), passwordField.getText());
+    			    	//String userType = cartSystem.login("Newman", "newman");
+    					//String userType = "Customer";
+    					if (userType == null){
+    						JOptionPane.showMessageDialog(screenCards, "Invalid username/password pair.\nPlease try again.");
+    						usernameField.setText("");
+    						passwordField.setText("");
+    					}
+    					else if (userType.equals("Customer")){
     						cart.clear();
     						displayCustomerScreen();
     					}
     					else if (userType.equals("Seller")){
     						displaySellerScreen();
-    					}
-    					else {
-    						JOptionPane.showMessageDialog(screenCards, "Invalid username/password pair.\nPlease try again.");
-    						usernameField.setText("");
-    						passwordField.setText("");
-    						
     					}
     					
     				};

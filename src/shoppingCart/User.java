@@ -43,7 +43,7 @@ public class User implements Serializable {
      *  @precondition 		password is a valid reference
      */
     public boolean checkPassword(String password) {
-    	return (this.password == password);
+    	return (this.password.equals(password));
     }
 
     // TODO TO BE DELETED
