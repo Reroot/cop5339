@@ -1,5 +1,8 @@
 package shoppingCart;
 
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 /** A class that assembles the Customer JPanel for the UI.
  *  @author Newman Souza
  *  @author Seth Moore
@@ -21,7 +24,11 @@ public class CustomerBrowsePanel extends AbstractBrowsePanel {
 	 */
     @Override
     public void addLine(Product product) {
-    	// TODO
+    	JPanel line = new JPanel();
+    	line.add(new JLabel(product.getName()));
+    	line.add(new JLabel("" + product.getSellPrice().toString()));
+    	line.add(new JLabel("" + product.getQuantity()));
+    	this.add(line);
     }
 
 }

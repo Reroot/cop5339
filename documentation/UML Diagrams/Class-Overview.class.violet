@@ -495,7 +495,7 @@
      <object class="com.horstmann.violet.BentStyle" field="HVH"/>
     </void>
     <void property="endLabel">
-     <string>has 1</string>
+     <string>creates</string>
     </void>
     <void property="startLabel">
      <string>uses</string>

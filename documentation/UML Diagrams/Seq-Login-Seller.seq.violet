@@ -605,39 +605,12 @@ password</string>
    </object>
   </void>
   <void method="addNode">
-   <object class="com.horstmann.violet.CallNode">
-    <void property="implicitParameter">
-     <object idref="LifelineNode1"/>
-    </void>
-   </object>
+   <object idref="LifelineNode7"/>
    <object class="java.awt.geom.Point2D$Double" id="Point2D$Double18">
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>x</string>
      <void method="set">
       <object idref="Point2D$Double18"/>
-      <double>291.0</double>
-     </void>
-    </void>
-    <void class="java.awt.geom.Point2D$Double" method="getField">
-     <string>y</string>
-     <void method="set">
-      <object idref="Point2D$Double18"/>
-      <double>1037.0</double>
-     </void>
-    </void>
-    <void method="setLocation">
-     <double>291.0</double>
-     <double>1037.0</double>
-    </void>
-   </object>
-  </void>
-  <void method="addNode">
-   <object idref="LifelineNode7"/>
-   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double19">
-    <void class="java.awt.geom.Point2D$Double" method="getField">
-     <string>x</string>
-     <void method="set">
-      <object idref="Point2D$Double19"/>
       <double>884.0</double>
      </void>
     </void>
@@ -649,18 +622,18 @@ password</string>
   </void>
   <void method="addNode">
    <object idref="ActivationBarNode8"/>
-   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double20">
+   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double19">
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>x</string>
      <void method="set">
-      <object idref="Point2D$Double20"/>
+      <object idref="Point2D$Double19"/>
       <double>916.0</double>
      </void>
     </void>
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>y</string>
      <void method="set">
-      <object idref="Point2D$Double20"/>
+      <object idref="Point2D$Double19"/>
       <double>432.0</double>
      </void>
     </void>
@@ -672,18 +645,18 @@ password</string>
   </void>
   <void method="addNode">
    <object idref="ActivationBarNode9"/>
-   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double21">
+   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double20">
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>x</string>
      <void method="set">
-      <object idref="Point2D$Double21"/>
+      <object idref="Point2D$Double20"/>
       <double>1005.0</double>
      </void>
     </void>
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>y</string>
      <void method="set">
-      <object idref="Point2D$Double21"/>
+      <object idref="Point2D$Double20"/>
       <double>530.0</double>
      </void>
     </void>
@@ -695,11 +668,11 @@ password</string>
   </void>
   <void method="addNode">
    <object idref="LifelineNode8"/>
-   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double22">
+   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double21">
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>x</string>
      <void method="set">
-      <object idref="Point2D$Double22"/>
+      <object idref="Point2D$Double21"/>
       <double>1107.0</double>
      </void>
     </void>
@@ -711,18 +684,18 @@ password</string>
   </void>
   <void method="addNode">
    <object idref="ActivationBarNode11"/>
-   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double23">
+   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double22">
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>x</string>
      <void method="set">
-      <object idref="Point2D$Double23"/>
+      <object idref="Point2D$Double22"/>
       <double>1013.0</double>
      </void>
     </void>
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>y</string>
      <void method="set">
-      <object idref="Point2D$Double23"/>
+      <object idref="Point2D$Double22"/>
       <double>613.0</double>
      </void>
     </void>
@@ -734,18 +707,18 @@ password</string>
   </void>
   <void method="addNode">
    <object idref="ActivationBarNode12"/>
-   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double24">
+   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double23">
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>x</string>
      <void method="set">
-      <object idref="Point2D$Double24"/>
+      <object idref="Point2D$Double23"/>
       <double>1139.0</double>
      </void>
     </void>
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>y</string>
      <void method="set">
-      <object idref="Point2D$Double24"/>
+      <object idref="Point2D$Double23"/>
       <double>637.0</double>
      </void>
     </void>
@@ -757,11 +730,11 @@ password</string>
   </void>
   <void method="addNode">
    <object idref="LifelineNode10"/>
-   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double25">
+   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double24">
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>x</string>
      <void method="set">
-      <object idref="Point2D$Double25"/>
+      <object idref="Point2D$Double24"/>
       <double>1190.0</double>
      </void>
     </void>
@@ -773,11 +746,11 @@ password</string>
   </void>
   <void method="addNode">
    <object idref="LifelineNode11"/>
-   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double26">
+   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double25">
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>x</string>
      <void method="set">
-      <object idref="Point2D$Double26"/>
+      <object idref="Point2D$Double25"/>
       <double>1280.0</double>
      </void>
     </void>
@@ -789,18 +762,18 @@ password</string>
   </void>
   <void method="addNode">
    <object idref="ActivationBarNode16"/>
-   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double27">
+   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double26">
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>x</string>
      <void method="set">
-      <object idref="Point2D$Double27"/>
+      <object idref="Point2D$Double26"/>
       <double>1222.0</double>
      </void>
     </void>
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>y</string>
      <void method="set">
-      <object idref="Point2D$Double27"/>
+      <object idref="Point2D$Double26"/>
       <double>893.0</double>
      </void>
     </void>
@@ -812,18 +785,18 @@ password</string>
   </void>
   <void method="addNode">
    <object idref="ActivationBarNode17"/>
-   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double28">
+   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double27">
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>x</string>
      <void method="set">
-      <object idref="Point2D$Double28"/>
+      <object idref="Point2D$Double27"/>
       <double>1312.0</double>
      </void>
     </void>
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>y</string>
      <void method="set">
-      <object idref="Point2D$Double28"/>
+      <object idref="Point2D$Double27"/>
       <double>947.0</double>
      </void>
     </void>
@@ -835,6 +808,29 @@ password</string>
   </void>
   <void method="addNode">
    <object idref="ActivationBarNode15"/>
+   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double28">
+    <void class="java.awt.geom.Point2D$Double" method="getField">
+     <string>x</string>
+     <void method="set">
+      <object idref="Point2D$Double28"/>
+      <double>1139.0</double>
+     </void>
+    </void>
+    <void class="java.awt.geom.Point2D$Double" method="getField">
+     <string>y</string>
+     <void method="set">
+      <object idref="Point2D$Double28"/>
+      <double>799.0</double>
+     </void>
+    </void>
+    <void method="setLocation">
+     <double>1139.0</double>
+     <double>799.0</double>
+    </void>
+   </object>
+  </void>
+  <void method="addNode">
+   <object idref="ActivationBarNode14"/>
    <object class="java.awt.geom.Point2D$Double" id="Point2D$Double29">
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>x</string>
@@ -847,17 +843,17 @@ password</string>
      <string>y</string>
      <void method="set">
       <object idref="Point2D$Double29"/>
-      <double>799.0</double>
+      <double>745.0</double>
      </void>
     </void>
     <void method="setLocation">
      <double>1139.0</double>
-     <double>799.0</double>
+     <double>745.0</double>
     </void>
    </object>
   </void>
   <void method="addNode">
-   <object idref="ActivationBarNode14"/>
+   <object idref="ActivationBarNode13"/>
    <object class="java.awt.geom.Point2D$Double" id="Point2D$Double30">
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>x</string>
@@ -870,29 +866,6 @@ password</string>
      <string>y</string>
      <void method="set">
       <object idref="Point2D$Double30"/>
-      <double>745.0</double>
-     </void>
-    </void>
-    <void method="setLocation">
-     <double>1139.0</double>
-     <double>745.0</double>
-    </void>
-   </object>
-  </void>
-  <void method="addNode">
-   <object idref="ActivationBarNode13"/>
-   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double31">
-    <void class="java.awt.geom.Point2D$Double" method="getField">
-     <string>x</string>
-     <void method="set">
-      <object idref="Point2D$Double31"/>
-      <double>1139.0</double>
-     </void>
-    </void>
-    <void class="java.awt.geom.Point2D$Double" method="getField">
-     <string>y</string>
-     <void method="set">
-      <object idref="Point2D$Double31"/>
       <double>691.0</double>
      </void>
     </void>
@@ -904,18 +877,18 @@ password</string>
   </void>
   <void method="addNode">
    <object idref="LifelineNode6"/>
-   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double32">
+   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double31">
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>x</string>
      <void method="set">
-      <object idref="Point2D$Double32"/>
+      <object idref="Point2D$Double31"/>
       <double>1345.0</double>
      </void>
     </void>
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>y</string>
      <void method="set">
-      <object idref="Point2D$Double32"/>
+      <object idref="Point2D$Double31"/>
       <double>426.0</double>
      </void>
     </void>
@@ -927,18 +900,18 @@ password</string>
   </void>
   <void method="addNode">
    <object idref="ActivationBarNode10"/>
-   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double33">
+   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double32">
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>x</string>
      <void method="set">
-      <object idref="Point2D$Double33"/>
+      <object idref="Point2D$Double32"/>
       <double>1377.0</double>
      </void>
     </void>
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>y</string>
      <void method="set">
-      <object idref="Point2D$Double33"/>
+      <object idref="Point2D$Double32"/>
       <double>554.0</double>
      </void>
     </void>
