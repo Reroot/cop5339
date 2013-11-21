@@ -1,12 +1,8 @@
 package shoppingCart;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.Iterator;
-
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /** A class representing a Shopping Cart application.
@@ -26,15 +22,13 @@ public class CartSystem {
     	
     	dbManager = new DBManager();
     	paymentValidator = new PaymentValidator();
-    	ui = new UI(this);
+    	UI ui = new UI(this);
     	userList = new UserList();
 		try {
 			userList = dbManager.loadUserList();
 		} catch (IOException | ClassNotFoundException e) {
 			JOptionPane.showMessageDialog(null, "Database not found.");
 			System.exit(0);
-//			ui.displayLoginScreen();
-//			e.printStackTrace();
 		}
     	
     }
@@ -124,18 +118,12 @@ public class CartSystem {
     public String login(String username, String password) {
     	String type = userList.validate(username, password);
     	if (type != null) {
-    	    try {
+			try {
 				Inventory inventory = dbManager.loadInventory(); // Because Inventory is a singleton, when UI calls getInstance()
-																 // it will be this same instance.
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				// it will be this same instance.
+			} catch (IOException | ClassNotFoundException e) {
+				JOptionPane.showMessageDialog(null, "Database not found.");
+				System.exit(0);
 			}
     	}
     	return type;
@@ -170,6 +158,6 @@ public class CartSystem {
     private DBManager dbManager;
     private PaymentValidator paymentValidator;
     private UserList userList;
-    private UI ui;
+//    private UI ui;
     
 }

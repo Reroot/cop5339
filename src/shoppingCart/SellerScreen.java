@@ -15,13 +15,13 @@ import javax.swing.border.BevelBorder;
  *  @author Seth Moore
  */ 
 @SuppressWarnings("serial")
-public class SellerBrowsePanel extends AbstractBrowsePanel {
+public class SellerScreen extends AbstractScreen {
 	
     /** Constructs a SellerBrowsePanel object.
      *  @precondition 		none
      *  @postcondition 		object created
      */
-    public SellerBrowsePanel() {
+    public SellerScreen() {
     	// TODO
     }
 

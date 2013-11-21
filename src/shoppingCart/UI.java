@@ -45,14 +45,17 @@ public class UI extends JFrame{
     	
     	JPanel loginScreen = createLoginScreen();
     	screenCards.add(loginScreen, LOGINPANEL);
-    	
-    	JPanel customerScreen = createCustomerScreen();
+
+    	customerScreen = new CustomerScreen();
+    	customerScreen.createScreen();
     	screenCards.add(customerScreen, CUSTOMERPANEL);
     	
-    	JPanel sellerScreen = createSellerScreen();
+    	sellerScreen = new SellerScreen();
+    	sellerScreen.createScreen();
     	screenCards.add(sellerScreen, SELLERPANEL);
     	
-    	JPanel checkoutScreen = createCheckoutScreen();
+    	checkoutScreen = new CheckoutScreen();
+    	checkoutScreen.createScreen();
     	screenCards.add(checkoutScreen, CHECKOUTPANEL);
     	
     	add(screenCards, BorderLayout.CENTER);
@@ -217,7 +220,7 @@ public class UI extends JFrame{
     	screenNamePanel.add(new JLabel("Seller Screen"));
     	screenNamePanel.add(getLogoutButton());
     	
-    	sellerBrowsePanel = new SellerBrowsePanel();
+    	sellerBrowsePanel = new SellerScreen();
     	sellerBrowsePanel.setPreferredSize(new Dimension(300, 350));
     	sellerBrowsePanel.setBorder(new EtchedBorder());
     	JScrollPane scrollPane = new JScrollPane(sellerBrowsePanel);
@@ -231,43 +234,43 @@ public class UI extends JFrame{
 		return sellerScreen;
 	}
 	
-	private JPanel createCustomerScreen() {
-		JPanel customerScreen = new JPanel();
-    	customerScreen.setLayout(new BorderLayout());
-    	
-    	JPanel screenNamePanel = new JPanel();
-//    	screenNamePanel.setPreferredSize(new Dimension(600, 30));
-    	screenNamePanel.setBorder(new EtchedBorder());
-    	customerScreen.add(screenNamePanel, BorderLayout.PAGE_START);
-    	screenNamePanel.add(new JLabel("Customer Screen"));
-    	screenNamePanel.add(getLogoutButton());
-    	
-    	customerBrowsePanel = new CustomerBrowsePanel();
-    	customerBrowsePanel.setPreferredSize(new Dimension(300, 350));
-    	customerBrowsePanel.setBorder(new EtchedBorder());
-    	JScrollPane scrollPane = new JScrollPane(customerBrowsePanel);
-//    	customerScreen.add(customerBrowsePanel, BorderLayout.CENTER);
-    	customerScreen.add(scrollPane, BorderLayout.CENTER);
-    	
-    	JPanel sidePanel = new JPanel();
-    	sidePanel.setPreferredSize(new Dimension(200, 500));
-    	sidePanel.setBorder(new EtchedBorder());
-    	customerScreen.add(sidePanel, BorderLayout.LINE_END);
-    	JLabel costsLabel = new JLabel("Costs:" + inventory.getCosts());
-    	JLabel revenuesLabel = new JLabel("Revenues:" + inventory.getRevenues());
-    	sidePanel.add(costsLabel);
-    	sidePanel.add(revenuesLabel);
-    	JButton checkoutButton = new JButton("Checkout");
-    	checkoutButton.addMouseListener(new
-    			MouseAdapter(){
-    				public void mouseClicked(MouseEvent e){
-    					displayCheckoutScreen();
-    				}
-    			}
-    		);
-    	sidePanel.add(checkoutButton);
-		return customerScreen;
-	}
+//	private JPanel createCustomerScreen() {
+//		JPanel customerScreen = new JPanel();
+//    	customerScreen.setLayout(new BorderLayout());
+//    	
+//    	JPanel screenNamePanel = new JPanel();
+////    	screenNamePanel.setPreferredSize(new Dimension(600, 30));
+//    	screenNamePanel.setBorder(new EtchedBorder());
+//    	customerScreen.add(screenNamePanel, BorderLayout.PAGE_START);
+//    	screenNamePanel.add(new JLabel("Customer Screen"));
+//    	screenNamePanel.add(getLogoutButton());
+//    	
+//    	customerBrowsePanel = new CustomerScreen();
+////    	customerBrowsePanel.setPreferredSize(new Dimension(300, 350));
+//    	customerBrowsePanel.setBorder(new EtchedBorder());
+//    	JScrollPane scrollPane = new JScrollPane(customerBrowsePanel);
+////    	customerScreen.add(customerBrowsePanel, BorderLayout.CENTER);
+//    	customerScreen.add(scrollPane, BorderLayout.CENTER);
+//    	
+//    	JPanel sidePanel = new JPanel();
+//    	sidePanel.setPreferredSize(new Dimension(200, 500));
+//    	sidePanel.setBorder(new EtchedBorder());
+//    	customerScreen.add(sidePanel, BorderLayout.LINE_END);
+//    	JLabel costsLabel = new JLabel("Costs:" + inventory.getCosts());
+//    	JLabel revenuesLabel = new JLabel("Revenues:" + inventory.getRevenues());
+//    	sidePanel.add(costsLabel);
+//    	sidePanel.add(revenuesLabel);
+//    	JButton checkoutButton = new JButton("Checkout");
+//    	checkoutButton.addMouseListener(new
+//    			MouseAdapter(){
+//    				public void mouseClicked(MouseEvent e){
+//    					displayCheckoutScreen();
+//    				}
+//    			}
+//    		);
+//    	sidePanel.add(checkoutButton);
+//		return customerScreen;
+//	}
 
 	private JPanel createCheckoutScreen() {
 		JPanel checkoutScreen = new JPanel();
@@ -280,7 +283,7 @@ public class UI extends JFrame{
     	screenNamePanel.add(new JLabel("Checkout Screen"));
     	screenNamePanel.add(getLogoutButton());
     	
-    	checkoutBrowsePanel = new CheckoutBrowsePanel();
+    	checkoutBrowsePanel = new CheckoutScreen();
 //    	checkoutBrowsePanel.setPreferredSize(new Dimension(300, 350));
     	checkoutBrowsePanel.setBorder(new EtchedBorder());
     	checkoutScreen.add(checkoutBrowsePanel, BorderLayout.CENTER);
@@ -310,25 +313,12 @@ public class UI extends JFrame{
 		return checkoutScreen;
 	}
 
-	private JButton getLogoutButton() {
-		JButton logoutButton = new JButton("Logout");
-    	logoutButton.addMouseListener(new
-    			MouseAdapter(){
-    				public void mouseClicked(MouseEvent e){
-    					cart.clear();
-    					displayLoginScreen();
-    				}
-    			}
-    		);
-		return logoutButton;
-	}
-	
     private CartSystem cartSystem;
     private Inventory inventory;
     private Cart cart;
-    private AbstractBrowsePanel customerBrowsePanel;
-    private AbstractBrowsePanel sellerBrowsePanel;
-    private AbstractBrowsePanel checkoutBrowsePanel;
+    private AbstractScreen customerScreen;
+    private AbstractScreen sellerScreen;
+    private AbstractScreen checkoutScreen;
     JPanel screenCards;
 
 }

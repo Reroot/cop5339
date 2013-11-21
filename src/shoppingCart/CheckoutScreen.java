@@ -15,13 +15,13 @@ import javax.swing.border.BevelBorder;
  *  @author Seth Moore
  */ 
 @SuppressWarnings("serial")
-public class CheckoutBrowsePanel extends AbstractBrowsePanel {
+public class CheckoutScreen extends AbstractScreen {
 	
     /** Constructs a CheckoutBrowsePanel object.
      *  @precondition 		none
      *  @postcondition 		object created
      */
-    public CheckoutBrowsePanel() {
+    public CheckoutScreen() {
     	// TODO
     }
 
@@ -56,7 +56,7 @@ public class CheckoutBrowsePanel extends AbstractBrowsePanel {
 
     	line.add(incrementButton);
     	
-    	JButton decrementButton = new JButton("Increment");
+    	JButton decrementButton = new JButton("Decrement");
     	decrementButton.addMouseListener(new
     			MouseAdapter(){
     				public void mouseClicked(MouseEvent e) {
