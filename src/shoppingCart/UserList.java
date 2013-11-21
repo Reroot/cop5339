@@ -9,6 +9,7 @@ import java.util.Iterator;
  *  @author Newman Souza
  *  @author Seth Moore
  */ 
+@SuppressWarnings("serial")
 public class UserList implements Iterable<User>, Serializable {
 	
     /** Constructs a UserList object.

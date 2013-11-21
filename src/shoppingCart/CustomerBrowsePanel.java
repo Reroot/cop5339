@@ -1,12 +1,20 @@
 package shoppingCart;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
 
 /** A class that assembles the Customer JPanel for the UI.
  *  @author Newman Souza
  *  @author Seth Moore
  */ 
+@SuppressWarnings("serial")
 public class CustomerBrowsePanel extends AbstractBrowsePanel {
 	
     /** Constructs a CustomerBrowsePanel object.
@@ -14,7 +22,7 @@ public class CustomerBrowsePanel extends AbstractBrowsePanel {
      *  @postcondition 		object created
      */
     public CustomerBrowsePanel() {
-    	// TODO
+    	super();
     }
 
     /** Assembles a line for each Product in the Inventory.
@@ -23,11 +31,40 @@ public class CustomerBrowsePanel extends AbstractBrowsePanel {
 	 *  @postcondition  	Line assembled
 	 */
     @Override
-    public void addLine(Product product) {
+    public void addLine(final Product product) {
     	JPanel line = new JPanel();
-    	line.add(new JLabel(product.getName()));
-    	line.add(new JLabel("" + product.getSellPrice().toString()));
-    	line.add(new JLabel("" + product.getQuantity()));
+    	JLabel label;
+    	
+    	label = new JLabel(product.getName());
+    	label.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED)); 
+    	label.addMouseListener(new
+    			MouseAdapter(){
+    				public void mouseClicked(MouseEvent e) {
+    						JOptionPane.showMessageDialog(null,
+    								"Testing listener for\nProduct detail.");
+    				};
+    			}
+    	);
+    	line.add(label);
+
+    	label = new JLabel(product.getSellPrice().toString());
+    	line.add(label);
+
+    	label = new JLabel(String.valueOf(product.getQuantity()));
+    	line.add(label);
+
+    	JButton addButton = new JButton("Add to Cart");
+    	addButton.addMouseListener(new
+    			MouseAdapter(){
+    				public void mouseClicked(MouseEvent e) {
+//    						JOptionPane.showMessageDialog(null,
+//    								"Testing listener for\nAdd To Cart button.");
+						Inventory.getInstance().decrement(product);
+						Cart.getInstance().increment(product);
+    				};
+    			}
+    	);
+    	line.add(addButton);
     	this.add(line);
     }
 

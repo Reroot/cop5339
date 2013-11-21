@@ -25,7 +25,10 @@ public abstract class AbstractBrowsePanel extends JPanel {
 	 *  @postcondition  	Product list populated
 	 */
     public void populate(Iterator<Product> iterator) {
-    	// TODO
+    	while (iterator.hasNext()) {
+        	Product product = iterator.next();
+        	this.addLine(product);
+    	}
     }
     
     /** Assembles a line for each Product in the Inventory.
@@ -34,5 +37,8 @@ public abstract class AbstractBrowsePanel extends JPanel {
 	 *  @postcondition  	Line assembled
 	 */
     public abstract void addLine(Product product);
+    
+//    /** The panel that shows a list of products for Seller, Customer and Checkout screens. */
+//    private JPanel browsePanel;
     
 }
