@@ -280,7 +280,7 @@ public class UI extends JFrame{
     	screenNamePanel.add(new JLabel("Checkout Screen"));
     	screenNamePanel.add(getLogoutButton());
     	
-    	checkoutBrowsePanel = new CustomerBrowsePanel();
+    	checkoutBrowsePanel = new CheckoutBrowsePanel();
 //    	checkoutBrowsePanel.setPreferredSize(new Dimension(300, 350));
     	checkoutBrowsePanel.setBorder(new EtchedBorder());
     	checkoutScreen.add(checkoutBrowsePanel, BorderLayout.CENTER);
@@ -289,6 +289,24 @@ public class UI extends JFrame{
 //    	sidePanel.setPreferredSize(new Dimension(100, 350));
     	sidePanel.setBorder(new EtchedBorder());
     	checkoutScreen.add(sidePanel, BorderLayout.LINE_END);
+    	JButton cancelButton = new JButton("Cancel");
+    	cancelButton.addMouseListener(new
+    			MouseAdapter(){
+    				public void mouseClicked(MouseEvent e){
+    					displayCustomerScreen();
+    				}
+    			}
+    		);
+    	sidePanel.add(cancelButton);
+    	JButton payButton = new JButton("Pay");
+    	payButton.addMouseListener(new
+    			MouseAdapter(){
+    				public void mouseClicked(MouseEvent e){
+						JOptionPane.showMessageDialog(screenCards, "Testing listener for\nPay button.");
+    				}
+    			}
+    		);
+    	sidePanel.add(payButton);
 		return checkoutScreen;
 	}
 

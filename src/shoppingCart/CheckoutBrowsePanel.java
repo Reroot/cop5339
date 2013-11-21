@@ -36,15 +36,6 @@ public class CheckoutBrowsePanel extends AbstractBrowsePanel {
     	JLabel label;
     	
     	label = new JLabel(product.getName());
-    	label.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED)); 
-    	label.addMouseListener(new
-    			MouseAdapter(){
-    				public void mouseClicked(MouseEvent e) {
-    						JOptionPane.showMessageDialog(null,
-    								"Testing listener for\nProduct detail.");
-    				};
-    			}
-    	);
     	line.add(label);
 
     	label = new JLabel(product.getSellPrice().toString());
@@ -53,16 +44,29 @@ public class CheckoutBrowsePanel extends AbstractBrowsePanel {
     	label = new JLabel(String.valueOf(product.getQuantity()));
     	line.add(label);
 
-    	JButton addButton = new JButton("Add to Cart");
-    	addButton.addMouseListener(new
+    	JButton incrementButton = new JButton("Increment");
+    	incrementButton.addMouseListener(new
     			MouseAdapter(){
     				public void mouseClicked(MouseEvent e) {
     						JOptionPane.showMessageDialog(null,
-    								"Testing listener for\nAdd To Cart button.");
+    								"Testing listener for\nIncrement button.");
     				};
     			}
     	);
-    	line.add(addButton);
+
+    	line.add(incrementButton);
+    	
+    	JButton decrementButton = new JButton("Increment");
+    	decrementButton.addMouseListener(new
+    			MouseAdapter(){
+    				public void mouseClicked(MouseEvent e) {
+    						JOptionPane.showMessageDialog(null,
+    								"Testing listener for\nDecrement button.");
+    				};
+    			}
+    	);
+    	line.add(decrementButton);
+
     	this.add(line);
     }
 
