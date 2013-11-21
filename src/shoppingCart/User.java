@@ -6,6 +6,7 @@ import java.io.Serializable;
  *  @author Newman Souza
  *  @author Seth Moore
  */ 
+@SuppressWarnings("serial")
 public class User implements Serializable {
 	
 	/** Constructs a User object.

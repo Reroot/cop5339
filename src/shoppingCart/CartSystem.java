@@ -3,7 +3,7 @@ package shoppingCart;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.Iterator;
+import javax.swing.JOptionPane;
 
 /** A class representing a Shopping Cart application.
  *  The application performs different functions depending on who logs in.
@@ -24,17 +24,11 @@ public class CartSystem {
     	paymentValidator = new PaymentValidator();
     	UI ui = new UI(this);
     	userList = new UserList();
-    	try {
+		try {
 			userList = dbManager.loadUserList();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (IOException | ClassNotFoundException e) {
+			JOptionPane.showMessageDialog(null, "Database not found.");
+			System.exit(0);
 		}
     	
     }
@@ -91,28 +85,27 @@ public class CartSystem {
 //	    System.out.println();
 
 	    // TODO TO BE DELETED
-	    System.out.println("Removing all users from UserList...");
-	    cartSystem.userList.clear();
-	    System.out.println("Adding users to UserList...");
-		cartSystem.userList.addUser("Newman", "newman", "Seller");
-		cartSystem.userList.addUser("Seth", "seth", "Customer");
-		cartSystem.userList.addUser("John", "john", "Customer");
-		cartSystem.userList.addUser("Mary", "mary", "Customer");
-	    System.out.println();
-        System.out.println("Saving UserList...");
-        cartSystem.dbManager.saveUserList(cartSystem.userList);
-	    System.out.println("Loading UserList...");
-	    UserList userFromFile = cartSystem.dbManager.loadUserList();
-        System.out.println();
-	    System.out.println("Displaying users from loaded UserList:");
-	    Iterator<User> loadedUserIter = userFromFile.iterator();
-    	while (loadedUserIter.hasNext()) {
-    		User user = (User)loadedUserIter.next();
-    		System.out.print("  " + user.getUsername() + ", ");
-    		System.out.print(user.getPassword() + ", ");
-    		System.out.println(user.getType());
-    	}
-
+//	    System.out.println("Removing all users from UserList...");
+//	    cartSystem.userList.clear();
+//	    System.out.println("Adding users to UserList...");
+//		cartSystem.userList.addUser("Newman", "newman", "Seller");
+//		cartSystem.userList.addUser("Seth", "seth", "Customer");
+//		cartSystem.userList.addUser("John", "john", "Customer");
+//		cartSystem.userList.addUser("Mary", "mary", "Customer");
+//		System.out.println();
+//		System.out.println("Saving UserList...");
+//		cartSystem.dbManager.saveUserList(cartSystem.userList);
+//		System.out.println("Loading UserList...");
+//		UserList userFromFile = cartSystem.dbManager.loadUserList();
+//		System.out.println();
+//		System.out.println("Displaying users from loaded UserList:");
+//		Iterator<User> loadedUserIter = userFromFile.iterator();
+//		while (loadedUserIter.hasNext()) {
+//    		User user = (User)loadedUserIter.next();
+//    		System.out.print("  " + user.getUsername() + ", ");
+//    		System.out.print(user.getPassword() + ", ");
+//    		System.out.println(user.getType());
+//		}
 	}
     
     /** Logs in a user as a customer or a seller.
@@ -125,18 +118,12 @@ public class CartSystem {
     public String login(String username, String password) {
     	String type = userList.validate(username, password);
     	if (type != null) {
-    	    try {
+			try {
 				Inventory inventory = dbManager.loadInventory(); // Because Inventory is a singleton, when UI calls getInstance()
-																 // it will be this same instance.
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				// it will be this same instance.
+			} catch (IOException | ClassNotFoundException e) {
+				JOptionPane.showMessageDialog(null, "Database not found.");
+				System.exit(0);
 			}
     	}
     	return type;
@@ -167,10 +154,10 @@ public class CartSystem {
     	}
     	return approved;
     }
-    
+
     private DBManager dbManager;
     private PaymentValidator paymentValidator;
     private UserList userList;
-    
+//    private UI ui;
     
 }
