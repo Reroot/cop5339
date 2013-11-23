@@ -55,6 +55,7 @@ public class SellerScreen extends AbstractScreen {
     
 	@Override
 	public void createSidePanel() {
+		sidePanel = new JPanel();
 		sidePanel.setPreferredSize(new Dimension(200, 500));
 		sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
 		sidePanel.setBorder(new EtchedBorder());

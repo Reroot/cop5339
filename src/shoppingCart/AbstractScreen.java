@@ -29,7 +29,7 @@ public abstract class AbstractScreen extends JPanel {
     	super();
     	headerPanel = new JPanel();
     	browsePanel = new JPanel();
-    	sidePanel = new JPanel();
+    	//sidePanel = new JPanel(); // Moved creation into createSidePanel().
     	this.ui = ui; 
     }
 

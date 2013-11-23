@@ -49,6 +49,7 @@ public abstract class ProductList implements Iterable<Product>, Serializable{
     	for (Product p : products) {
 			if (p.equals(product)){
 				p.increment();
+		    	notifyListeners();
 				return;
 			}
 		}
@@ -75,6 +76,7 @@ public abstract class ProductList implements Iterable<Product>, Serializable{
     	for (Product p : products) {
 			if (p.equals(product)){
 				p.decrement();
+		    	notifyListeners();
 				break;
 			}
 		}
