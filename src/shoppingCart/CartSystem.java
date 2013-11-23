@@ -3,11 +3,8 @@ package shoppingCart;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
-<<<<<<< HEAD
 import java.util.Iterator;
 
-=======
->>>>>>> daf9ae94c3714f8630d79f653ccca67b60b6b855
 import javax.swing.JOptionPane;
 
 /** A class representing a Shopping Cart application.
@@ -124,13 +121,8 @@ public class CartSystem {
     	String type = userList.validate(username, password);
     	if (type != null) {
 			try {
-<<<<<<< HEAD
 				Inventory inventory = dbManager.loadInventory(); 	// Because Inventory is a singleton, when UI calls getInstance()
 																	// it will be this same instance.
-=======
-				Inventory inventory = dbManager.loadInventory(); // Because Inventory is a singleton, when UI calls getInstance()
-				// it will be this same instance.
->>>>>>> daf9ae94c3714f8630d79f653ccca67b60b6b855
 			} catch (IOException | ClassNotFoundException e) {
 				JOptionPane.showMessageDialog(null, "Database not found.");
 				System.exit(0);
@@ -167,9 +159,5 @@ public class CartSystem {
     private DBManager dbManager;
     private PaymentValidator paymentValidator;
     private UserList userList;
-<<<<<<< HEAD
-=======
-//    private UI ui;
->>>>>>> daf9ae94c3714f8630d79f653ccca67b60b6b855
     
 }

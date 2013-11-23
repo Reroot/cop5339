@@ -45,7 +45,6 @@ public class UI extends JFrame{
     	JPanel loginScreen = createLoginScreen();
     	screenCards.add(loginScreen, LOGINPANEL);
 
-<<<<<<< HEAD
     	customerScreen = new CustomerScreen(this);
     	customerScreen.createScreen();
     	screenCards.add(customerScreen, CUSTOMERPANEL);
@@ -55,17 +54,6 @@ public class UI extends JFrame{
     	screenCards.add(sellerScreen, SELLERPANEL);
     	
     	checkoutScreen = new CheckoutScreen(this);
-=======
-    	customerScreen = new CustomerScreen();
-    	customerScreen.createScreen();
-    	screenCards.add(customerScreen, CUSTOMERPANEL);
-    	
-    	sellerScreen = new SellerScreen();
-    	sellerScreen.createScreen();
-    	screenCards.add(sellerScreen, SELLERPANEL);
-    	
-    	checkoutScreen = new CheckoutScreen();
->>>>>>> daf9ae94c3714f8630d79f653ccca67b60b6b855
     	checkoutScreen.createScreen();
     	screenCards.add(checkoutScreen, CHECKOUTPANEL);
     	
@@ -152,7 +140,6 @@ public class UI extends JFrame{
     	centerPanel.add(sethButton);
 		return loginScreen;
 	}
-<<<<<<< HEAD
 
     /** .
      *  @param 
@@ -198,113 +185,6 @@ public class UI extends JFrame{
 		return cartSystem;
 	}
 
-=======
-    
-	private JPanel createSellerScreen() {
-		JPanel sellerScreen = new JPanel();
-    	sellerScreen.setLayout(new BorderLayout());
-    	
-    	JPanel screenNamePanel = new JPanel();
-//    	screenNamePanel.setPreferredSize(new Dimension(400, 50));
-    	screenNamePanel.setBorder(new EtchedBorder());
-    	sellerScreen.add(screenNamePanel, BorderLayout.PAGE_START);
-    	screenNamePanel.add(new JLabel("Seller Screen"));
-    	screenNamePanel.add(getLogoutButton());
-    	
-    	sellerBrowsePanel = new SellerScreen();
-    	sellerBrowsePanel.setPreferredSize(new Dimension(300, 350));
-    	sellerBrowsePanel.setBorder(new EtchedBorder());
-    	JScrollPane scrollPane = new JScrollPane(sellerBrowsePanel);
-//    	sellerScreen.add(sellerBrowsePanel, BorderLayout.CENTER);
-    	sellerScreen.add(scrollPane, BorderLayout.CENTER);
-    	
-    	JPanel sidePanel = new JPanel();
-    	sidePanel.setPreferredSize(new Dimension(200, 350));
-    	sidePanel.setBorder(new EtchedBorder());
-    	sellerScreen.add(sidePanel, BorderLayout.LINE_END);
-		return sellerScreen;
-	}
-	
-//	private JPanel createCustomerScreen() {
-//		JPanel customerScreen = new JPanel();
-//    	customerScreen.setLayout(new BorderLayout());
-//    	
-//    	JPanel screenNamePanel = new JPanel();
-////    	screenNamePanel.setPreferredSize(new Dimension(600, 30));
-//    	screenNamePanel.setBorder(new EtchedBorder());
-//    	customerScreen.add(screenNamePanel, BorderLayout.PAGE_START);
-//    	screenNamePanel.add(new JLabel("Customer Screen"));
-//    	screenNamePanel.add(getLogoutButton());
-//    	
-//    	customerBrowsePanel = new CustomerScreen();
-////    	customerBrowsePanel.setPreferredSize(new Dimension(300, 350));
-//    	customerBrowsePanel.setBorder(new EtchedBorder());
-//    	JScrollPane scrollPane = new JScrollPane(customerBrowsePanel);
-////    	customerScreen.add(customerBrowsePanel, BorderLayout.CENTER);
-//    	customerScreen.add(scrollPane, BorderLayout.CENTER);
-//    	
-//    	JPanel sidePanel = new JPanel();
-//    	sidePanel.setPreferredSize(new Dimension(200, 500));
-//    	sidePanel.setBorder(new EtchedBorder());
-//    	customerScreen.add(sidePanel, BorderLayout.LINE_END);
-//    	JLabel costsLabel = new JLabel("Costs:" + inventory.getCosts());
-//    	JLabel revenuesLabel = new JLabel("Revenues:" + inventory.getRevenues());
-//    	sidePanel.add(costsLabel);
-//    	sidePanel.add(revenuesLabel);
-//    	JButton checkoutButton = new JButton("Checkout");
-//    	checkoutButton.addMouseListener(new
-//    			MouseAdapter(){
-//    				public void mouseClicked(MouseEvent e){
-//    					displayCheckoutScreen();
-//    				}
-//    			}
-//    		);
-//    	sidePanel.add(checkoutButton);
-//		return customerScreen;
-//	}
-
-	private JPanel createCheckoutScreen() {
-		JPanel checkoutScreen = new JPanel();
-    	checkoutScreen.setLayout(new BorderLayout());
-    	
-    	JPanel screenNamePanel = new JPanel();
-//    	screenNamePanel.setPreferredSize(new Dimension(400, 50));
-    	screenNamePanel.setBorder(new EtchedBorder());
-    	checkoutScreen.add(screenNamePanel, BorderLayout.PAGE_START);
-    	screenNamePanel.add(new JLabel("Checkout Screen"));
-    	screenNamePanel.add(getLogoutButton());
-    	
-    	checkoutBrowsePanel = new CheckoutScreen();
-//    	checkoutBrowsePanel.setPreferredSize(new Dimension(300, 350));
-    	checkoutBrowsePanel.setBorder(new EtchedBorder());
-    	checkoutScreen.add(checkoutBrowsePanel, BorderLayout.CENTER);
-    	
-    	JPanel sidePanel = new JPanel();
-//    	sidePanel.setPreferredSize(new Dimension(100, 350));
-    	sidePanel.setBorder(new EtchedBorder());
-    	checkoutScreen.add(sidePanel, BorderLayout.LINE_END);
-    	JButton cancelButton = new JButton("Cancel");
-    	cancelButton.addMouseListener(new
-    			MouseAdapter(){
-    				public void mouseClicked(MouseEvent e){
-    					displayCustomerScreen();
-    				}
-    			}
-    		);
-    	sidePanel.add(cancelButton);
-    	JButton payButton = new JButton("Pay");
-    	payButton.addMouseListener(new
-    			MouseAdapter(){
-    				public void mouseClicked(MouseEvent e){
-						JOptionPane.showMessageDialog(screenCards, "Testing listener for\nPay button.");
-    				}
-    			}
-    		);
-    	sidePanel.add(payButton);
-		return checkoutScreen;
-	}
-
->>>>>>> daf9ae94c3714f8630d79f653ccca67b60b6b855
     private CartSystem cartSystem;
     private Inventory inventory;
     private Cart cart;
