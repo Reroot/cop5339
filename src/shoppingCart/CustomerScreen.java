@@ -3,7 +3,10 @@ package shoppingCart;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -89,20 +92,59 @@ public class CustomerScreen extends AbstractScreen {
      */
     public void displayProductForm(Product product) {
     	JPanel productForm = new JPanel();
-    	productForm.setLayout(new GridLayout(8,2));
-    	
-    	productForm.add(new JLabel("ID:"));
-    	productForm.add(new JLabel(String.valueOf(product.getID())));
-    	productForm.add(new JLabel("Name:"));
-    	productForm.add(new JLabel(product.getName()));
-    	productForm.add(new JLabel("Description:"));
-    	productForm.add(new JLabel(product.getDescription()));
-    	productForm.add(new JLabel("Invoice Price:"));
-    	productForm.add(new JLabel(String.valueOf(product.getInvoicePrice())));
-    	productForm.add(new JLabel("Sell Price:"));
-    	productForm.add(new JLabel(String.valueOf(product.getSellPrice())));
-    	productForm.add(new JLabel("Quantity:"));
-    	productForm.add(new JLabel(String.valueOf(product.getQuantity())));
+    	productForm.setLayout(new GridBagLayout());
+    	GridBagConstraints c = new GridBagConstraints();
+    	c.fill = GridBagConstraints.HORIZONTAL;
+
+    	JLabel label;
+    	label = new JLabel("ID:");
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.insets = new Insets(10,20,10,0);
+    	c.weightx = 0.5;
+    	c.gridx = 0;
+    	c.gridy = 0;
+    	productForm.add(label, c);
+    	label = new JLabel("Name:");
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 1;
+    	productForm.add(label, c);
+    	label = new JLabel("Description: ");
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 2;
+    	productForm.add(label, c);
+    	label = new JLabel("Price:");
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 3;
+    	productForm.add(label, c);
+    	label = new JLabel("Quantity:");
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 4;
+    	productForm.add(label, c);
+
+    	productForm.add(label, c);
+    	label = new JLabel(String.valueOf(product.getID()));
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.insets = new Insets(10,20,10,20);
+    	c.weightx = 0.5;
+    	c.gridx = 2;
+    	c.gridy = 0;
+    	productForm.add(label, c);
+    	label = new JLabel(product.getName());
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 1;
+    	productForm.add(label, c);
+    	label = new JLabel(product.getDescription());
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 2;
+    	productForm.add(label, c);
+    	label = new JLabel(String.valueOf(product.getSellPrice()));
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 3;
+    	productForm.add(label, c);
+    	label = new JLabel(String.valueOf(product.getQuantity()));
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 4;
+    	productForm.add(label, c);
     	JOptionPane.showMessageDialog(ui, productForm);
     }
 
@@ -120,7 +162,9 @@ public class CustomerScreen extends AbstractScreen {
 				line.repaint();
 			}
 		});
-    	line.setLayout(new BoxLayout(line, BoxLayout.LINE_AXIS));
+    	line.setLayout(new GridBagLayout());
+    	GridBagConstraints c = new GridBagConstraints();
+//    	c.fill = GridBagConstraints.HORIZONTAL;
     	JLabel label;
     	
     	label = new JLabel(product.getName());
@@ -132,13 +176,26 @@ public class CustomerScreen extends AbstractScreen {
     				};
     			}
     	);
-    	line.add(label);
+//    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.insets = new Insets(10,10,10,10);
+    	c.weightx = 0.5;
+    	c.gridx = 0;
+//    	c.gridy = 0;
+    	line.add(label, c);
 
     	label = new JLabel(product.getSellPrice().toString());
-    	line.add(label);
+//    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.insets = new Insets(10,10,10,10);
+    	c.weightx = 0.5;
+    	c.gridx = 1;
+    	line.add(label, c);
 
     	label = new JLabel(String.valueOf(product.getQuantity()));
-    	line.add(label);
+//    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.insets = new Insets(10,10,10,10);
+    	c.weightx = 0.5;
+    	c.gridx = 2;
+    	line.add(label, c);
 
     	JButton addButton = new JButton("Add to Cart");
     	addButton.addMouseListener(new
@@ -149,7 +206,11 @@ public class CustomerScreen extends AbstractScreen {
     				};
     			}
     	);
-    	line.add(addButton);
+//    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.insets = new Insets(10,10,10,10);
+    	c.weightx = 0.5;
+    	c.gridx = 3;
+    	line.add(addButton, c);
     	return line;
     }
 
