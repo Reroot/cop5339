@@ -4,6 +4,8 @@ package shoppingCart;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -130,13 +132,18 @@ public class CustomerScreen extends AbstractScreen {
 	 */
     @Override
     public JPanel addLine(final Product product) {
-    	final JPanel line = new JPanel();
-    	product.addListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				line.repaint();
-			}
-		});
+    	final JButton addButton = new JButton("Add to Cart");
+    	final JLabel quantityLabel = new JLabel(String.valueOf(product.getQuantity()));
+    	final JPanel line = new
+    			JPanel() {
+    				public void repaint() {
+    					quantityLabel.setText(String.valueOf(product.getQuantity()));
+    					if (product.getQuantity() < 1) {
+    						addButton.setEnabled(false);
+    					}
+    					super.repaint();
+    				}
+    			};
     	line.setLayout(new BoxLayout(line, BoxLayout.LINE_AXIS));
     	JLabel label;
     	
@@ -154,19 +161,26 @@ public class CustomerScreen extends AbstractScreen {
     	label = new JLabel(product.getSellPrice().toString());
     	line.add(label);
 
-    	label = new JLabel(String.valueOf(product.getQuantity()));
-    	line.add(label);
+    	line.add(quantityLabel);
 
-    	JButton addButton = new JButton("Add to Cart");
-    	addButton.addMouseListener(new
-    			MouseAdapter(){
-    				public void mouseClicked(MouseEvent e) {
+    	
+    	addButton.addActionListener(new
+    			ActionListener(){
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
 						Inventory.getInstance().decrement(product);
 						Cart.getInstance().increment(product);
-    				};
+						
+					};
     			}
     	);
     	line.add(addButton);
+    	product.addListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				line.repaint();
+			}
+		});
     	return line;
     }
 
