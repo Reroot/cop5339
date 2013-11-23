@@ -53,14 +53,22 @@ public class CheckoutScreen extends AbstractScreen {
     
 	@Override
 	public void createSidePanel() {
-		sidePanel = new JPanel();
+		final JLabel itemsLabel = new JLabel("Items:" + Cart.getInstance().getQuantity());
+		final JLabel totalLabel = new JLabel("Total:" + Cart.getInstance().getTotal());
+		sidePanel = new
+				JPanel() {
+					public void repaint() {
+						itemsLabel.setText("Items:" + Cart.getInstance().getQuantity());
+						totalLabel.setText("Total:" + Cart.getInstance().getTotal());
+						super.repaint();
+					}
+			
+				};
 		sidePanel.setPreferredSize(new Dimension(200, 500));
 		sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
 		sidePanel.setBorder(new EtchedBorder());
 		JLabel titleLabel = new JLabel("Cart Summary");
 		sidePanel.add(titleLabel);
-		JLabel itemsLabel = new JLabel("Items:" + Cart.getInstance().getQuantity());
-		JLabel totalLabel = new JLabel("Total:" + Cart.getInstance().getTotal());
 		JPanel cartSummary = new JPanel();
 		cartSummary.setMaximumSize(new Dimension(200, 100));
 		cartSummary.setBorder(new EtchedBorder());
@@ -112,6 +120,14 @@ public class CheckoutScreen extends AbstractScreen {
 				}
 			);
 		sidePanel.add(checkoutButton);
+		Cart.getInstance().addListener(new
+				ChangeListener() {
+					@Override
+					public void stateChanged(ChangeEvent arg0) {
+						sidePanel.repaint();
+					}
+					
+		});
 		this.add(sidePanel, BorderLayout.EAST);
 	}
 
