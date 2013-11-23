@@ -1,8 +1,6 @@
 package shoppingCart;
 
-
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -14,7 +12,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.event.ChangeEvent;
@@ -31,88 +28,30 @@ public class CustomerScreen extends AbstractScreen {
      *  @precondition 		none
      *  @postcondition 		object created
      */
-    public CustomerScreen(UI ui) {
-    	super(ui);
+    public CustomerScreen() {
+    	super();
+    	GridLayout grid = new GridLayout();
+    	grid.setColumns(1);
+    	grid.setRows(50);
+    	this.setLayout(grid);
     }
 
-	@Override
-    public void createHeaderPanel() {
-//    	headerPanel.setPreferredSize(new Dimension(600, 30));
-    	headerPanel.setBorder(new EtchedBorder());
-    	headerPanel.add(new JLabel("Customer Screen"));
-		JButton logoutButton = new JButton("Logout");
-    	logoutButton.addMouseListener(new
-    			MouseAdapter(){
-    				public void mouseClicked(MouseEvent e){
-    					Cart.getInstance().clear();
-    					ui.displayLoginScreen();
-    				}
-    			}
-    		);
-    	headerPanel.add(logoutButton);
-    	this.add(headerPanel, BorderLayout.NORTH);
+    public JPanel createHeaderPanel() {
+    	JPanel screenNamePanel = new JPanel();
+//    	screenNamePanel.setPreferredSize(new Dimension(600, 30));
+    	screenNamePanel.setBorder(new EtchedBorder());
+    	screenNamePanel.add(new JLabel("Customer Screen"));
+    	screenNamePanel.add(getLogoutButton());
+    	return screenNamePanel;
     }
     
-	@Override
-	public void createSidePanel() {
-		sidePanel.setPreferredSize(new Dimension(200, 500));
-		sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
-		sidePanel.setBorder(new EtchedBorder());
-		JLabel titleLabel = new JLabel("Cart Summary");
-		sidePanel.add(titleLabel);
-		JLabel itemsLabel = new JLabel("Items:" + Cart.getInstance().getQuantity());
-		JLabel totalLabel = new JLabel("Total:" + Cart.getInstance().getTotal());
-		JPanel cartSummary = new JPanel();
-		cartSummary.setMaximumSize(new Dimension(250, 100));
-		cartSummary.setBorder(new EtchedBorder());
-		cartSummary.setLayout(new GridLayout(3,1));
-		cartSummary.add(itemsLabel);
-		cartSummary.add(totalLabel);
-		sidePanel.add(cartSummary);
-		JButton checkoutButton = new JButton("Checkout");
-		checkoutButton.addMouseListener(new
-				MouseAdapter(){
-					public void mouseClicked(MouseEvent e){
-						ui.displayCheckoutScreen();
-					}
-				}
-			);
-		sidePanel.add(checkoutButton);
-		this.add(sidePanel, BorderLayout.EAST);
-	}
-
-    /** .
-     *  @param 
-     *  @return ?
-     *  @precondition 
-     *  @postcondition 
-     */
-    public void displayProductForm(Product product) {
-    	JPanel productForm = new JPanel();
-    	productForm.setLayout(new GridLayout(8,2));
-    	
-    	productForm.add(new JLabel("ID:"));
-    	productForm.add(new JLabel(String.valueOf(product.getID())));
-    	productForm.add(new JLabel("Name:"));
-    	productForm.add(new JLabel(product.getName()));
-    	productForm.add(new JLabel("Description:"));
-    	productForm.add(new JLabel(product.getDescription()));
-    	productForm.add(new JLabel("Invoice Price:"));
-    	productForm.add(new JLabel(String.valueOf(product.getInvoicePrice())));
-    	productForm.add(new JLabel("Sell Price:"));
-    	productForm.add(new JLabel(String.valueOf(product.getSellPrice())));
-    	productForm.add(new JLabel("Quantity:"));
-    	productForm.add(new JLabel(String.valueOf(product.getQuantity())));
-    	JOptionPane.showMessageDialog(ui, productForm);
-    }
-
     /** Assembles a line for each Product in the Inventory.
 	 *  @param product		The Product to be displayed in the line
 	 *  @precondition 		product is a valid reference
 	 *  @postcondition  	Line assembled
 	 */
     @Override
-    public JPanel addLine(final Product product) {
+    public void addLine(final Product product) {
     	final JPanel line = new JPanel();
     	product.addListener(new ChangeListener() {
 			@Override
@@ -128,7 +67,8 @@ public class CustomerScreen extends AbstractScreen {
     	label.addMouseListener(new
     			MouseAdapter(){
     				public void mouseClicked(MouseEvent e) {
-    					displayProductForm(product);
+    						JOptionPane.showMessageDialog(null,
+    								"Testing listener for\nProduct detail.");
     				};
     			}
     	);
@@ -144,13 +84,28 @@ public class CustomerScreen extends AbstractScreen {
     	addButton.addMouseListener(new
     			MouseAdapter(){
     				public void mouseClicked(MouseEvent e) {
+//    						JOptionPane.showMessageDialog(line,
+//    								"Testing listener for\nAdd To Cart button.");
 						Inventory.getInstance().decrement(product);
 						Cart.getInstance().increment(product);
     				};
     			}
     	);
     	line.add(addButton);
-    	return line;
+    	this.add(line);
     }
+
+	private JButton getLogoutButton() {
+		JButton logoutButton = new JButton("Logout");
+    	logoutButton.addMouseListener(new
+    			MouseAdapter(){
+    				public void mouseClicked(MouseEvent e){
+    					Cart.getInstance().clear();
+    					ui..displayLoginScreen();
+    				}
+    			}
+    		);
+		return logoutButton;
+	}
 
 }
