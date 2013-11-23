@@ -75,7 +75,6 @@ public class Product implements Cloneable, Serializable{
 		this.sellPrice = sellPrice;
 		this.invoicePrice = invoicePrice;
 		this.quantity = quantity;
-		
 		notifyListeners();
 	}
 	
@@ -277,6 +276,6 @@ public class Product implements Cloneable, Serializable{
 	private BigDecimal sellPrice;
 	private BigDecimal invoicePrice;
 	private int quantity;
-	private ArrayList<ChangeListener> listeners;
+	private transient ArrayList<ChangeListener> listeners;
 
 }

@@ -1,12 +1,10 @@
 package shoppingCart;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Iterator;
 
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /** A class representing a Shopping Cart application.
@@ -26,15 +24,13 @@ public class CartSystem {
     	
     	dbManager = new DBManager();
     	paymentValidator = new PaymentValidator();
-    	ui = new UI(this);
+    	UI ui = new UI(this);
     	userList = new UserList();
 		try {
 			userList = dbManager.loadUserList();
 		} catch (IOException | ClassNotFoundException e) {
 			JOptionPane.showMessageDialog(null, "Database not found.");
 			System.exit(0);
-//			ui.displayLoginScreen();
-//			e.printStackTrace();
 		}
     	
     }
@@ -73,7 +69,7 @@ public class CartSystem {
 //		inventory.add(new Product(125, "16Gb Corsair memory 25", "Corsair Vengeance 16Gb memory 25", new BigDecimal("125.00"), new BigDecimal("225.00"), 0));
 //		System.out.println();
 //		System.out.println("Saving Inventory...");
-//	    cartSystem.dbManager.saveInventory(inventory);
+//		cartSystem.saveInventory();
 //	    System.out.println("Loading Inventory...");
 //	    Inventory invFromFile = cartSystem.dbManager.loadInventory();
 //	    System.out.println();
@@ -124,18 +120,12 @@ public class CartSystem {
     public String login(String username, String password) {
     	String type = userList.validate(username, password);
     	if (type != null) {
-    	    try {
-				Inventory inventory = dbManager.loadInventory(); // Because Inventory is a singleton, when UI calls getInstance()
-																 // it will be this same instance.
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			try {
+				Inventory inventory = dbManager.loadInventory(); 	// Because Inventory is a singleton, when UI calls getInstance()
+																	// it will be this same instance.
+			} catch (IOException | ClassNotFoundException e) {
+				JOptionPane.showMessageDialog(null, "Database not found.");
+				System.exit(0);
 			}
     	}
     	return type;
@@ -148,28 +138,26 @@ public class CartSystem {
      *  @postcondition 		payment processed
      */
     public boolean pay(String cardNumber, BigDecimal total) {
-    	boolean approved = paymentValidator.validate(cardNumber, total);
-    	if (approved) {
-    	    try {
-    	    	Inventory inventory = Inventory.getInstance();
-				dbManager.saveInventory(inventory);
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+    	boolean result = paymentValidator.validate(cardNumber, total);
+    	if (result) {
+    		saveInventory();
     	}
-    	return approved;
+    	return result;
     }
+    
+    public void saveInventory() {
+	    try {
+	    	Inventory inventory = Inventory.getInstance();
+			dbManager.saveInventory(inventory);
+		} catch (IOException | ClassNotFoundException e) {
+			JOptionPane.showMessageDialog(null, "Database not found.");
+//			System.exit(0);
+		}
+    }
+    
 
     private DBManager dbManager;
     private PaymentValidator paymentValidator;
     private UserList userList;
-    private UI ui;
     
 }

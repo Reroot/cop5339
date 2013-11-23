@@ -143,7 +143,8 @@ public abstract class ProductList implements Iterable<Product>, Serializable{
      * 
      * @return
      */
-    public Iterator<Product> iterator(){
+    public Iterator<Product> iterator() {
+//    	return (products).iterator();
 		return Collections.unmodifiableList(products).iterator();
     }
     
@@ -171,5 +172,5 @@ public abstract class ProductList implements Iterable<Product>, Serializable{
 	}
 
     private ArrayList<Product> products;
-    private ArrayList<ChangeListener> listeners;
+    private transient ArrayList<ChangeListener> listeners;
 }
