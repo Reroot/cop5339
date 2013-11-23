@@ -131,6 +131,7 @@ public class Inventory extends ProductList {
 			instance.costs = this.costs;
 			instance.revenues = this.revenues;
 		}
+		instance.notifyListeners();
 		return instance;
 	}
 	

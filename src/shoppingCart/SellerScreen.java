@@ -55,15 +55,24 @@ public class SellerScreen extends AbstractScreen {
     
 	@Override
 	public void createSidePanel() {
-		sidePanel = new JPanel();
+		final JLabel costsLabel = new JLabel("Costs:" + Inventory.getInstance().getCosts());
+		final JLabel revenuesLabel = new JLabel("Revenues:" + Inventory.getInstance().getRevenues());
+		final JLabel profitsLabel = new JLabel("Profits:" + Inventory.getInstance().getRevenues().subtract(Inventory.getInstance().getCosts()));
+		sidePanel = new
+				JPanel() {
+					public void repaint() {
+						costsLabel.setText("Costs:" + Inventory.getInstance().getCosts());
+						revenuesLabel.setText("Revenues:" + Inventory.getInstance().getRevenues());
+						profitsLabel.setText("Profits:" + Inventory.getInstance().getRevenues().subtract(Inventory.getInstance().getCosts()));
+						super.repaint();
+					}
+			
+				};
 		sidePanel.setPreferredSize(new Dimension(200, 500));
 		sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
 		sidePanel.setBorder(new EtchedBorder());
 		JLabel titleLabel = new JLabel("Financial Information");
 		sidePanel.add(titleLabel);
-		JLabel costsLabel = new JLabel("Costs:" + Inventory.getInstance().getCosts());
-		JLabel revenuesLabel = new JLabel("Revenues:" + Inventory.getInstance().getRevenues());
-		JLabel profitsLabel = new JLabel("Profits:" + Inventory.getInstance().getRevenues().subtract(Inventory.getInstance().getCosts()));
 		JPanel sellerFinancials = new JPanel();
 		sellerFinancials.setMaximumSize(new Dimension(200, 100));
 		sellerFinancials.setBorder(new EtchedBorder());
@@ -82,6 +91,14 @@ public class SellerScreen extends AbstractScreen {
 				}
 			);
 		sidePanel.add(checkoutButton);
+		Inventory.getInstance().addListener(new
+				ChangeListener() {
+					@Override
+					public void stateChanged(ChangeEvent arg0) {
+						sidePanel.repaint();
+					}
+					
+		});
 		this.add(sidePanel, BorderLayout.EAST);
 	}
 
