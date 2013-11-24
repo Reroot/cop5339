@@ -88,10 +88,7 @@ public class SellerScreen extends AbstractScreen {
 		checkoutButton.addMouseListener(new
 				MouseAdapter(){
 					public void mouseClicked(MouseEvent e) {
-			    		Product p = null;
-						JOptionPane.showMessageDialog(null,
-//		    					displayProductForm(p));
-								"test");
+    					displayProductForm();
 					}
 				}
 			);
@@ -113,14 +110,99 @@ public class SellerScreen extends AbstractScreen {
      *  @precondition 
      *  @postcondition 
      */
-    public void displayProductForm(Product product) {
-    	// TODO
+    public void displayProductForm() {
     	JPanel productForm = new JPanel();
     	productForm.setLayout(new GridBagLayout());
     	GridBagConstraints c = new GridBagConstraints();
     	c.fill = GridBagConstraints.HORIZONTAL;
 
-    	JLabel label;
+		JLabel label;
+    	label = new JLabel("ID:");
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.insets = new Insets(10,20,10,0);
+    	c.weightx = 0.5;
+    	c.gridx = 0;
+    	c.gridy = 0;
+    	productForm.add(label, c);
+    	label = new JLabel("Name:");
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 1;
+    	productForm.add(label, c);
+    	label = new JLabel("Description: ");
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 2;
+    	productForm.add(label, c);
+    	label = new JLabel("Invoice Price:");
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 3;
+    	productForm.add(label, c);
+    	label = new JLabel("Sell Price:");
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 4;
+    	productForm.add(label, c);
+    	label = new JLabel("Quantity:");
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 5;
+    	productForm.add(label, c);
+
+    	int newID = Inventory.getInstance().getNewID();
+    	Product product = new Product(newID, "", "", new BigDecimal("0"), new BigDecimal("0"), 0);
+
+    	label = new JLabel(String.valueOf(product.getID()));
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.insets = new Insets(10,20,10,20);
+    	c.weightx = 0.5;
+    	c.gridx = 2;
+    	c.gridy = 0;
+    	productForm.add(label, c);
+    	JTextField nameTextField = new JTextField(product.getName());
+    	nameTextField.setSize(200, (int)nameTextField.getSize().getHeight());
+    	c.gridwidth = 3;
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 1;
+    	productForm.add(nameTextField, c);
+    	JTextField descriptionTextField = new JTextField(product.getDescription());
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 2;
+    	productForm.add(descriptionTextField, c);
+    	JTextField invoicePriceTextField = new JTextField(String.valueOf(product.getInvoicePrice()));
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 3;
+    	productForm.add(invoicePriceTextField, c);
+    	JTextField sellPriceTextField = new JTextField(String.valueOf(product.getSellPrice()));
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 4;
+    	productForm.add(sellPriceTextField, c);
+    	JTextField quantityTextField = new JTextField(String.valueOf(product.getQuantity()));
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 5;
+    	productForm.add(quantityTextField, c);
+    	
+    	Object[] options = {"Save", "Cancel"};
+    	int button = JOptionPane.showOptionDialog(ui, productForm, "New Product",
+    			JOptionPane.YES_NO_OPTION,
+    			JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+    	if (button == 0) {
+    		Product p = new Product(product.getID(), nameTextField.getText(), descriptionTextField.getText(), 
+    				new BigDecimal(invoicePriceTextField.getText()), new BigDecimal(sellPriceTextField.getText()), Integer.parseInt(quantityTextField.getText()));
+    		Inventory.getInstance().add(p);
+    		ui.getCartSystem().saveInventory();
+    	}
+    }
+
+    /** .
+     *  @param 
+     *  @return ?
+     *  @precondition 
+     *  @postcondition 
+     */
+    public void displayProductForm(Product product) {
+    	JPanel productForm = new JPanel();
+    	productForm.setLayout(new GridBagLayout());
+    	GridBagConstraints c = new GridBagConstraints();
+    	c.fill = GridBagConstraints.HORIZONTAL;
+
+		JLabel label;
     	label = new JLabel("ID:");
     	c.fill = GridBagConstraints.HORIZONTAL;
     	c.insets = new Insets(10,20,10,0);
@@ -157,6 +239,8 @@ public class SellerScreen extends AbstractScreen {
     	c.gridy = 0;
     	productForm.add(label, c);
     	JTextField nameTextField = new JTextField(product.getName());
+    	nameTextField.setSize(200, (int)nameTextField.getSize().getHeight());
+    	c.gridwidth = 3;
     	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 1;
     	productForm.add(nameTextField, c);
@@ -178,7 +262,7 @@ public class SellerScreen extends AbstractScreen {
     	productForm.add(quantityTextField, c);
     	
     	Object[] options = {"Update", "Delete", "Cancel"};
-    	int button = JOptionPane.showOptionDialog(ui, productForm, "Product Update",
+    	int button = JOptionPane.showOptionDialog(ui, productForm, "Update Product",
     			JOptionPane.YES_NO_CANCEL_OPTION,
     			JOptionPane.QUESTION_MESSAGE, null, options, options[2]);
     	if (button == 0) {
@@ -191,16 +275,6 @@ public class SellerScreen extends AbstractScreen {
     		ui.getCartSystem().saveInventory();
     		ui.displaySellerScreen();
     	}
-    }
-
-    /** .
-     *  @param 
-     *  @return ?
-     *  @precondition 
-     *  @postcondition 
-     */
-    public void displayProductForm() {
-    	// TODO
     }
 
     /** Assembles a line for each Product in the Inventory.

@@ -196,7 +196,7 @@ public class CheckoutScreen extends AbstractScreen {
     	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 4;
     	productForm.add(label, c);
-    	JOptionPane.showMessageDialog(ui, productForm);
+    	JOptionPane.showMessageDialog(ui, productForm, "Product Detail", JOptionPane.INFORMATION_MESSAGE);
     }
 	
     /** Assembles a line for each Product in the Inventory.
