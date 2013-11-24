@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.JOptionPane;
+
 /** A class that manages the Shopping Cart database.
  *  @author Newman Souza
  *  @author Seth Moore
@@ -21,10 +23,16 @@ public class DBManager {
      *  @throws 			FileNotFoundException 
      *  @throws 			ClassNotFoundException 
      */
-    public Inventory loadInventory() throws FileNotFoundException, IOException, ClassNotFoundException {
-		ObjectInputStream in = new ObjectInputStream (new FileInputStream("database\\Inventory.dat"));
-		Inventory inventory = (Inventory)in.readObject(); 
-		in.close();        
+    public Inventory loadInventory() {
+    	Inventory inventory = null;
+    	try {
+			ObjectInputStream in = new ObjectInputStream (new FileInputStream("database\\Inventory.dat"));
+			inventory = (Inventory)in.readObject(); 
+			in.close();        
+		} catch (IOException | ClassNotFoundException e) {
+			JOptionPane.showMessageDialog(null, "Inventory database not found.");
+			System.exit(0);
+		}
 		return inventory;
     }
 
@@ -34,10 +42,15 @@ public class DBManager {
      *  @postcondition  	The Seller's inventory is saved to file
      *  @throws 			IOException 
      */
-    public void saveInventory(Inventory inventory) throws FileNotFoundException, IOException, ClassNotFoundException {
-        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("database\\Inventory.dat")); 
-        out.writeObject(inventory); 
-        out.close(); 
+    public void saveInventory(Inventory inventory) {
+    	try {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("database\\Inventory.dat")); 
+            out.writeObject(inventory); 
+            out.close(); 
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, "Inventory database not found.");
+			System.exit(0);
+		}
     }
 
     /** Loads the list of users from database.
@@ -46,10 +59,16 @@ public class DBManager {
      *  @postcondition  	The list of users is loaded
      *  @throws 			ClassNotFoundException 
      */
-    public UserList loadUserList() throws FileNotFoundException, IOException, ClassNotFoundException {
-		ObjectInputStream in = new ObjectInputStream (new FileInputStream("database\\UserList.dat"));
-		UserList fromFile = (UserList)in.readObject(); 
-		in.close();        
+    public UserList loadUserList() {
+    	UserList fromFile = null;
+    	try {
+			ObjectInputStream in = new ObjectInputStream (new FileInputStream("database\\UserList.dat"));
+			fromFile = (UserList)in.readObject(); 
+			in.close();        
+		} catch (IOException | ClassNotFoundException e) {
+			JOptionPane.showMessageDialog(null, "UserList database not found.");
+			System.exit(0);
+		}
 		return fromFile;
     }
 
@@ -58,10 +77,15 @@ public class DBManager {
      *  @precondition 		userList is a valid reference
      *  @postcondition  	The list of users is saved to file
      */
-    public void saveUserList(UserList userList) throws FileNotFoundException, IOException, ClassNotFoundException {
-        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("database\\UserList.dat")); 
-        out.writeObject(userList); 
-        out.close(); 
+    public void saveUserList(UserList userList) {
+    	try {
+	        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("database\\UserList.dat")); 
+	        out.writeObject(userList); 
+	        out.close(); 
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, "UserList database not found.");
+			System.exit(0);
+		}
     }
 
 }

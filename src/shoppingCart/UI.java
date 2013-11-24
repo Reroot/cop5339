@@ -173,12 +173,12 @@ public class UI extends JFrame{
      */
     public void displayCheckoutScreen() {
     	PrunningIterator pIter = new PrunningIterator(cart.iterator());
-//    	if (!pIter.hasNext()) {
-//			JOptionPane.showMessageDialog(screenCards, "Cart is empty.");
-//    	} else {
+    	if (!pIter.hasNext()) {
+			JOptionPane.showMessageDialog(screenCards, "Cart is empty.");
+    	} else {
         	checkoutScreen.populate(pIter);
         	((CardLayout)(screenCards.getLayout())).show(screenCards, CHECKOUTPANEL);
-//    	}
+    	}
     }
     
 	public CartSystem getCartSystem() {

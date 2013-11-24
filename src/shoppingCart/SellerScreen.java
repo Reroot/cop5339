@@ -88,8 +88,10 @@ public class SellerScreen extends AbstractScreen {
 		checkoutButton.addMouseListener(new
 				MouseAdapter(){
 					public void mouseClicked(MouseEvent e) {
+			    		Product p = null;
 						JOptionPane.showMessageDialog(null,
-								"Testing listener for\nAdd Product.");
+//		    					displayProductForm(p));
+								"test");
 					}
 				}
 			);

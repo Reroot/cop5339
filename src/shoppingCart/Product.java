@@ -226,6 +226,7 @@ public class Product implements Cloneable, Serializable{
 		if (ID != other.ID) {
 			return false;
 		}
+		// TODO Verify how to match product
 //		if (description == null) {
 //			if (other.description != null) {
 //				return false;
