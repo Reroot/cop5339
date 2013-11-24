@@ -13,14 +13,6 @@ import java.io.ObjectOutputStream;
  */ 
 public class DBManager {
 	
-    /** Constructs a DBManager object.
-     *  @precondition 		none
-     *  @postcondition 		object created
-     */
-    public DBManager() {
-    	// TODO
-    }
-
     /** Loads Inventory from database.
      *  @return 			The Seller's inventory
      *  @precondition 		Database file is valid and available in file system

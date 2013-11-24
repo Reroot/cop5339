@@ -3,6 +3,8 @@ package shoppingCart;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.math.BigDecimal;
@@ -53,13 +55,22 @@ public class CheckoutScreen extends AbstractScreen {
     
 	@Override
 	public void createSidePanel() {
+		final JLabel itemsLabel = new JLabel("Items:" + Cart.getInstance().getQuantity());
+		final JLabel totalLabel = new JLabel("Total:" + Cart.getInstance().getTotal());
+		sidePanel = new
+				JPanel() {
+					public void repaint() {
+						itemsLabel.setText("Items:" + Cart.getInstance().getQuantity());
+						totalLabel.setText("Total:" + Cart.getInstance().getTotal());
+						super.repaint();
+					}
+			
+				};
 		sidePanel.setPreferredSize(new Dimension(200, 500));
 		sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
 		sidePanel.setBorder(new EtchedBorder());
 		JLabel titleLabel = new JLabel("Cart Summary");
 		sidePanel.add(titleLabel);
-		JLabel itemsLabel = new JLabel("Items:" + Cart.getInstance().getQuantity());
-		JLabel totalLabel = new JLabel("Total:" + Cart.getInstance().getTotal());
 		JPanel cartSummary = new JPanel();
 		cartSummary.setMaximumSize(new Dimension(200, 100));
 		cartSummary.setBorder(new EtchedBorder());
@@ -111,6 +122,14 @@ public class CheckoutScreen extends AbstractScreen {
 				}
 			);
 		sidePanel.add(checkoutButton);
+		Cart.getInstance().addListener(new
+				ChangeListener() {
+					@Override
+					public void stateChanged(ChangeEvent arg0) {
+						sidePanel.repaint();
+					}
+					
+		});
 		this.add(sidePanel, BorderLayout.EAST);
 	}
 
@@ -121,7 +140,28 @@ public class CheckoutScreen extends AbstractScreen {
 	 */
     @Override
     public JPanel addLine(final Product product) {
-    	final JPanel line = new JPanel();
+    	final JButton incrementButton = new JButton("Increment");
+    	final JButton decrementButton = new JButton("Decrement");
+    	final JLabel quantityLabel = new JLabel(String.valueOf(product.getQuantity()));
+    	final JPanel line = new
+    			JPanel() {
+    				public void repaint() {
+    					quantityLabel.setText(String.valueOf(product.getQuantity()));
+    					if (product.getQuantity() < 1) {
+    						decrementButton.setEnabled(false);
+    					}
+    					else {
+    						decrementButton.setEnabled(true);
+    					}
+    					if (Inventory.getInstance().getMatchingProduct(product).getQuantity() < 1) {
+    						incrementButton.setEnabled(false);
+    					}
+    					else {
+    						incrementButton.setEnabled(true);
+    					}
+    					super.repaint();
+    				}
+    			};
     	product.addListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
@@ -136,13 +176,12 @@ public class CheckoutScreen extends AbstractScreen {
     	label = new JLabel(product.getSellPrice().toString());
     	line.add(label);
 
-    	label = new JLabel(String.valueOf(product.getQuantity()));
-    	line.add(label);
+    	
+    	line.add(quantityLabel);
 
-    	JButton incrementButton = new JButton("Increment");
-    	incrementButton.addMouseListener(new
-    			MouseAdapter(){
-    				public void mouseClicked(MouseEvent e) {
+    	incrementButton.addActionListener(new
+    			ActionListener(){
+    				public void actionPerformed(ActionEvent arg0) {
    						Inventory.getInstance().decrement(product);
    						Cart.getInstance().increment(product);
     				};
@@ -151,10 +190,9 @@ public class CheckoutScreen extends AbstractScreen {
 
     	line.add(incrementButton);
     	
-    	JButton decrementButton = new JButton("Decrement");
-    	decrementButton.addMouseListener(new
-    			MouseAdapter(){
-    				public void mouseClicked(MouseEvent e) {
+    	decrementButton.addActionListener(new
+    			ActionListener(){
+    				public void actionPerformed(ActionEvent arg0) {
 						Inventory.getInstance().increment(product);
 						Cart.getInstance().decrement(product);
     				};

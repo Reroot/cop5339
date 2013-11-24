@@ -41,9 +41,8 @@ public class PrunningIterator implements Iterator<Product> {
 	}
 
 	@Override
-	public void remove() {
-		// TODO Auto-generated method stub
-		
+	public void remove() throws UnsupportedOperationException {
+		throw new UnsupportedOperationException();
 	}
 	
 	Iterator<Product> iter;

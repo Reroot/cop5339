@@ -7,6 +7,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -58,13 +60,22 @@ public class CustomerScreen extends AbstractScreen {
     
 	@Override
 	public void createSidePanel() {
+		JLabel titleLabel = new JLabel("Cart Summary");
+		final JLabel itemsLabel = new JLabel("Items:" + Cart.getInstance().getQuantity());
+		final JLabel totalLabel = new JLabel("Total:" + Cart.getInstance().getTotal());
+		sidePanel = new
+				JPanel() {
+					public void repaint() {
+						itemsLabel.setText("Items:" + Cart.getInstance().getQuantity());
+						totalLabel.setText("Total:" + Cart.getInstance().getTotal());
+						super.repaint();
+					}
+			
+				};
 		sidePanel.setPreferredSize(new Dimension(200, 500));
 		sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
 		sidePanel.setBorder(new EtchedBorder());
-		JLabel titleLabel = new JLabel("Cart Summary");
 		sidePanel.add(titleLabel);
-		JLabel itemsLabel = new JLabel("Items:" + Cart.getInstance().getQuantity());
-		JLabel totalLabel = new JLabel("Total:" + Cart.getInstance().getTotal());
 		JPanel cartSummary = new JPanel();
 		cartSummary.setMaximumSize(new Dimension(250, 100));
 		cartSummary.setBorder(new EtchedBorder());
@@ -81,6 +92,14 @@ public class CustomerScreen extends AbstractScreen {
 				}
 			);
 		sidePanel.add(checkoutButton);
+		Cart.getInstance().addListener(new
+				ChangeListener() {
+					@Override
+					public void stateChanged(ChangeEvent arg0) {
+						sidePanel.repaint();
+					}
+					
+		});
 		this.add(sidePanel, BorderLayout.EAST);
 	}
 
@@ -155,13 +174,18 @@ public class CustomerScreen extends AbstractScreen {
 	 */
     @Override
     public JPanel addLine(final Product product) {
-    	final JPanel line = new JPanel();
-    	product.addListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				line.repaint();
-			}
-		});
+    	final JButton addButton = new JButton("Add to Cart");
+    	final JLabel quantityLabel = new JLabel(String.valueOf(product.getQuantity()));
+    	final JPanel line = new
+    			JPanel() {
+    				public void repaint() {
+    					quantityLabel.setText(String.valueOf(product.getQuantity()));
+    					if (product.getQuantity() < 1) {
+    						addButton.setEnabled(false);
+    					}
+    					super.repaint();
+    				}
+    			};
     	line.setLayout(new GridBagLayout());
     	GridBagConstraints c = new GridBagConstraints();
 //    	c.fill = GridBagConstraints.HORIZONTAL;
@@ -190,17 +214,18 @@ public class CustomerScreen extends AbstractScreen {
     	c.gridx = 1;
     	line.add(label, c);
 
-    	label = new JLabel(String.valueOf(product.getQuantity()));
+    	line.add(quantityLabel);
 //    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.insets = new Insets(10,10,10,10);
     	c.weightx = 0.5;
     	c.gridx = 2;
     	line.add(label, c);
 
-    	JButton addButton = new JButton("Add to Cart");
-    	addButton.addMouseListener(new
-    			MouseAdapter(){
-    				public void mouseClicked(MouseEvent e) {
+    	
+    	addButton.addActionListener(new
+    			ActionListener(){
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
 						Inventory.getInstance().decrement(product);
 						Cart.getInstance().increment(product);
     				};
@@ -211,6 +236,12 @@ public class CustomerScreen extends AbstractScreen {
     	c.weightx = 0.5;
     	c.gridx = 3;
     	line.add(addButton, c);
+    	product.addListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				line.repaint();
+			}
+		});
     	return line;
     }
 

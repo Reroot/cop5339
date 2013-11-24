@@ -29,7 +29,7 @@ public abstract class AbstractScreen extends JPanel {
     	super();
     	headerPanel = new JPanel();
     	browsePanel = new JPanel();
-    	sidePanel = new JPanel();
+    	//sidePanel = new JPanel(); // Moved creation into createSidePanel().
     	this.ui = ui; 
     }
 
@@ -44,13 +44,14 @@ public abstract class AbstractScreen extends JPanel {
 
 	public void createBrowsePanel() {
 //    	browsePanel.setPreferredSize(new Dimension(400, 500));
-    	browsePanel.setBorder(new EtchedBorder());
+		JPanel outerBrowsePanel = new JPanel();
 		GridLayout grid = new GridLayout();
 		grid.setColumns(1); 
-		// TODO change 50 to something else
-		grid.setRows(50);
+		grid.setRows(0);
 		browsePanel.setLayout(grid);
-		JScrollPane scrollPane = new JScrollPane(browsePanel);
+		outerBrowsePanel.add(browsePanel);
+		//JScrollPane scrollPane = new JScrollPane(innerbrowsePanel);
+		JScrollPane scrollPane = new JScrollPane(outerBrowsePanel);
 		this.add(scrollPane, BorderLayout.CENTER);
 	}
 	
