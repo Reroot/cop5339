@@ -64,6 +64,7 @@ public abstract class AbstractScreen extends JPanel {
     	browsePanel.removeAll();
     	while (iterator.hasNext()) {
         	Product product = iterator.next();
+        	product.removeListeners();
         	browsePanel.add(addLine(product));
     	}
     }

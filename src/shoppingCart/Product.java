@@ -234,6 +234,10 @@ public class Product implements Cloneable, Serializable{
 		}
 	}
 
+	public void removeListeners() {
+		listeners.clear();
+	}
+
 	private int ID;
 	private String name;
 	private String description;
