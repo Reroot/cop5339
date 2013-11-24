@@ -37,7 +37,7 @@ public class UI extends JFrame{
     	this.cartSystem = cartSystem;
     	cart = Cart.getInstance();
     	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	setPreferredSize(new Dimension(800, 600));
+    	setPreferredSize(new Dimension(680, 600));
     	screenCards = new JPanel(new CardLayout());
     	
     	//setLayout(new BorderLayout());

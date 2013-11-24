@@ -119,7 +119,7 @@ public abstract class ProductList implements Iterable<Product>, Serializable{
     							product.getQuantity());
     	
     	products.add(p);
-    	//notifyListeners();
+    	notifyListeners();
     }
 
     /** 
@@ -146,7 +146,6 @@ public abstract class ProductList implements Iterable<Product>, Serializable{
      * @return
      */
     public Iterator<Product> iterator() {
-//    	return (products).iterator();
 		return Collections.unmodifiableList(products).iterator();
     }
     
