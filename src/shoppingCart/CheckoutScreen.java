@@ -44,9 +44,9 @@ public class CheckoutScreen extends AbstractScreen {
     	headerPanel.setBorder(new EtchedBorder());
     	headerPanel.add(new JLabel("Checkout Screen"));
 		JButton logoutButton = new JButton("Logout");
-    	logoutButton.addMouseListener(new
-    			MouseAdapter(){
-    				public void mouseClicked(MouseEvent e){
+    	logoutButton.addActionListener(new
+    			ActionListener() {
+    				public void actionPerformed(ActionEvent e) {
     					Cart.getInstance().clear();
     					ui.displayLoginScreen();
     				}
@@ -99,18 +99,18 @@ public class CheckoutScreen extends AbstractScreen {
 		paymentForm.add(codeLabel);
 		sidePanel.add(paymentForm);
 		JButton cancelButton = new JButton("Cancel");
-		cancelButton.addMouseListener(new
-				MouseAdapter(){
-					public void mouseClicked(MouseEvent e){
+		cancelButton.addActionListener(new
+    			ActionListener() {
+					public void actionPerformed(ActionEvent e) {
 						ui.displayCustomerScreen();
 					}
 				}
 			);
 		sidePanel.add(cancelButton);
 		JButton checkoutButton = new JButton("Pay");
-		checkoutButton.addMouseListener(new
-				MouseAdapter(){
-					public void mouseClicked(MouseEvent e){
+		checkoutButton.addActionListener(new
+    			ActionListener() {
+					public void actionPerformed(ActionEvent e) {
 						boolean result = ui.getCartSystem().pay(cardNumberLabel.toString(), Cart.getInstance().getTotal());
 						if (result) {
     						JOptionPane.showMessageDialog(null,

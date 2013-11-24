@@ -211,7 +211,6 @@ public class ProductTest {
 						// Do nothing.
 					}
 		});
-		// TODO: Make some kind of assertion to make sure this works?
 	}
 
 	/**

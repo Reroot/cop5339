@@ -6,6 +6,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.math.BigDecimal;
@@ -46,9 +48,9 @@ public class SellerScreen extends AbstractScreen {
     	headerPanel.setBorder(new EtchedBorder());
     	headerPanel.add(new JLabel("Seller Screen"));
 		JButton logoutButton = new JButton("Logout");
-    	logoutButton.addMouseListener(new
-    			MouseAdapter(){
-    				public void mouseClicked(MouseEvent e){
+    	logoutButton.addActionListener(new
+    			ActionListener() {
+    				public void actionPerformed(ActionEvent e) {
     					Cart.getInstance().clear();
     					ui.displayLoginScreen();
     				}
@@ -87,9 +89,9 @@ public class SellerScreen extends AbstractScreen {
 		sellerFinancials.add(profitsLabel);
 		sidePanel.add(sellerFinancials);
 		JButton checkoutButton = new JButton("Add Product");
-		checkoutButton.addMouseListener(new
-				MouseAdapter(){
-					public void mouseClicked(MouseEvent e) {
+		checkoutButton.addActionListener(new
+    			ActionListener() {
+					public void actionPerformed(ActionEvent e) {
     					displayProductForm();
 					}
 				}

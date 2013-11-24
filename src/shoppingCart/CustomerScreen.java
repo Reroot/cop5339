@@ -44,9 +44,9 @@ public class CustomerScreen extends AbstractScreen {
     	headerPanel.setBorder(new EtchedBorder());
     	headerPanel.add(new JLabel("Customer Screen"));
 		JButton logoutButton = new JButton("Logout");
-    	logoutButton.addMouseListener(new
-    			MouseAdapter(){
-    				public void mouseClicked(MouseEvent e){
+    	logoutButton.addActionListener(new
+    			ActionListener() {
+    				public void actionPerformed(ActionEvent e) {
     					Cart.getInstance().clear();
     					ui.displayLoginScreen();
     				}
@@ -82,9 +82,9 @@ public class CustomerScreen extends AbstractScreen {
 		cartSummary.add(totalLabel);
 		sidePanel.add(cartSummary);
 		JButton checkoutButton = new JButton("Checkout");
-		checkoutButton.addMouseListener(new
-				MouseAdapter(){
-					public void mouseClicked(MouseEvent e){
+		checkoutButton.addActionListener(new
+    			ActionListener() {
+					public void actionPerformed(ActionEvent e) {
 						ui.displayCheckoutScreen();
 					}
 				}

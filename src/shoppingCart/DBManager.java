@@ -19,9 +19,6 @@ public class DBManager {
      *  @return 			The Seller's inventory
      *  @precondition 		Database file is valid and available in file system
      *  @postcondition  	The Seller's inventory is loaded
-     *  @throws 			IOException 
-     *  @throws 			FileNotFoundException 
-     *  @throws 			ClassNotFoundException 
      */
     public Inventory loadInventory() {
     	Inventory inventory = null;
@@ -40,7 +37,6 @@ public class DBManager {
      *  @param inventory	The Seller's inventory
      *  @precondition 		inventory is a valid reference
      *  @postcondition  	The Seller's inventory is saved to file
-     *  @throws 			IOException 
      */
     public void saveInventory(Inventory inventory) {
     	try {
@@ -57,7 +53,6 @@ public class DBManager {
      *  @return 			The list of users
      *  @precondition 		Database file is valid and available in file system
      *  @postcondition  	The list of users is loaded
-     *  @throws 			ClassNotFoundException 
      */
     public UserList loadUserList() {
     	UserList fromFile = null;

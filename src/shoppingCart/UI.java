@@ -3,6 +3,8 @@ package shoppingCart;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Iterator;
@@ -93,9 +95,9 @@ public class UI extends JFrame{
 		final JTextField passwordField = new JTextField(20);
 		passwordField.setMaximumSize( passwordField.getPreferredSize() );
     	JButton loginButton = new JButton("Login");
-    	loginButton.addMouseListener(new
-    			MouseAdapter(){
-    				public void mouseClicked(MouseEvent e) {
+    	loginButton.addActionListener(new
+    			ActionListener() {
+    				public void actionPerformed(ActionEvent e) {
     					String userType = cartSystem.login(usernameField.getText(), passwordField.getText());
     					if (userType == null){
     						JOptionPane.showMessageDialog(screenCards, "Invalid username/password pair.\nPlease try again.");
