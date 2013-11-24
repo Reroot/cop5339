@@ -159,6 +159,7 @@ public class SellerScreen extends AbstractScreen {
     	c.gridy = 0;
     	productForm.add(label, c);
     	JTextField nameTextField = new JTextField(20);
+    	nameTextField.requestFocus();
     	c.gridwidth = 3;
     	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 1;
@@ -185,7 +186,7 @@ public class SellerScreen extends AbstractScreen {
     	while (button == 2) {
         	button = JOptionPane.showOptionDialog(ui, productForm, "New Product",
         			JOptionPane.YES_NO_OPTION,
-        			JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        			JOptionPane.QUESTION_MESSAGE, null, options, null);
         	if (button == 0) {
         		if (validateFields(nameTextField, descriptionTextField, invoicePriceTextField, sellPriceTextField, quantityTextField)) {
             		Product p = new Product(newID, nameTextField.getText(), descriptionTextField.getText(), 
@@ -224,25 +225,6 @@ public class SellerScreen extends AbstractScreen {
     		return false;
     	}
     	return true;
-    }
-    
-    class TextVerifier extends InputVerifier {
-        public boolean verify(JComponent input) {
-            JTextField tf = (JTextField) input;
-            return tf.getText().matches(".+");
-        }
-    }
-    class PriceVerifier extends InputVerifier {
-        public boolean verify(JComponent input) {
-            JTextField tf = (JTextField) input;
-            return tf.getText().matches("[0-9]+(?:\\.[0-9]{1,2})?");
-        }
-    }
-    class QuantityVerifier extends InputVerifier {
-        public boolean verify(JComponent input) {
-            JTextField tf = (JTextField) input;
-            return tf.getText().matches("[0-9]+");
-        }
     }
     
     /** .
@@ -295,6 +277,7 @@ public class SellerScreen extends AbstractScreen {
     	productForm.add(label, c);
     	JTextField nameTextField = new JTextField(product.getName());
     	nameTextField.setSize(200, (int)nameTextField.getSize().getHeight());
+    	nameTextField.requestFocus();
     	c.gridwidth = 3;
     	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 1;
@@ -322,7 +305,7 @@ public class SellerScreen extends AbstractScreen {
     	while (button == 3) {
         	button = JOptionPane.showOptionDialog(ui, productForm, "Update Product",
         			JOptionPane.YES_NO_CANCEL_OPTION,
-        			JOptionPane.QUESTION_MESSAGE, null, options, options[2]);
+        			JOptionPane.QUESTION_MESSAGE, null, options, null);
         	if (button == 0) {
         		if (validateFields(nameTextField, descriptionTextField, invoicePriceTextField, sellPriceTextField, quantityTextField)) {
             		Product p = new Product(product.getID(), nameTextField.getText(), descriptionTextField.getText(), 
