@@ -181,12 +181,14 @@ public class SellerScreen extends AbstractScreen {
     	Object[] options = {"Save", "Cancel"};
     	int button = JOptionPane.showOptionDialog(ui, productForm, "New Product",
     			JOptionPane.YES_NO_OPTION,
-    			JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+    			JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
     	if (button == 0) {
     		Product p = new Product(product.getID(), nameTextField.getText(), descriptionTextField.getText(), 
     				new BigDecimal(invoicePriceTextField.getText()), new BigDecimal(sellPriceTextField.getText()), Integer.parseInt(quantityTextField.getText()));
     		Inventory.getInstance().add(p);
     		ui.getCartSystem().saveInventory();
+    		ui.displaySellerScreen();
+        	ui.validate();
     	}
     }
 
@@ -274,6 +276,7 @@ public class SellerScreen extends AbstractScreen {
     		Inventory.getInstance().remove(product);
     		ui.getCartSystem().saveInventory();
     		ui.displaySellerScreen();
+        	ui.validate();
     	}
     }
 

@@ -117,7 +117,6 @@ public abstract class ProductList implements Iterable<Product>, Serializable{
     							product.getSellPrice(),
     							product.getInvoicePrice(),
     							product.getQuantity());
-    	
     	products.add(p);
     	notifyListeners();
     }

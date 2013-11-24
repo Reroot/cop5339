@@ -105,8 +105,8 @@ public class Inventory extends ProductList {
 	 */
 	@Override
 	public void add(Product product){
-		super.add(product);
 		costs = costs.add(product.getInvoicePrice().multiply(BigDecimal.valueOf(product.getQuantity())));
+		super.add(product);
 	}
 	
 	public void update(Product product){
