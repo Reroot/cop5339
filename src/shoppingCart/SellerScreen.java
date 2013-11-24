@@ -5,8 +5,10 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.math.BigDecimal;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -15,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.event.ChangeEvent;
@@ -102,40 +105,148 @@ public class SellerScreen extends AbstractScreen {
 		this.add(sidePanel, BorderLayout.EAST);
 	}
 
+    /** .
+     *  @param 
+     *  @return ?
+     *  @precondition 
+     *  @postcondition 
+     */
+    public void displayProductForm(Product product) {
+    	// TODO
+    	JPanel productForm = new JPanel();
+    	productForm.setLayout(new GridBagLayout());
+    	GridBagConstraints c = new GridBagConstraints();
+    	c.fill = GridBagConstraints.HORIZONTAL;
+
+    	JLabel label;
+    	label = new JLabel("ID:");
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.insets = new Insets(10,20,10,0);
+    	c.weightx = 0.5;
+    	c.gridx = 0;
+    	c.gridy = 0;
+    	productForm.add(label, c);
+    	label = new JLabel("Name:");
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 1;
+    	productForm.add(label, c);
+    	label = new JLabel("Description: ");
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 2;
+    	productForm.add(label, c);
+    	label = new JLabel("Invoice Price:");
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 3;
+    	productForm.add(label, c);
+    	label = new JLabel("Sell Price:");
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 4;
+    	productForm.add(label, c);
+    	label = new JLabel("Quantity:");
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 5;
+    	productForm.add(label, c);
+
+    	label = new JLabel(String.valueOf(product.getID()));
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.insets = new Insets(10,20,10,20);
+    	c.weightx = 0.5;
+    	c.gridx = 2;
+    	c.gridy = 0;
+    	productForm.add(label, c);
+    	JTextField nameTextField = new JTextField(product.getName());
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 1;
+    	productForm.add(nameTextField, c);
+    	JTextField descriptionTextField = new JTextField(product.getDescription());
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 2;
+    	productForm.add(descriptionTextField, c);
+    	JTextField invoicePriceTextField = new JTextField(String.valueOf(product.getInvoicePrice()));
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 3;
+    	productForm.add(invoicePriceTextField, c);
+    	JTextField sellPriceTextField = new JTextField(String.valueOf(product.getSellPrice()));
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 4;
+    	productForm.add(sellPriceTextField, c);
+    	JTextField quantityTextField = new JTextField(String.valueOf(product.getQuantity()));
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 5;
+    	productForm.add(quantityTextField, c);
+    	
+    	Object[] options = {"Update", "Delete", "Cancel"};
+    	int button = JOptionPane.showOptionDialog(ui, productForm, "Product Update",
+    			JOptionPane.YES_NO_CANCEL_OPTION,
+    			JOptionPane.QUESTION_MESSAGE, null, options, options[2]);
+    	if (button == 0) {
+    		Product p = new Product(product.getID(), nameTextField.getText(), descriptionTextField.getText(), 
+    				new BigDecimal(invoicePriceTextField.getText()), new BigDecimal(sellPriceTextField.getText()), Integer.parseInt(quantityTextField.getText()));
+    		Inventory.getInstance().update(p);
+    		ui.getCartSystem().saveInventory();
+    	} else if (button == 1) {
+    		Inventory.getInstance().remove(product);
+    		ui.getCartSystem().saveInventory();
+    		ui.displaySellerScreen();
+    	}
+    }
+
+    /** .
+     *  @param 
+     *  @return ?
+     *  @precondition 
+     *  @postcondition 
+     */
+    public void displayProductForm() {
+    	// TODO
+    }
+
     /** Assembles a line for each Product in the Inventory.
 	 *  @param product		The Product to be displayed in the line
 	 *  @precondition 		product is a valid reference
 	 *  @postcondition  	Line assembled
 	 */
     @Override
-    public JPanel addLine(Product product) {
-    	final JPanel line = new JPanel();
+    public JPanel addLine(final Product product) {
+
+    	final JLabel nameLabel = new JLabel(product.getName());
+        final JLabel invoicePriceLabel = new JLabel(product.getInvoicePrice().toString());
+    	final JLabel sellPriceLabel = new JLabel(product.getSellPrice().toString());
+        final JLabel quantityLabel = new JLabel(String.valueOf(product.getQuantity()));
+    	final JPanel line = new
+    			JPanel() {
+    				public void repaint() {
+    					nameLabel.setText(product.getName());
+    					invoicePriceLabel.setText(String.valueOf(product.getInvoicePrice()));
+    					sellPriceLabel.setText(String.valueOf(product.getSellPrice()));
+    					quantityLabel.setText(String.valueOf(product.getQuantity()));
+    					super.repaint();
+    				}
+    			};
     	product.addListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				line.repaint();
 			}
 		});
+    	
+
 //    	GridBagLayout grid = new GridBagLayout();
 //		GridBagConstraints c = new GridBagConstraints();    	
 //    	line.setLayout(grid);
-        JLabel label;
-
-        label = new JLabel(String.valueOf(product.getID()));
+        JLabel idLabel = new JLabel(String.valueOf(product.getID()));
 //        c.fill = GridBagConstraints.HORIZONTAL;
 //        c.gridwidth = 1;
 //        c.gridx = 0;
 //        c.gridy = 0;
 //        line.add(label, c);
-        line.add(label);
+        line.add(idLabel);
 
-    	label = new JLabel(product.getName());
-    	label.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED)); 
-    	label.addMouseListener(new
+        nameLabel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED)); 
+        nameLabel.addMouseListener(new
     			MouseAdapter(){
     				public void mouseClicked(MouseEvent e) {
-    						JOptionPane.showMessageDialog(null,
-    								"Testing listener for\nProduct detail.");
+    					displayProductForm(product);
     				};
     			}
     	);
@@ -144,31 +255,28 @@ public class SellerScreen extends AbstractScreen {
 //        c.gridx = 1;
 //        c.gridy = 0;
 //    	line.add(label, c);
-        line.add(label);
+        line.add(nameLabel);
 
-    	label = new JLabel(product.getInvoicePrice().toString());
 //        c.fill = GridBagConstraints.HORIZONTAL;
 //        c.gridwidth = 1;
 //        c.gridx = 1;
 //        c.gridy = 0;
 //    	line.add(label, c);
-        line.add(label);
+        line.add(invoicePriceLabel);
 
-    	label = new JLabel(product.getSellPrice().toString());
 //        c.fill = GridBagConstraints.HORIZONTAL;
 //        c.gridwidth = 1;
 //        c.gridx = 4;
 //        c.gridy = 0;
 //    	line.add(label, c);
-        line.add(label);
+        line.add(sellPriceLabel);
 
-    	label = new JLabel(String.valueOf(product.getQuantity()));
 //        c.fill = GridBagConstraints.HORIZONTAL;
 //        c.gridwidth = 1;
 //        c.gridx = 5;
 //        c.gridy = 0;
 //    	line.add(label, c);
-        line.add(label);
+        line.add(quantityLabel);
 
     	return line;
     }

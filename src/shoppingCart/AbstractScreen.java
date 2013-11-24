@@ -68,16 +68,7 @@ public abstract class AbstractScreen extends JPanel {
     	}
     }
     
-    /** .
-     *  @param 
-     *  @return ?
-     *  @precondition 
-     *  @postcondition 
-     */
-    public void displayProductForm() {
-    	// TODO
-    }
-
+    public abstract void displayProductForm(Product product);
     public abstract void createHeaderPanel();
     public abstract void createSidePanel();
 

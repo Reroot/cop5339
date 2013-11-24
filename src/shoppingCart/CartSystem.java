@@ -45,12 +45,12 @@ public class CartSystem {
 //		inventory.add(new Product(101, "16Gb Corsair memory 1", "Corsair Vengeance 16Gb memory 1", new BigDecimal("101.00"), new BigDecimal("201.00"), 1));
 //		inventory.add(new Product(102, "16Gb Corsair memory 2", "Corsair Vengeance 16Gb memory 2", new BigDecimal("102.00"), new BigDecimal("202.00"), 2));
 //		inventory.add(new Product(103, "16Gb Corsair memory 3", "Corsair Vengeance 16Gb memory 3", new BigDecimal("103.00"), new BigDecimal("203.00"), 3));
-//		inventory.add(new Product(104, "16Gb Corsair memory 4", "Corsair Vengeance 16Gb memory 4", new BigDecimal("104.00"), new BigDecimal("204.00"), 4));
+//		inventory.add(new Product(104, "16Gb 4", "Corsair Vengeance 16Gb memory 4", new BigDecimal("104.00"), new BigDecimal("204.00"), 4));
 //		inventory.add(new Product(105, "16Gb Corsair memory 5", "Corsair Vengeance 16Gb memory 5", new BigDecimal("105.00"), new BigDecimal("205.00"), 0));
 //		inventory.add(new Product(106, "16Gb Corsair memory 6", "Corsair Vengeance 16Gb memory 6", new BigDecimal("106.00"), new BigDecimal("206.00"), 6));
 //		inventory.add(new Product(107, "16Gb Corsair memory 7", "Corsair Vengeance 16Gb memory 7", new BigDecimal("107.00"), new BigDecimal("207.00"), 7));
 //		inventory.add(new Product(108, "16Gb Corsair memory 8", "Corsair Vengeance 16Gb memory 8", new BigDecimal("108.00"), new BigDecimal("208.00"), 8));
-//		inventory.add(new Product(109, "16Gb Corsair memory 9", "Corsair Vengeance 16Gb memory 9", new BigDecimal("109.00"), new BigDecimal("209.00"), 9));
+//		inventory.add(new Product(109, "16Gb Corsair memory Corsair memory 9", "Corsair Vengeance 16Gb memory 9", new BigDecimal("109.00"), new BigDecimal("209.00"), 9));
 //		inventory.add(new Product(110, "16Gb Corsair memory 10", "Corsair Vengeance 16Gb memory 10", new BigDecimal("110.00"), new BigDecimal("210.00"), 0));
 //		inventory.add(new Product(111, "16Gb Corsair memory 11", "Corsair Vengeance 16Gb memory 11", new BigDecimal("111.00"), new BigDecimal("211.00"), 11));
 //		inventory.add(new Product(112, "16Gb Corsair memory 12", "Corsair Vengeance 16Gb memory 12", new BigDecimal("112.00"), new BigDecimal("212.00"), 12));

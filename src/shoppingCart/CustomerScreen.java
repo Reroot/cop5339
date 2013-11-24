@@ -140,7 +140,6 @@ public class CustomerScreen extends AbstractScreen {
     	c.gridy = 4;
     	productForm.add(label, c);
 
-    	productForm.add(label, c);
     	label = new JLabel(String.valueOf(product.getID()));
     	c.fill = GridBagConstraints.HORIZONTAL;
     	c.insets = new Insets(10,20,10,20);

@@ -2,7 +2,10 @@ package shoppingCart;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -133,6 +136,69 @@ public class CheckoutScreen extends AbstractScreen {
 		this.add(sidePanel, BorderLayout.EAST);
 	}
 
+    /** .
+     *  @param 
+     *  @return ?
+     *  @precondition 
+     *  @postcondition 
+     */
+    public void displayProductForm(Product product) {
+    	JPanel productForm = new JPanel();
+    	productForm.setLayout(new GridBagLayout());
+    	GridBagConstraints c = new GridBagConstraints();
+    	c.fill = GridBagConstraints.HORIZONTAL;
+
+    	JLabel label;
+    	label = new JLabel("ID:");
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.insets = new Insets(10,20,10,0);
+    	c.weightx = 0.5;
+    	c.gridx = 0;
+    	c.gridy = 0;
+    	productForm.add(label, c);
+    	label = new JLabel("Name:");
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 1;
+    	productForm.add(label, c);
+    	label = new JLabel("Description: ");
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 2;
+    	productForm.add(label, c);
+    	label = new JLabel("Price:");
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 3;
+    	productForm.add(label, c);
+    	label = new JLabel("Quantity:");
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 4;
+    	productForm.add(label, c);
+
+    	label = new JLabel(String.valueOf(product.getID()));
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.insets = new Insets(10,20,10,20);
+    	c.weightx = 0.5;
+    	c.gridx = 2;
+    	c.gridy = 0;
+    	productForm.add(label, c);
+    	label = new JLabel(product.getName());
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 1;
+    	productForm.add(label, c);
+    	label = new JLabel(product.getDescription());
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 2;
+    	productForm.add(label, c);
+    	label = new JLabel(String.valueOf(product.getSellPrice()));
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 3;
+    	productForm.add(label, c);
+    	label = new JLabel(String.valueOf(product.getQuantity()));
+    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.gridy = 4;
+    	productForm.add(label, c);
+    	JOptionPane.showMessageDialog(ui, productForm);
+    }
+	
     /** Assembles a line for each Product in the Inventory.
 	 *  @param product		The Product to be displayed in the line
 	 *  @precondition 		product is a valid reference
@@ -171,6 +237,14 @@ public class CheckoutScreen extends AbstractScreen {
     	JLabel label;
     	
     	label = new JLabel(product.getName());
+    	label.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED)); 
+    	label.addMouseListener(new
+    			MouseAdapter(){
+    				public void mouseClicked(MouseEvent e) {
+    					displayProductForm(product);
+    				};
+    			}
+    	);
     	line.add(label);
 
     	label = new JLabel(product.getSellPrice().toString());

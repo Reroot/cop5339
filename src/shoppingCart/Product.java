@@ -35,7 +35,7 @@ public class Product implements Cloneable, Serializable{
 	 * @postcondition object created
 	 */
 	public Product(int ID, String name, String description,
-			BigDecimal sellPrice, BigDecimal invoicePrice, int quantity) {
+			BigDecimal invoicePrice, BigDecimal sellPrice, int quantity) {
 
 		this.ID = ID;
 		this.name = name;
@@ -67,7 +67,7 @@ public class Product implements Cloneable, Serializable{
 	 * 					updated to the supplied parameters. 
 	 */
 	public void update(int ID, String name, String description,
-			BigDecimal sellPrice, BigDecimal invoicePrice, int quantity) {
+			BigDecimal invoicePrice, BigDecimal sellPrice, int quantity) {
 		
 		this.ID = ID;
 		this.name = name;
@@ -226,34 +226,34 @@ public class Product implements Cloneable, Serializable{
 		if (ID != other.ID) {
 			return false;
 		}
-		if (description == null) {
-			if (other.description != null) {
-				return false;
-			}
-		} else if (!description.equals(other.description)) {
-			return false;
-		}
-		if (invoicePrice == null) {
-			if (other.invoicePrice != null) {
-				return false;
-			}
-		} else if (!invoicePrice.equals(other.invoicePrice)) {
-			return false;
-		}
-		if (name == null) {
-			if (other.name != null) {
-				return false;
-			}
-		} else if (!name.equals(other.name)) {
-			return false;
-		}
-		if (sellPrice == null) {
-			if (other.sellPrice != null) {
-				return false;
-			}
-		} else if (!sellPrice.equals(other.sellPrice)) {
-			return false;
-		}
+//		if (description == null) {
+//			if (other.description != null) {
+//				return false;
+//			}
+//		} else if (!description.equals(other.description)) {
+//			return false;
+//		}
+//		if (invoicePrice == null) {
+//			if (other.invoicePrice != null) {
+//				return false;
+//			}
+//		} else if (!invoicePrice.equals(other.invoicePrice)) {
+//			return false;
+//		}
+//		if (name == null) {
+//			if (other.name != null) {
+//				return false;
+//			}
+//		} else if (!name.equals(other.name)) {
+//			return false;
+//		}
+//		if (sellPrice == null) {
+//			if (other.sellPrice != null) {
+//				return false;
+//			}
+//		} else if (!sellPrice.equals(other.sellPrice)) {
+//			return false;
+//		}
 		return true;
 	}
 	
