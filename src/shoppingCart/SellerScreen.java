@@ -12,7 +12,9 @@ import java.math.BigDecimal;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.InputVerifier;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -146,52 +148,101 @@ public class SellerScreen extends AbstractScreen {
     	productForm.add(label, c);
 
     	int newID = Inventory.getInstance().getNewID();
-    	Product product = new Product(newID, "", "", new BigDecimal("0"), new BigDecimal("0"), 0);
 
-    	label = new JLabel(String.valueOf(product.getID()));
+    	label = new JLabel(String.valueOf(newID));
     	c.fill = GridBagConstraints.HORIZONTAL;
     	c.insets = new Insets(10,20,10,20);
     	c.weightx = 0.5;
     	c.gridx = 2;
     	c.gridy = 0;
     	productForm.add(label, c);
-    	JTextField nameTextField = new JTextField(product.getName());
-    	nameTextField.setSize(200, (int)nameTextField.getSize().getHeight());
+    	JTextField nameTextField = new JTextField(20);
     	c.gridwidth = 3;
     	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 1;
     	productForm.add(nameTextField, c);
-    	JTextField descriptionTextField = new JTextField(product.getDescription());
+    	JTextField descriptionTextField = new JTextField(40);
     	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 2;
     	productForm.add(descriptionTextField, c);
-    	JTextField invoicePriceTextField = new JTextField(String.valueOf(product.getInvoicePrice()));
+    	JTextField invoicePriceTextField = new JTextField(20);
     	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 3;
     	productForm.add(invoicePriceTextField, c);
-    	JTextField sellPriceTextField = new JTextField(String.valueOf(product.getSellPrice()));
+    	JTextField sellPriceTextField = new JTextField(20);
     	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 4;
     	productForm.add(sellPriceTextField, c);
-    	JTextField quantityTextField = new JTextField(String.valueOf(product.getQuantity()));
+    	JTextField quantityTextField = new JTextField(5);
     	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 5;
     	productForm.add(quantityTextField, c);
     	
     	Object[] options = {"Save", "Cancel"};
-    	int button = JOptionPane.showOptionDialog(ui, productForm, "New Product",
-    			JOptionPane.YES_NO_OPTION,
-    			JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-    	if (button == 0) {
-    		Product p = new Product(product.getID(), nameTextField.getText(), descriptionTextField.getText(), 
-    				new BigDecimal(invoicePriceTextField.getText()), new BigDecimal(sellPriceTextField.getText()), Integer.parseInt(quantityTextField.getText()));
-    		Inventory.getInstance().add(p);
-    		ui.getCartSystem().saveInventory();
-    		ui.displaySellerScreen();
-        	ui.validate();
+    	int button = 2;
+    	while (button == 2) {
+        	button = JOptionPane.showOptionDialog(ui, productForm, "New Product",
+        			JOptionPane.YES_NO_OPTION,
+        			JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        	if (button == 0) {
+        		if (validateFields(nameTextField, descriptionTextField, invoicePriceTextField, sellPriceTextField, quantityTextField)) {
+            		Product p = new Product(newID, nameTextField.getText(), descriptionTextField.getText(), 
+            				new BigDecimal(invoicePriceTextField.getText()), new BigDecimal(sellPriceTextField.getText()), Integer.parseInt(quantityTextField.getText()));
+            		Inventory.getInstance().add(p);
+            		ui.getCartSystem().saveInventory();
+            		ui.displaySellerScreen();
+                	ui.validate();
+        		} else {
+        			button = 2;
+        		}
+        	}
     	}
     }
 
+    private boolean validateFields(JTextField nameTextField, JTextField descriptionTextField, 
+    		JTextField invoicePriceTextField, JTextField sellPriceTextField, JTextField quantityTextField) {
+    	if (!nameTextField.getText().matches(".+")) {
+    		JOptionPane.showMessageDialog(ui, "Invalid Name:\n\nName cannot be blank.");
+    		return false;
+    	}
+    	if (!descriptionTextField.getText().matches(".+")) {
+    		JOptionPane.showMessageDialog(ui, "Invalid Description:\n\nDescription cannot be blank.");
+    		return false;
+    	}
+    	if (!invoicePriceTextField.getText().matches("[0-9]+(?:\\.[0-9]{1,2})?")) {
+    		JOptionPane.showMessageDialog(ui, "Invalid Invoice Price:\n\n" + invoicePriceTextField.getText());
+    		return false;
+    	}
+    	if (!sellPriceTextField.getText().matches("[0-9]+(?:\\.[0-9]{1,2})?")) {
+    		JOptionPane.showMessageDialog(ui, "Invalid Sell Price:\n\n" + sellPriceTextField.getText());
+    		return false;
+    	}
+    	if (!quantityTextField.getText().matches("[0-9]+")) {
+    		JOptionPane.showMessageDialog(ui, "Invalid Quantity:\n\n" + quantityTextField.getText());
+    		return false;
+    	}
+    	return true;
+    }
+    
+    class TextVerifier extends InputVerifier {
+        public boolean verify(JComponent input) {
+            JTextField tf = (JTextField) input;
+            return tf.getText().matches(".+");
+        }
+    }
+    class PriceVerifier extends InputVerifier {
+        public boolean verify(JComponent input) {
+            JTextField tf = (JTextField) input;
+            return tf.getText().matches("[0-9]+(?:\\.[0-9]{1,2})?");
+        }
+    }
+    class QuantityVerifier extends InputVerifier {
+        public boolean verify(JComponent input) {
+            JTextField tf = (JTextField) input;
+            return tf.getText().matches("[0-9]+");
+        }
+    }
+    
     /** .
      *  @param 
      *  @return ?
@@ -264,19 +315,27 @@ public class SellerScreen extends AbstractScreen {
     	productForm.add(quantityTextField, c);
     	
     	Object[] options = {"Update", "Delete", "Cancel"};
-    	int button = JOptionPane.showOptionDialog(ui, productForm, "Update Product",
-    			JOptionPane.YES_NO_CANCEL_OPTION,
-    			JOptionPane.QUESTION_MESSAGE, null, options, options[2]);
-    	if (button == 0) {
-    		Product p = new Product(product.getID(), nameTextField.getText(), descriptionTextField.getText(), 
-    				new BigDecimal(invoicePriceTextField.getText()), new BigDecimal(sellPriceTextField.getText()), Integer.parseInt(quantityTextField.getText()));
-    		Inventory.getInstance().update(p);
-    		ui.getCartSystem().saveInventory();
-    	} else if (button == 1) {
-    		Inventory.getInstance().remove(product);
-    		ui.getCartSystem().saveInventory();
-    		ui.displaySellerScreen();
-        	ui.validate();
+
+    	int button = 3;
+    	while (button == 3) {
+        	button = JOptionPane.showOptionDialog(ui, productForm, "Update Product",
+        			JOptionPane.YES_NO_CANCEL_OPTION,
+        			JOptionPane.QUESTION_MESSAGE, null, options, options[2]);
+        	if (button == 0) {
+        		if (validateFields(nameTextField, descriptionTextField, invoicePriceTextField, sellPriceTextField, quantityTextField)) {
+            		Product p = new Product(product.getID(), nameTextField.getText(), descriptionTextField.getText(), 
+            				new BigDecimal(invoicePriceTextField.getText()), new BigDecimal(sellPriceTextField.getText()), Integer.parseInt(quantityTextField.getText()));
+            		Inventory.getInstance().update(p);
+            		ui.getCartSystem().saveInventory();
+            	} else {
+        			button = 3;
+        		}
+        	} else if (button == 1) {
+            		Inventory.getInstance().remove(product);
+            		ui.getCartSystem().saveInventory();
+            		ui.displaySellerScreen();
+                	ui.validate();
+        	}
     	}
     }
 

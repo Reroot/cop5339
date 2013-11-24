@@ -114,8 +114,8 @@ public abstract class ProductList implements Iterable<Product>, Serializable{
     	Product p = new Product(product.getID(),
     							product.getName(),
     							product.getDescription(),
-    							product.getSellPrice(),
     							product.getInvoicePrice(),
+    							product.getSellPrice(),
     							product.getQuantity());
     	products.add(p);
     	notifyListeners();

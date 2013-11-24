@@ -190,17 +190,9 @@ public class Product implements Cloneable, Serializable{
 	 */
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ID;
-		result = prime * result
-				+ ((description == null) ? 0 : description.hashCode());
-		result = prime * result
-				+ ((invoicePrice == null) ? 0 : invoicePrice.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result
-				+ ((sellPrice == null) ? 0 : sellPrice.hashCode());
-		return result;
+		int hash = 1;
+		int prime = 31;
+		return (hash * prime + ID);
 	}
 
 	/**
@@ -226,35 +218,6 @@ public class Product implements Cloneable, Serializable{
 		if (ID != other.ID) {
 			return false;
 		}
-		// TODO Verify how to match product
-//		if (description == null) {
-//			if (other.description != null) {
-//				return false;
-//			}
-//		} else if (!description.equals(other.description)) {
-//			return false;
-//		}
-//		if (invoicePrice == null) {
-//			if (other.invoicePrice != null) {
-//				return false;
-//			}
-//		} else if (!invoicePrice.equals(other.invoicePrice)) {
-//			return false;
-//		}
-//		if (name == null) {
-//			if (other.name != null) {
-//				return false;
-//			}
-//		} else if (!name.equals(other.name)) {
-//			return false;
-//		}
-//		if (sellPrice == null) {
-//			if (other.sellPrice != null) {
-//				return false;
-//			}
-//		} else if (!sellPrice.equals(other.sellPrice)) {
-//			return false;
-//		}
 		return true;
 	}
 	
