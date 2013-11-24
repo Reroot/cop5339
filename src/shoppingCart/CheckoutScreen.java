@@ -206,6 +206,14 @@ public class CheckoutScreen extends AbstractScreen {
 	 */
     @Override
     public JPanel addLine(final Product product) {
+    	GridBagLayout grid = new GridBagLayout();
+    	GridBagConstraints c = new GridBagConstraints();
+    	if (browsePanel.getComponentCount() == 0) {
+    		JPanel titleBar = new JPanel();
+    		titleBar.add(new JLabel("test"));
+    		titleBar.setLayout(grid);
+    		browsePanel.add(titleBar);
+    	}
     	final JButton incrementButton = new JButton("Increment");
     	final JButton decrementButton = new JButton("Decrement");
     	final JLabel quantityLabel = new JLabel(String.valueOf(product.getQuantity()));

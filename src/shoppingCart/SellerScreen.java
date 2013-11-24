@@ -348,7 +348,14 @@ public class SellerScreen extends AbstractScreen {
 	 */
     @Override
     public JPanel addLine(final Product product) {
-
+    	GridBagLayout grid = new GridBagLayout();
+    	GridBagConstraints c = new GridBagConstraints();
+    	if (browsePanel.getComponentCount() == 0) {
+    		JPanel titleBar = new JPanel();
+    		titleBar.add(new JLabel("test"));
+    		titleBar.setLayout(grid);
+    		browsePanel.add(titleBar);
+    	}
     	final JLabel nameLabel = new JLabel(product.getName());
         final JLabel invoicePriceLabel = new JLabel(product.getInvoicePrice().toString());
     	final JLabel sellPriceLabel = new JLabel(product.getSellPrice().toString());

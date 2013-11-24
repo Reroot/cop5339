@@ -171,6 +171,14 @@ public class CustomerScreen extends AbstractScreen {
 	 */
     @Override
     public JPanel addLine(final Product product) {
+    	GridBagLayout grid = new GridBagLayout();
+    	GridBagConstraints c = new GridBagConstraints();
+    	if (browsePanel.getComponentCount() == 0) {
+    		JPanel titleBar = new JPanel();
+    		titleBar.add(new JLabel("test"));
+    		titleBar.setLayout(grid);
+    		browsePanel.add(titleBar);
+    	}
     	final JButton addButton = new JButton("Add to Cart");
     	final JLabel quantityLabel = new JLabel(String.valueOf(product.getQuantity()));
     	final JPanel line = new
@@ -183,9 +191,8 @@ public class CustomerScreen extends AbstractScreen {
     					super.repaint();
     				}
     			};
-    	    	line.setLayout(new GridBagLayout());
-    	    	GridBagConstraints c = new GridBagConstraints();
-//    	    	c.fill = GridBagConstraints.HORIZONTAL;
+    	line.setLayout(grid);
+//   	c.fill = GridBagConstraints.HORIZONTAL;
     	JLabel label;
     	
     	label = new JLabel(product.getName());
