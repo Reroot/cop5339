@@ -35,8 +35,8 @@ public class UI extends JFrame{
      */
     public UI(CartSystem cartSystem) {
     	super("Shopping Cart");
-    	inventory = Inventory.getInstance();
     	this.cartSystem = cartSystem;
+    	inventory = Inventory.getInstance();
     	cart = Cart.getInstance();
     	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	setPreferredSize(new Dimension(800, 600));
@@ -104,9 +104,7 @@ public class UI extends JFrame{
     						usernameField.setText("");
     						passwordField.setText("");
     					}
-    					else if (userType.equals("Customer")){
-    				    	cartSystem.saveInventory();
-    				    	
+    					else if (userType.equals("Customer")) {
     						cart.clear();
     						displayCustomerScreen();
     					}

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.7.0_25" class="java.beans.XMLDecoder">
+<java version="1.7.0_45" class="java.beans.XMLDecoder">
  <object class="com.horstmann.violet.SequenceDiagramGraph">
   <void method="addNode">
    <object class="com.horstmann.violet.ImplicitParameterNode" id="LifelineNode0">
@@ -37,11 +37,11 @@ user</string>
      <string>x</string>
      <void method="set">
       <object idref="Point2D$Double1"/>
-      <double>207.0</double>
+      <double>187.0</double>
      </void>
     </void>
     <void method="setLocation">
-     <double>207.0</double>
+     <double>187.0</double>
      <double>0.0</double>
     </void>
    </object>
@@ -100,7 +100,7 @@ user</string>
      <string>x</string>
      <void method="set">
       <object idref="Point2D$Double3"/>
-      <double>239.0</double>
+      <double>219.0</double>
      </void>
     </void>
     <void class="java.awt.geom.Point2D$Double" method="getField">
@@ -111,7 +111,7 @@ user</string>
      </void>
     </void>
     <void method="setLocation">
-     <double>239.0</double>
+     <double>219.0</double>
      <double>104.0</double>
     </void>
    </object>
@@ -123,11 +123,11 @@ user</string>
      <string>x</string>
      <void method="set">
       <object idref="Point2D$Double4"/>
-      <double>444.0</double>
+      <double>346.0</double>
      </void>
     </void>
     <void method="setLocation">
-     <double>444.0</double>
+     <double>346.0</double>
      <double>0.0</double>
     </void>
    </object>
@@ -139,7 +139,7 @@ user</string>
      <string>x</string>
      <void method="set">
       <object idref="Point2D$Double5"/>
-      <double>476.0</double>
+      <double>378.0</double>
      </void>
     </void>
     <void class="java.awt.geom.Point2D$Double" method="getField">
@@ -150,7 +150,7 @@ user</string>
      </void>
     </void>
     <void method="setLocation">
-     <double>476.0</double>
+     <double>378.0</double>
      <double>128.0</double>
     </void>
    </object>
@@ -159,9 +159,9 @@ user</string>
    <object class="com.horstmann.violet.NoteNode" id="NoteNode0">
     <void property="text">
      <void property="text">
-      <string>User
-clicks OK
-button</string>
+      <string>User clicks OK button
+which reveals CustomerScreen
+</string>
      </void>
     </void>
    </object>
@@ -170,19 +170,19 @@ button</string>
      <string>x</string>
      <void method="set">
       <object idref="Point2D$Double6"/>
-      <double>560.0</double>
+      <double>407.0</double>
      </void>
     </void>
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>y</string>
      <void method="set">
       <object idref="Point2D$Double6"/>
-      <double>172.0</double>
+      <double>182.0</double>
      </void>
     </void>
     <void method="setLocation">
-     <double>560.0</double>
-     <double>172.0</double>
+     <double>407.0</double>
+     <double>182.0</double>
     </void>
    </object>
   </void>
@@ -190,8 +190,8 @@ button</string>
    <object class="com.horstmann.violet.PointNode" id="PointNode0">
     <void id="Rectangle2D$Double0" property="bounds">
      <void method="setRect">
-      <double>483.0</double>
-      <double>150.0</double>
+      <double>387.0</double>
+      <double>162.0</double>
       <double>0.0</double>
       <double>0.0</double>
      </void>
@@ -205,19 +205,19 @@ button</string>
      <string>x</string>
      <void method="set">
       <object idref="Point2D$Double7"/>
-      <double>483.0</double>
+      <double>387.0</double>
      </void>
     </void>
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>y</string>
      <void method="set">
       <object idref="Point2D$Double7"/>
-      <double>150.0</double>
+      <double>162.0</double>
      </void>
     </void>
     <void method="setLocation">
-     <double>483.0</double>
-     <double>150.0</double>
+     <double>387.0</double>
+     <double>162.0</double>
     </void>
    </object>
   </void>
@@ -233,7 +233,7 @@ button</string>
   <void method="connect">
    <object class="com.horstmann.violet.CallEdge">
     <void property="middleLabel">
-     <string>showMessageDialog(message)</string>
+     <string>showMessageDialog()</string>
     </void>
    </object>
    <object idref="ActivationBarNode1"/>
