@@ -316,10 +316,17 @@ public class SellerScreen extends AbstractScreen {
         			button = 3;
         		}
         	} else if (button == 1) {
+            	button = JOptionPane.showConfirmDialog(ui,"Are you sure?", "Confirm Delete", 
+            			JOptionPane.YES_NO_OPTION,
+            			JOptionPane.QUESTION_MESSAGE, null);
+            	if (button == 0) {
             		Inventory.getInstance().remove(product);
             		ui.getCartSystem().saveInventory();
             		ui.displaySellerScreen();
                 	ui.validate();
+	        	} else {
+	    			button = 3;
+	    		}
         	}
     	}
     }
