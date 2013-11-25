@@ -1,6 +1,7 @@
 package shoppingCart;
 
 import java.math.BigDecimal;
+import java.util.Iterator;
 
 /**
  * A ProductList that manages the Products in the Seller's inventory and the
@@ -92,6 +93,22 @@ public class Inventory extends ProductList {
 		revenues = revenues.subtract(product.getSellPrice());
 	}
 	
+    /**
+     * 
+     * @return
+     */
+    public int getNewID() {
+    	int newID = 0;
+    	Iterator<Product> iterator = iterator();
+		while (iterator.hasNext()) {
+			Product p = (Product) iterator.next();
+			if (p.getID() > newID) {
+				newID = p.getID();
+			}
+		}
+		return (newID + 1);
+    }
+    
 	/**
 	 * Adds a copy (including quantity) of the supplied Product to the
      * ProductList, and increases costs by the invoicePrice times quantity

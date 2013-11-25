@@ -13,7 +13,6 @@ public class CreateDatabase {
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 
-		CartSystem cartSystem = new CartSystem();
     	DBManager dbManager = new DBManager();
 		Inventory inventory = Inventory.getInstance();
 		UserList userList = new UserList();
@@ -51,7 +50,7 @@ public class CreateDatabase {
 		inventory.add(new Product(125, "16Gb Corsair memory 25", "Corsair Vengeance 16Gb memory 25", new BigDecimal("125.00"), new BigDecimal("225.00"), 0));
 		System.out.println();
 		System.out.println("Saving Inventory...");
-		cartSystem.saveInventory();
+		dbManager.saveInventory(inventory);
 	    System.out.println("Loading Inventory...");
 	    Inventory invFromFile = dbManager.loadInventory();
 	    System.out.println();
@@ -81,14 +80,14 @@ public class CreateDatabase {
 		dbManager.saveUserList(userList);
 		System.out.println("Loading UserList...");
 		UserList userFromFile = dbManager.loadUserList();
-		System.out.println();
-		System.out.println("Displaying users from loaded UserList:");
-		Iterator<User> loadedUserIter = userFromFile.iterator();
-		while (loadedUserIter.hasNext()) {
-    		User user = (User)loadedUserIter.next();
-    		System.out.print("  " + user.getUsername() + ", ");
-    		System.out.print(user.getPassword() + ", ");
-    		System.out.println(user.getType());
-		}
+//		System.out.println();
+//		System.out.println("Displaying users from loaded UserList:");
+//		Iterator<User> loadedUserIter = userFromFile.iterator();
+//		while (loadedUserIter.hasNext()) {
+//    		User user = (User)loadedUserIter.next();
+//    		System.out.print("  " + user.getUsername() + ", ");
+//    		System.out.print(user.getPassword() + ", ");
+//    		System.out.println(user.getType());
+//		}
 	}
 }

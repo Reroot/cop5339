@@ -10,7 +10,7 @@ import java.util.Iterator;
  *  @author Seth Moore
  */ 
 @SuppressWarnings("serial")
-public class UserList implements Iterable<User>, Serializable {
+public class UserList implements Serializable {
 	
     /** Constructs a UserList object.
      *  @precondition 		none
@@ -42,7 +42,7 @@ public class UserList implements Iterable<User>, Serializable {
 	 *  @postcondition  	User's type is determined
 	 */
 	public String validate(String username, String password) {
-    	Iterator<User> userList = users.iterator();
+		Iterator<User> userList = Collections.unmodifiableList(users).iterator();
     	while (userList.hasNext()) {
     		User user = (User)userList.next();
     		if (user.getUsername().equals(username)) {
@@ -52,13 +52,6 @@ public class UserList implements Iterable<User>, Serializable {
     		}
     	}
    		return null;
-	}
-
-	/** Provides an iterator for the User list.
-	 *  @return 			An iterator for the User list
-	 */
-	public Iterator<User> iterator() {
-		return Collections.unmodifiableList(users).iterator();
 	}
 	
     private ArrayList<User> users;

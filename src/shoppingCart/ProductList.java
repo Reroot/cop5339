@@ -144,22 +144,6 @@ public abstract class ProductList implements Iterable<Product>, Serializable{
      * 
      * @return
      */
-    public int getNewID() {
-    	int newID = 0;
-    	Iterator<Product> iterator = products.iterator();
-		while (iterator.hasNext()) {
-			Product p = (Product) iterator.next();
-			if (p.getID() > newID) {
-				newID = p.getID();
-			}
-		}
-		return (newID + 1);
-    }
-    
-    /**
-     * 
-     * @return
-     */
     public Iterator<Product> iterator() {
 		return Collections.unmodifiableList(products).iterator();
     }
