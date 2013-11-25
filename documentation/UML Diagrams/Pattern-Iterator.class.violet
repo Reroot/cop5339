@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.7.0_25" class="java.beans.XMLDecoder">
+<java version="1.7.0_45" class="java.beans.XMLDecoder">
  <object class="com.horstmann.violet.ClassDiagramGraph">
   <void method="addNode">
    <object class="com.horstmann.violet.ClassNode" id="ClassNode0">
     <void property="name">
      <void property="text">
-      <string>AbstractBrowsePanel</string>
+      <string>AbstractScreen</string>
      </void>
     </void>
    </object>
@@ -14,19 +14,19 @@
      <string>x</string>
      <void method="set">
       <object idref="Point2D$Double0"/>
-      <double>629.0</double>
+      <double>396.0</double>
      </void>
     </void>
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>y</string>
      <void method="set">
       <object idref="Point2D$Double0"/>
-      <double>273.0</double>
+      <double>135.0</double>
      </void>
     </void>
     <void method="setLocation">
-     <double>629.0</double>
-     <double>273.0</double>
+     <double>396.0</double>
+     <double>135.0</double>
     </void>
    </object>
   </void>
@@ -34,9 +34,8 @@
    <object class="com.horstmann.violet.ClassNode" id="ClassNode1">
     <void property="name">
      <void property="text">
-      <string>(iterator from
-Inventory&apos;s
-List instance)</string>
+      <string>(iterator from Inventory&apos;s
+ArrayList of Products)</string>
      </void>
     </void>
    </object>
@@ -45,19 +44,19 @@ List instance)</string>
      <string>x</string>
      <void method="set">
       <object idref="Point2D$Double1"/>
-      <double>833.0</double>
+      <double>569.0</double>
      </void>
     </void>
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>y</string>
      <void method="set">
       <object idref="Point2D$Double1"/>
-      <double>440.0</double>
+      <double>313.0</double>
      </void>
     </void>
     <void method="setLocation">
-     <double>833.0</double>
-     <double>440.0</double>
+     <double>569.0</double>
+     <double>313.0</double>
     </void>
    </object>
   </void>
@@ -74,19 +73,19 @@ List instance)</string>
      <string>x</string>
      <void method="set">
       <object idref="Point2D$Double2"/>
-      <double>476.0</double>
+      <double>229.0</double>
      </void>
     </void>
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>y</string>
      <void method="set">
       <object idref="Point2D$Double2"/>
-      <double>441.0</double>
+      <double>305.0</double>
      </void>
     </void>
     <void method="setLocation">
-     <double>476.0</double>
-     <double>441.0</double>
+     <double>229.0</double>
+     <double>305.0</double>
     </void>
    </object>
   </void>
@@ -101,7 +100,7 @@ next()</string>
     <void property="name">
      <void property="text">
       <string>«interface»
-Iterator</string>
+Iterator&lt;Product&gt;</string>
      </void>
     </void>
    </object>
@@ -110,19 +109,19 @@ Iterator</string>
      <string>x</string>
      <void method="set">
       <object idref="Point2D$Double3"/>
-      <double>834.0</double>
+      <double>589.0</double>
      </void>
     </void>
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>y</string>
      <void method="set">
       <object idref="Point2D$Double3"/>
-      <double>246.0</double>
+      <double>120.0</double>
      </void>
     </void>
     <void method="setLocation">
-     <double>834.0</double>
-     <double>246.0</double>
+     <double>589.0</double>
+     <double>120.0</double>
     </void>
    </object>
   </void>
@@ -145,19 +144,19 @@ Iterable</string>
      <string>x</string>
      <void method="set">
       <object idref="Point2D$Double4"/>
-      <double>466.0</double>
+      <double>225.0</double>
      </void>
     </void>
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>y</string>
      <void method="set">
       <object idref="Point2D$Double4"/>
-      <double>255.0</double>
+      <double>133.0</double>
      </void>
     </void>
     <void method="setLocation">
-     <double>466.0</double>
-     <double>255.0</double>
+     <double>225.0</double>
+     <double>133.0</double>
     </void>
    </object>
   </void>

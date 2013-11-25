@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.7.0_25" class="java.beans.XMLDecoder">
+<java version="1.7.0_45" class="java.beans.XMLDecoder">
  <object class="com.horstmann.violet.StateDiagramGraph">
   <void method="addNode">
    <object class="com.horstmann.violet.CircularStateNode" id="CircularInitialStateNode0"/>
@@ -187,19 +187,19 @@ product</string>
      <string>x</string>
      <void method="set">
       <object idref="Point2D$Double6"/>
-      <double>823.0</double>
+      <double>825.0</double>
      </void>
     </void>
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>y</string>
      <void method="set">
       <object idref="Point2D$Double6"/>
-      <double>364.0</double>
+      <double>361.0</double>
      </void>
     </void>
     <void method="setLocation">
-     <double>823.0</double>
-     <double>364.0</double>
+     <double>825.0</double>
+     <double>361.0</double>
     </void>
    </object>
   </void>
@@ -218,19 +218,19 @@ product
      <string>x</string>
      <void method="set">
       <object idref="Point2D$Double7"/>
-      <double>496.0</double>
+      <double>500.0</double>
      </void>
     </void>
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>y</string>
      <void method="set">
       <object idref="Point2D$Double7"/>
-      <double>286.0</double>
+      <double>284.0</double>
      </void>
     </void>
     <void method="setLocation">
-     <double>496.0</double>
-     <double>286.0</double>
+     <double>500.0</double>
+     <double>284.0</double>
     </void>
    </object>
   </void>
@@ -360,7 +360,7 @@ product
   <void method="connect">
    <object class="com.horstmann.violet.StateTransitionEdge">
     <void property="label">
-     <string>update, cancel</string>
+     <string>update, delete, cancel</string>
     </void>
    </object>
    <object idref="StateNode5"/>
@@ -369,7 +369,7 @@ product
   <void method="connect">
    <object class="com.horstmann.violet.StateTransitionEdge">
     <void property="label">
-     <string>add button clicked</string>
+     <string>add product</string>
     </void>
    </object>
    <object idref="StateNode4"/>
