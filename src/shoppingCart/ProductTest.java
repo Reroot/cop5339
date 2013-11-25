@@ -47,7 +47,7 @@ public class ProductTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		product = new Product(ID, name, description, sellPrice, invoicePrice, quantity);
+		product = new Product(ID, name, description, invoicePrice, sellPrice, quantity);
 		product.addListener(new
 				ChangeListener(){
 
@@ -71,13 +71,15 @@ public class ProductTest {
 	 */
 	@Test
 	public void testHashCode() {
-		Product p = new Product(ID, name, description, sellPrice, invoicePrice, quantity);
+		Product p = new Product(ID, name, description, invoicePrice, sellPrice, quantity);
 		assertTrue(p.hashCode() == product.hashCode());
-		p.update(ID, name, description, sellPrice, invoicePrice, 20);
+		p.update(ID, name, description, invoicePrice, sellPrice, 20);
 		assertTrue(p.hashCode() == product.hashCode());
-		p.update(33, name, description, sellPrice, invoicePrice, 20);
+		p.update(33, name, description, invoicePrice, sellPrice, 20);
 		assertFalse(p.hashCode() == product.hashCode());
-		p.update(ID, name, description, new BigDecimal("33.33"), invoicePrice, 20);
+		p.update(ID, name, description, new BigDecimal("33.33"), sellPrice, 20);
+		assertTrue(p.hashCode() == product.hashCode());
+		p.update(999, name, description, invoicePrice, sellPrice, 20);
 		assertFalse(p.hashCode() == product.hashCode());
 	}
 
@@ -89,7 +91,7 @@ public class ProductTest {
 		int ID = 1, quantity = 2;
 		String name = "apple", description = "crisp";
 		BigDecimal sellPrice = new BigDecimal("1.25"), invoicePrice = new BigDecimal("0.40");
-		Product p = new Product(ID, name, description, sellPrice, invoicePrice, quantity);
+		Product p = new Product(ID, name, description, invoicePrice, sellPrice, quantity);
 		assertEquals(p.getID(), ID);
 		assertEquals(p.getName(), name);
 		assertEquals(p.getDescription(), description);
@@ -208,22 +210,45 @@ public class ProductTest {
 
 					@Override
 					public void stateChanged(ChangeEvent arg0) {
-						// Do nothing.
+						changeListenerString += "anotherListener";
 					}
 		});
+		product.increment();
+		assertEquals(changeListenerString, product.getName()+"anotherListener");
 	}
 
+	/**
+	 * Test method for {@link shoppingCart.Product#removeListeners()}.
+	 */
+	@Test
+	public void testRemoveListeners() {
+		product.addListener(new
+				ChangeListener(){
+
+					@Override
+					public void stateChanged(ChangeEvent arg0) {
+						changeListenerString += "anotherListener";
+					}
+		});
+		product.removeListeners();
+		product.increment();
+		assertEquals(changeListenerString, "FAIL");
+		
+	}	
+	
 	/**
 	 * Test method for {@link shoppingCart.Product#equals(java.lang.Object)}.
 	 */
 	@Test
 	public void testEqualsObject() {
-		Product p = new Product(ID, name, description, sellPrice, invoicePrice, quantity);
+		Product p = new Product(ID, name, description, invoicePrice, sellPrice, quantity);
 		assertTrue(p.equals(product));
-		p = new Product(ID, name, description, sellPrice, invoicePrice, 0);
+		p = new Product(ID, name, description, invoicePrice, sellPrice, 0);
 		assertTrue(p.equals(product));
 		assertTrue(p.hashCode() == product.hashCode());
-		p = new Product(ID, "not an apple", description, sellPrice, invoicePrice, 0);
+		p = new Product(ID, "not an apple", description, invoicePrice, sellPrice, 0);
+		assertTrue(p.equals(product));
+		p = new Product(999, name, description, invoicePrice, sellPrice, 0);
 		assertFalse(p.equals(product));
 	}
 
