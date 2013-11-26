@@ -8,6 +8,9 @@ import static org.junit.Assert.*;
 import java.math.BigDecimal;
 import java.util.Iterator;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -220,5 +223,36 @@ public class InventoryTest {
 		p2.update(p2.getID(), "dk", "ff", newInvoicePrice, p2.getSellPrice(), firstProduct.getQuantity() - 1);
 		inventory.update(p2);
 		assertEquals(expectedCosts, inventory.getCosts());
+	}
+	
+	/**
+	 * Test method for {@link shoppingCart.Cart#addListener(javax.swing.event.ChangeListener)}.
+	 */
+	@Test
+	public void testAddListener() { 
+		final StringBuffer sBuff = new StringBuffer();
+		inventory.addListener(new
+				ChangeListener(){
+
+					@Override
+					public void stateChanged(ChangeEvent arg0) {
+						sBuff.append('1');
+					}
+		});
+		assertEquals("", sBuff.substring(0));
+		inventory.increment(firstProduct);
+		assertEquals("1", sBuff.substring(0));
+		inventory.decrement(lastProduct);
+		assertEquals("11", sBuff.substring(0));
+		Product p = (Product)firstProduct.clone();
+		p.update(firstProduct.getID(), "", "", new BigDecimal("0.00"), new BigDecimal("0.00"), 55);
+		inventory.update(p);
+		assertEquals("111", sBuff.substring(0));
+		inventory.add(new Product(66, "3", "3", new BigDecimal("0.00"), new BigDecimal("0.00"), 55));
+		assertEquals("1111", sBuff.substring(0));
+		inventory.remove(lastProduct);
+		assertEquals("11111", sBuff.substring(0));
+		inventory.clear();
+		assertEquals("111111", sBuff.substring(0));
 	}
 }
