@@ -21,6 +21,7 @@ public class PrunningIteratorTest {
 	
 	Inventory inventory;
 	PrunningIterator iterator;
+	Product p2;
 
 	/**
 	 * @throws java.lang.Exception
@@ -42,12 +43,13 @@ public class PrunningIteratorTest {
 	@Before
 	public void setUp() throws Exception {
 		inventory = Inventory.getInstance();
+		p2 = new Product(23, "sam2", "ssld", new BigDecimal("1.00"), new BigDecimal("1.00"), 4);
 		inventory.add(new Product(22, "sam1", "ssld", new BigDecimal("1.00"), new BigDecimal("1.00"), 0));
-		inventory.add(new Product(22, "sam2", "ssld", new BigDecimal("1.00"), new BigDecimal("1.00"), 4));
-		inventory.add(new Product(22, "sam3", "ssld", new BigDecimal("1.00"), new BigDecimal("1.00"), 2));
-		inventory.add(new Product(22, "sam4", "ssld", new BigDecimal("1.00"), new BigDecimal("1.00"), 0));
-		inventory.add(new Product(22, "sam5", "ssld", new BigDecimal("1.00"), new BigDecimal("1.00"), 8));
-		inventory.add(new Product(22, "sam6", "ssld", new BigDecimal("1.00"), new BigDecimal("1.00"), 0));
+		inventory.add(p2);
+		inventory.add(new Product(24, "sam3", "ssld", new BigDecimal("1.00"), new BigDecimal("1.00"), 2));
+		inventory.add(new Product(25, "sam4", "ssld", new BigDecimal("1.00"), new BigDecimal("1.00"), 0));
+		inventory.add(new Product(26, "sam5", "ssld", new BigDecimal("1.00"), new BigDecimal("1.00"), 8));
+		inventory.add(new Product(27, "sam6", "ssld", new BigDecimal("1.00"), new BigDecimal("1.00"), 0));
 		iterator = new PrunningIterator(inventory.iterator());
 	}
 
@@ -65,7 +67,6 @@ public class PrunningIteratorTest {
 	@Test
 	public void testPrunningIterator() {
 		PrunningIterator iter = new PrunningIterator(inventory.iterator());
-		
 	}
 
 	/**
@@ -87,15 +88,18 @@ public class PrunningIteratorTest {
 	 */
 	@Test
 	public void testNext() {
-		fail("Not yet implemented");
+		Product p = iterator.next();
+		assertTrue(p.getQuantity() == p2.getQuantity());
+		assertTrue(p.getID() == p2.getID());
+		assertEquals(p2.getName(), p.getName());
 	}
 
 	/**
 	 * Test method for {@link shoppingCart.PrunningIterator#remove()}.
 	 */
-	@Test
+	@Test(expected=UnsupportedOperationException.class)
 	public void testRemove() {
-		fail("Not yet implemented");
+		iterator.remove();
 	}
 
 }
