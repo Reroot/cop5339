@@ -15,6 +15,9 @@ import javax.swing.JOptionPane;
  */ 
 public class DBManager {
 	
+	private String inventorySaveFile = "database\\Inventory.dat";
+	private String userListSaveFile = "database\\UserList.dat";
+	
     /** Loads Inventory from database.
      *  @return 			The Seller's inventory
      *  @precondition 		Database file is valid and available in file system
@@ -23,7 +26,7 @@ public class DBManager {
     public Inventory loadInventory() {
     	Inventory inventory = null;
     	try {
-			ObjectInputStream in = new ObjectInputStream (new FileInputStream("database\\Inventory.dat"));
+			ObjectInputStream in = new ObjectInputStream (new FileInputStream(inventorySaveFile));
 			inventory = (Inventory)in.readObject(); 
 			in.close();        
 		} catch (IOException | ClassNotFoundException e) {
@@ -40,7 +43,7 @@ public class DBManager {
      */
     public void saveInventory(Inventory inventory) {
     	try {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("database\\Inventory.dat")); 
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(inventorySaveFile)); 
             out.writeObject(inventory); 
             out.close(); 
 		} catch (IOException e) {
@@ -57,7 +60,7 @@ public class DBManager {
     public UserList loadUserList() {
     	UserList fromFile = null;
     	try {
-			ObjectInputStream in = new ObjectInputStream (new FileInputStream("database\\UserList.dat"));
+			ObjectInputStream in = new ObjectInputStream (new FileInputStream(userListSaveFile));
 			fromFile = (UserList)in.readObject(); 
 			in.close();        
 		} catch (IOException | ClassNotFoundException e) {
@@ -74,13 +77,57 @@ public class DBManager {
      */
     public void saveUserList(UserList userList) {
     	try {
-	        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("database\\UserList.dat")); 
+	        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(userListSaveFile)); 
 	        out.writeObject(userList); 
 	        out.close(); 
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "UserList database not found.");
 			System.exit(0);
 		}
+    }
+    
+    /**
+     * Method used for testing purposes.
+     * 
+     * @param filename
+     * @return
+     */
+    public Inventory loadInventory(String filename) {
+    	inventorySaveFile = filename;
+    	return loadInventory();
+    }
+    
+    /**
+     * Method used for testing purposes.
+     * 
+     * @param inventory
+     * @param filename
+     */
+    public void saveInventory(Inventory inventory, String filename) {
+    	inventorySaveFile = filename;
+    	saveInventory(inventory);
+    }
+    
+    /**
+     * Method used for testing purposes.
+     * 
+     * @param filename
+     * @return
+     */
+    public UserList loadUserList(String filename) {
+    	userListSaveFile = filename;
+    	return loadUserList();
+    }
+    
+    /**
+     * Method used for testing purposes.
+     * 
+     * @param userList
+     * @param filename
+     */
+    public void saveUserList(UserList userList, String filename) {
+    	userListSaveFile = filename;
+    	saveUserList(userList);
     }
 
 }
