@@ -140,8 +140,10 @@ public abstract class ProductList implements Iterable<Product>, Serializable{
     }
     
     /**
+     * Gets an iterator over the Products in this ProductList.
      * 
-     * @return
+     * @return an iterator over the Products in an umodifiableList
+     * created from the Products in this ProductList
      */
     public Iterator<Product> iterator() {
 		return Collections.unmodifiableList(products).iterator();
