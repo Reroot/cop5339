@@ -20,7 +20,7 @@ public class UserList implements Serializable {
     	users = new ArrayList<User>();
     }
 
-    // TODO TO BE DELETED
+    // TODO Don't delete this method. Needed for JUnit test.
     public void addUser(String username, String password, String type) {
 		User user = new User(username, password, type);
 		users.add(user);
