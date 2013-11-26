@@ -197,11 +197,11 @@ public class Product implements Cloneable, Serializable{
 
 	/**
 	 * Checks for equality between this Product and the obj parameter, and
-	 * returns the result.
+	 * returns the result. Equality is based on ID.
 	 * 
 	 * @param obj the Object that is being compared to this Product.
-	 * @return true if obj and this are equivalent (does not take quantity
-	 * into account), otherwise false
+	 * @return true if obj and this are equivalent (does not fields other
+	 * than ID into account), otherwise false
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -234,6 +234,12 @@ public class Product implements Cloneable, Serializable{
 		}
 	}
 
+	/**
+	 * Removes all the ChangeListeners.
+	 * 
+	 * @postcondition no change listeners that had been added to this
+	 * Product will receive notifications of this Product's state changes.
+	 */
 	public void removeListeners() {
 		listeners.clear();
 	}
