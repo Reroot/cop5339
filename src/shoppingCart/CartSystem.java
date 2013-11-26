@@ -12,8 +12,9 @@ import java.math.BigDecimal;
 public class CartSystem {
 
     /** Constructs a CartSystem object.
-     *  @precondition 		none
+     *  @precondition 		Appropriate files are available for DBManager
      *  @postcondition 		object created
+     *  @postcondition		UI created and running
      */
     public CartSystem() {
     	dbManager = new DBManager();
@@ -23,16 +24,22 @@ public class CartSystem {
 		userList = dbManager.loadUserList();
     }
 
+    /**
+     * Creates a CartSystem
+     * 
+     * @param args not used
+     */
 	public static void main(String[] args) {
 		CartSystem cartSystem = new CartSystem();
 	}
     
-    /** Logs in a user as a customer or a seller.
+    /** Takes a user's username and password, and, if they are a valid username/password
+     * 		pair, returns the User's type to the caller and loads the Inventory. Otherwise
+     * 		returns null.
      *  @param username		the User's username
      *  @param password		the User's password
-     *  @return 			the User's type
+     *  @return 			the User's type or null
      *  @precondition 		username and password are valid references
-     *  @postcondition 		user is logged in
      */
     public String login(String username, String password) {
     	String type = userList.validate(username, password);
@@ -57,6 +64,11 @@ public class CartSystem {
     	return result;
     }
     
+    /**
+     * Saves the current state of the Inventory.
+     * 
+     * @precondition appropriate file permissions are available to DBManager.
+     */
     public void saveInventory() {
     	Inventory inventory = Inventory.getInstance();
 		dbManager.saveInventory(inventory);
