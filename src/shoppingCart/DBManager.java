@@ -87,10 +87,10 @@ public class DBManager {
     }
     
     /**
-     * Method used for testing purposes.
+     * Method used for testing purposes. Calls loadInventory().
      * 
-     * @param filename
-     * @return
+     * @param filename the filename to be loaded from
+     * @return the Inventory saved in filename
      */
     public Inventory loadInventory(String filename) {
     	inventorySaveFile = filename;
@@ -98,10 +98,10 @@ public class DBManager {
     }
     
     /**
-     * Method used for testing purposes.
+     * Method used for testing purposes. Calls saveInventory(Inventory)
      * 
-     * @param inventory
-     * @param filename
+     * @param inventory the Inventory to be saved
+     * @param filename the filename to be saved to
      */
     public void saveInventory(Inventory inventory, String filename) {
     	inventorySaveFile = filename;
@@ -109,10 +109,10 @@ public class DBManager {
     }
     
     /**
-     * Method used for testing purposes.
+     * Method used for testing purposes. Calls loadUserList()
      * 
-     * @param filename
-     * @return
+     * @param filename the filename to be loaded from
+     * @return the UserList saved in filename
      */
     public UserList loadUserList(String filename) {
     	userListSaveFile = filename;
@@ -120,10 +120,10 @@ public class DBManager {
     }
     
     /**
-     * Method used for testing purposes.
+     * Method used for testing purposes. Calls saveUserList(UserList)
      * 
-     * @param userList
-     * @param filename
+     * @param userList the UserList to be saved
+     * @param filename the filename to be saved to
      */
     public void saveUserList(UserList userList, String filename) {
     	userListSaveFile = filename;
