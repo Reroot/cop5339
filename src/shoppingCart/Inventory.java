@@ -8,7 +8,7 @@ import java.util.Iterator;
  * seller's financial state.
  * 
  * @author Seth Moore
- *
+ * @author Newman Souza
  */
 @SuppressWarnings("serial")
 public class Inventory extends ProductList {
@@ -22,6 +22,12 @@ public class Inventory extends ProductList {
 		revenues = new BigDecimal("0.00");
 	}
 	
+	/**
+	 * The accessor method for obtaining the single (there can
+	 * only be one) instance of Inventory. 
+	 * 
+	 * @return the Inventory instance
+	 */
 	public static Inventory getInstance(){
 		if (instance == null){
 			instance = new Inventory();
@@ -67,7 +73,7 @@ public class Inventory extends ProductList {
 	}
 	
 	/**
-	 * Increments, by one, the quantity of a Product that equals the
+	 * Decrements, by one, the quantity of a Product that equals the
      * supplied Product, and increases revenues by the Product's sellPrice.
      * 
      * @param product the Product whose matching Product will be incremented.
@@ -80,7 +86,7 @@ public class Inventory extends ProductList {
 	}
 	
 	/**
-	 * Decrements, by one, the quantity of a Product that equals the
+	 * Increments, by one, the quantity of a Product that equals the
      * supplied Product, and decreases revenues by the Product's sellPrice.
      * 
      *  @param the Product whose matching Product will be decremented.
@@ -94,8 +100,10 @@ public class Inventory extends ProductList {
 	}
 	
     /**
+     * Creates and returns a new integer that is equal to p.getID()+1,
+     * where p is the Product in Inventory with greatest ID.
      * 
-     * @return
+     * @return the largest ID in the inventory plus 1.
      */
     public int getNewID() {
     	int newID = 0;
@@ -127,8 +135,12 @@ public class Inventory extends ProductList {
 	}
 	
 	/**
+	 * Updates all the fields of the product in Inventory whose ID matches
+	 * the ID of product to match the fields in product. If product's quantity
+	 * is greater than the quantity of the match, costs is increased by the
+	 * difference times the InvoicePrice of product.
 	 * 
-	 * @param product
+	 * @param product the Product whose match will be found and updated
 	 * @precondition getMatchingProduct(product) != null
 	 */
 	public void update(Product product){
@@ -143,7 +155,11 @@ public class Inventory extends ProductList {
 	}
 	
 	/**
+	 * Removes all the Products in Inventory, and sets costs and revenues to 0.00
 	 * 
+	 * @postcondition iterater().hasNext == false
+	 * @postcondition getCosts().equals(new BigDecimal("0.00")
+	 * @postcondition getRevenues().equals(new BigDecimal("0.00")
 	 */
 	public void clear() {
 		super.clear();
@@ -152,7 +168,7 @@ public class Inventory extends ProductList {
 	}
 	
 	/**
-	 * This method should make the Singleton Pattern play nicely with
+	 * This method makes the Singleton Pattern play nicely with
 	 * deserialization in our application. Since deserialization creates
 	 * a new object, we clear the old instance, and add all the Products
 	 * from the deserialized object (this) to the instance, then return
