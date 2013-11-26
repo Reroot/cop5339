@@ -126,6 +126,11 @@ public class Inventory extends ProductList {
 		super.add(product);
 	}
 	
+	/**
+	 * 
+	 * @param product
+	 * @precondition getMatchingProduct(product) != null
+	 */
 	public void update(Product product){
 		Product p = getMatchingProduct(product);
 		int oldQuantity = p.getQuantity();
@@ -135,6 +140,15 @@ public class Inventory extends ProductList {
 		}
 		p.update(product.getID(), product.getName(), product.getDescription(), product.getSellPrice(), product.getInvoicePrice(), product.getQuantity());
 		notifyListeners();
+	}
+	
+	/**
+	 * 
+	 */
+	public void clear() {
+		super.clear();
+		costs = new BigDecimal("0.00");
+		revenues = new BigDecimal("0.00");
 	}
 	
 	/**

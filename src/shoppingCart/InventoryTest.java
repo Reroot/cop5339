@@ -5,6 +5,9 @@ package shoppingCart;
 
 import static org.junit.Assert.*;
 
+import java.math.BigDecimal;
+import java.util.Iterator;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,6 +19,12 @@ import org.junit.Test;
  *
  */
 public class InventoryTest {
+	
+	private Inventory inventory;
+	private BigDecimal initialRevenues;
+	private BigDecimal initialCosts;
+	private Product firstProduct;
+	private Product lastProduct;
 
 	/**
 	 * @throws java.lang.Exception
@@ -36,6 +45,16 @@ public class InventoryTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		inventory = Inventory.getInstance();
+		inventory.add(new Product(0, "name0", "description0", new BigDecimal("1.00"), new BigDecimal("2.00"), 10));
+		inventory.add(new Product(1, "name1", "description1", new BigDecimal("1.00"), new BigDecimal("2.00"), 10));
+		inventory.add(new Product(2, "name2", "description2", new BigDecimal("1.00"), new BigDecimal("2.00"), 10));
+		inventory.add(new Product(3, "name3", "description3", new BigDecimal("1.00"), new BigDecimal("2.00"), 10));
+		initialCosts = inventory.getCosts();
+		initialRevenues = inventory.getRevenues();
+		Iterator<Product> iter = inventory.iterator();
+		firstProduct = iter.next();
+		while (iter.hasNext()) lastProduct = iter.next();
 	}
 
 	/**
@@ -43,21 +62,13 @@ public class InventoryTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
+		inventory.clear();
 	}
 
 	@Test
 	public void testGetInstance(){
-		Inventory inv1 = Inventory.getInstance();
-		Inventory inv2 = Inventory.getInstance();
-		assertTrue(inv1 == inv2);
-	}
-	
-	/**
-	 * Test method for {@link shoppingCart.Inventory#ProductList()}.
-	 */
-	@Test
-	public void testProductList() {
-		fail("Not yet implemented");
+		Inventory inv = Inventory.getInstance();
+		assertTrue(inv == inventory);
 	}
 
 	/**
@@ -65,7 +76,10 @@ public class InventoryTest {
 	 */
 	@Test
 	public void testClear() {
-		fail("Not yet implemented");
+		inventory.add(new Product(99, "name", "des", new BigDecimal("0.00"), new BigDecimal("0.00"), 5));
+		inventory.clear();
+		assertTrue(inventory.iterator().hasNext() == false);
+		assertEquals(new BigDecimal("0.00"), inventory.getProfits());
 	}
 
 	/**
@@ -73,7 +87,12 @@ public class InventoryTest {
 	 */
 	@Test
 	public void testIncrement() {
-		fail("Not yet implemented");
+		BigDecimal prevRevenues = inventory.getRevenues();
+		BigDecimal sellPrice = lastProduct.getSellPrice();
+		int quantity = lastProduct.getQuantity();
+		inventory.increment(lastProduct);
+		assertEquals(prevRevenues.subtract(sellPrice), inventory.getRevenues());
+		assertEquals(quantity + 1, lastProduct.getQuantity());
 	}
 
 	/**
@@ -81,7 +100,12 @@ public class InventoryTest {
 	 */
 	@Test
 	public void testDecrement() {
-		fail("Not yet implemented");
+		BigDecimal prevRevenues = inventory.getRevenues();
+		BigDecimal sellPrice = firstProduct.getSellPrice();
+		int quantity = firstProduct.getQuantity();
+		inventory.decrement(firstProduct);
+		assertEquals(prevRevenues.add(sellPrice), inventory.getRevenues());
+		assertEquals(quantity - 1, firstProduct.getQuantity());
 	}
 
 	/**
@@ -89,7 +113,15 @@ public class InventoryTest {
 	 */
 	@Test
 	public void testGetMatchingProduct() {
-		fail("Not yet implemented");
+		Product p = (Product)firstProduct.clone();
+		assertFalse(p == firstProduct);
+		assertTrue(inventory.getMatchingProduct(p) == firstProduct);
+		p = (Product)lastProduct.clone();
+		p.update(p.getID(), "not", "a", new BigDecimal("99.33"), new BigDecimal("99.33"), 934);
+		assertFalse(p == lastProduct);
+		assertTrue(inventory.getMatchingProduct(p) == lastProduct);
+		p.update(222, "not", "a", new BigDecimal("99.33"), new BigDecimal("99.33"), 934);
+		assertTrue(inventory.getMatchingProduct(p) == null);
 	}
 
 	/**
@@ -97,7 +129,14 @@ public class InventoryTest {
 	 */
 	@Test
 	public void testAdd() {
-		fail("Not yet implemented");
+		BigDecimal previousCosts = inventory.getCosts();
+		Product p = new Product(99, "name", "description", new BigDecimal("10.00"), new BigDecimal("20.00"), 10);
+		BigDecimal additionCost = new BigDecimal("100.00");
+		inventory.add(p);
+		assertEquals(previousCosts.add(additionCost), inventory.getCosts());
+		assertFalse(p == inventory.getMatchingProduct(p));
+		assertEquals(p, inventory.getMatchingProduct(p));
+		assertEquals(p.getQuantity(), inventory.getMatchingProduct(p).getQuantity());
 	}
 
 	/**
@@ -105,7 +144,8 @@ public class InventoryTest {
 	 */
 	@Test
 	public void testRemove() {
-		fail("Not yet implemented");
+		inventory.remove(firstProduct);
+		assertTrue(inventory.getMatchingProduct(firstProduct) == null);
 	}
 
 	/**
@@ -113,23 +153,28 @@ public class InventoryTest {
 	 */
 	@Test
 	public void testIterator() {
-		fail("Not yet implemented");
+		inventory.clear();
+		assertFalse(inventory.iterator().hasNext());
+		Product p1 = new Product(1, "name", "desc", new BigDecimal("2.00"), new BigDecimal("2.00"), 10);
+		Product p2 = new Product(2, "name", "desc", new BigDecimal("2.00"), new BigDecimal("2.00"), 10);
+		Product p3 = new Product(3, "name", "desc", new BigDecimal("2.00"), new BigDecimal("2.00"), 10);
+		inventory.add(p1);
+		inventory.add(p2);
+		inventory.add(p3);
+		Iterator<Product> iter = inventory.iterator();
+		assertTrue(iter.hasNext());
+		assertEquals(p1, iter.next());
+		while (iter.hasNext()) p1 = iter.next();
+		assertEquals(p3, p1);
 	}
 	
-	/**
-	 * Test method for {@link shoppingCart.Inventory#Inventory()}.
-	 */
-	@Test
-	public void testInventory() {
-		fail("Not yet implemented");
-	}
 
 	/**
 	 * Test method for {@link shoppingCart.Inventory#getCosts()}.
 	 */
 	@Test
 	public void testGetCosts() {
-		fail("Not yet implemented");
+		assertEquals(new BigDecimal("40.00") ,inventory.getCosts());
 	}
 
 	/**
@@ -137,7 +182,7 @@ public class InventoryTest {
 	 */
 	@Test
 	public void testGetRevenues() {
-		fail("Not yet implemented");
+		assertEquals(new BigDecimal("0.00") ,inventory.getRevenues());
 	}
 
 	/**
@@ -145,7 +190,35 @@ public class InventoryTest {
 	 */
 	@Test
 	public void testGetProfits() {
-		fail("Not yet implemented");
+		assertEquals(initialRevenues.subtract(initialCosts), inventory.getProfits());
 	}
-
+	
+	/**
+	 * Test method for {@link shoppingCart.Inventory#getNewID()}.
+	 */
+	@Test
+	public void testGetNewID() {
+		assertTrue(inventory.getNewID() == lastProduct.getID() + 1);
+		inventory.clear();
+		assertTrue(inventory.getNewID() == 1);
+	}
+	
+	/**
+	 * Test method for {@link shoppingCart.Inventory#update(shoppingCart.Product)}.
+	 */
+	@Test
+	public void testUpdate() {
+		Product p1 = (Product)firstProduct.clone();
+		BigDecimal newInvoicePrice = new BigDecimal("100");
+		p1.update(p1.getID(), "dk", "ff", newInvoicePrice, p1.getSellPrice(), firstProduct.getQuantity() + 1);
+		inventory.update(p1);
+		BigDecimal expectedCosts = initialCosts.add(newInvoicePrice);
+		assertEquals(expectedCosts, inventory.getCosts());
+		
+		Product p2 = (Product)firstProduct.clone();
+		newInvoicePrice = new BigDecimal("100");
+		p2.update(p2.getID(), "dk", "ff", newInvoicePrice, p2.getSellPrice(), firstProduct.getQuantity() - 1);
+		inventory.update(p2);
+		assertEquals(expectedCosts, inventory.getCosts());
+	}
 }
