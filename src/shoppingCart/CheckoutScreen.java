@@ -24,21 +24,28 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-/** A class that assembles the Checkout JPanel for the UI.
+/**
+ * A JPanel containing all the panels, buttons, listeners, etc. for
+ * the customer's Checkout Screen.
+ * 
  *  @author Newman Souza
  *  @author Seth Moore
  */ 
 @SuppressWarnings("serial")
 public class CheckoutScreen extends AbstractScreen {
 	
-    /** Constructs a CheckoutBrowsePanel object.
-     *  @precondition 		none
-     *  @postcondition 		object created
-     */
+ 	/**
+	 * Constructs a CheckoutScreen object.
+	 * 
+	 * @param ui a reference to the UI that created this screen.
+	 */
     public CheckoutScreen(UI ui) {
     	super(ui);
     }
 
+    /**
+     * Creates the header panel for the CheckoutScreen.
+     */
 	public void createHeaderPanel() {
 //    	headerPanel.setPreferredSize(new Dimension(600, 30));
     	headerPanel.setBorder(new EtchedBorder());
@@ -56,6 +63,10 @@ public class CheckoutScreen extends AbstractScreen {
     	this.add(headerPanel, BorderLayout.NORTH);
     }
     
+	/**
+	 * Creates the side panel for the CheckoutScreen,
+	 * which includes a cart summary and payment form.
+	 */
 	@Override
 	public void createSidePanel() {
 		final JLabel itemsLabel = new JLabel("Items:" + Cart.getInstance().getQuantity());
@@ -136,12 +147,11 @@ public class CheckoutScreen extends AbstractScreen {
 		this.add(sidePanel, BorderLayout.EAST);
 	}
 
-    /** .
-     *  @param 
-     *  @return ?
-     *  @precondition 
-     *  @postcondition 
-     */
+   /**
+    * Displays a Product's details.
+    * 
+    * @param product the Product whose details are to be displayed.
+    */
     public void displayProductForm(Product product) {
     	JPanel productForm = new JPanel();
     	productForm.setLayout(new GridBagLayout());
@@ -199,10 +209,13 @@ public class CheckoutScreen extends AbstractScreen {
     	JOptionPane.showMessageDialog(ui, productForm, "Product Detail", JOptionPane.INFORMATION_MESSAGE);
     }
 	
-    /** Assembles a line for each Product in the Inventory.
-	 *  @param product		The Product to be displayed in the line
+    /** 
+     * Assembles and returns a JPanel for the supplied Product,
+     * with product summary and increment/decrement buttons.
+     *  
+	 *  @param product		The Product represented by the JPanel.
+	 *  @return 			a JPanel filled with appropriate labels, buttons, etc.
 	 *  @precondition 		product is a valid reference
-	 *  @postcondition  	Line assembled
 	 */
     @Override
     public JPanel addLine(final Product product) {

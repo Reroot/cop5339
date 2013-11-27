@@ -18,8 +18,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * @author Seth
- *
+ *  @author Newman Souza
+ *  @author Seth Moore
  */
 public class CartTest {
 

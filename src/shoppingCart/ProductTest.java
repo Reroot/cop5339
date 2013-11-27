@@ -17,8 +17,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * @author Seth Moore
- *
+ *  @author Newman Souza
+ *  @author Seth Moore
  */
 public class ProductTest {
 

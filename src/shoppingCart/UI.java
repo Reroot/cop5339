@@ -18,8 +18,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 
-/** A class that manages interaction with user, receives input and display screens.
- *  @author Seth Moore and Newman Souza
+/** A class that manages interaction with user, receives input and displays screens.
+ *  @author Newman Souza
+ *  @author Seth Moore
  */ 
 @SuppressWarnings("serial")
 public class UI extends JFrame{
@@ -29,9 +30,11 @@ public class UI extends JFrame{
 	final static String SELLERPANEL = "SellerScreen";
 	final static String CHECKOUTPANEL = "CheckoutScreen";
 	
-    /** Constructs a UI object.
+    /** Constructs a UI object (as well as all its screens),
+     *  and sets itself visible.
+     *  
      *  @precondition none
-     *  @postcondition object created
+     *  @postcondition LoginScreen is displayed
      */
     public UI(CartSystem cartSystem) {
     	super("Shopping Cart");
@@ -68,16 +71,18 @@ public class UI extends JFrame{
     	displayLoginScreen();
     }
 
-    /** .
-     *  @param 
-     *  @return ?
-     *  @precondition 
-     *  @postcondition 
+    /**
+     * Switches to the LoginScreen.
      */
     public void displayLoginScreen() {
     	((CardLayout)screenCards.getLayout()).show(screenCards, LOGINPANEL);
     }
 
+    /**
+     * Constructs the LoginScreen.
+     * 
+     * @return the LoginScreen.
+     */
     private JPanel createLoginScreen() {
 		JPanel loginScreen = new JPanel();
 		loginScreen.setLayout(new BorderLayout());
@@ -141,11 +146,9 @@ public class UI extends JFrame{
 		return loginScreen;
 	}
 
-    /** .
-     *  @param 
-     *  @return ?
-     *  @precondition 
-     *  @postcondition 
+    /**
+     * Passes iterator over entire Inventory to SellerScreen to populate
+     * itself, and switches to the SellerScreen.
      */
     public void displaySellerScreen() {
     	Iterator<Product> iter = inventory.iterator();
@@ -153,11 +156,9 @@ public class UI extends JFrame{
     	((CardLayout)(screenCards.getLayout())).show(screenCards, SELLERPANEL);
     }
 
-    /** .
-     *  @param 
-     *  @return ?
-     *  @precondition 
-     *  @postcondition 
+    /**
+     * Passes iterator over Products in Inventory with quantity > 0 (using PrunningIterator decorator)
+     * to CustomerScreen to populate itself, and switches to the CustomerScreen.
      */
     public void displayCustomerScreen() {
     	PrunningIterator pIter = new PrunningIterator(inventory.iterator());
@@ -165,11 +166,9 @@ public class UI extends JFrame{
     	((CardLayout)(screenCards.getLayout())).show(screenCards, CUSTOMERPANEL);
     }
 
-    /** .
-     *  @param 
-     *  @return ?
-     *  @precondition 
-     *  @postcondition 
+    /**
+     * Passes iterator over Products in Cart with quantity > 0 (using PrunningIterator decorator)
+     * to CheckoutScreen to populate itself, and switches to the CheckoutScreen.
      */
     public void displayCheckoutScreen() {
     	PrunningIterator pIter = new PrunningIterator(cart.iterator());
@@ -181,6 +180,11 @@ public class UI extends JFrame{
     	}
     }
     
+    /**
+     * Gets reference to the CartSystem that created this UI.
+     * 
+     * @return the CartSystem that created this UI
+     */
 	public CartSystem getCartSystem() {
 		return cartSystem;
 	}

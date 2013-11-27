@@ -5,18 +5,26 @@ import java.math.BigDecimal;
 /**
  * A ProductList that manages the Products in a customer's shopping cart.
  * 
- * @author Seth Moore
- *
+ *  @author Newman Souza
+ *  @author Seth Moore
  */
 @SuppressWarnings("serial")
 public class Cart extends ProductList {
 	
 	
-	
+	/**
+	 * Constructor
+	 */
 	private Cart(){
 		super();
 	}
 
+	/**
+	 * The accessor method for obtaining the single (there can
+	 * only be one) instance of Cart. 
+	 * 
+	 * @return the Cart instance
+	 */
 	public static Cart getInstance(){
 		if (instance == null){
 			instance = new Cart();

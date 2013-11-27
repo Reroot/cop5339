@@ -27,21 +27,28 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-/** A class that assembles the Seller JPanel for the UI.
+/** 
+ *	A JPanel containing all the panels, buttons, listeners, etc. for
+ *  the SellerScreen.
+ *  
  *  @author Newman Souza
  *  @author Seth Moore
  */ 
 @SuppressWarnings("serial")
 public class SellerScreen extends AbstractScreen {
 	
-    /** Constructs a SellerBrowsePanel object.
-     *  @precondition 		none
-     *  @postcondition 		object created
-     */
+	/**
+	 * Constructs a SellerScreen object.
+	 * 
+	 * @param ui a reference to the UI that created this screen.
+	 */
     public SellerScreen(UI ui) {
     	super(ui);
     }
 
+    /**
+     * Creates the header panel for the SellerScreen.
+     */
 	@Override
     public void createHeaderPanel() {
 //    	headerPanel.setPreferredSize(new Dimension(600, 30));
@@ -60,6 +67,11 @@ public class SellerScreen extends AbstractScreen {
     	this.add(headerPanel, BorderLayout.NORTH);
     }
     
+	/**
+	 * Creates the side panel for the SellerScreen,
+	 * which includes Seller's financial information,
+	 * and an Add Product button.
+	 */
 	@Override
 	public void createSidePanel() {
 		final JLabel costsLabel = new JLabel("Costs:" + Inventory.getInstance().getCosts());
@@ -108,12 +120,10 @@ public class SellerScreen extends AbstractScreen {
 		this.add(sidePanel, BorderLayout.EAST);
 	}
 
-    /** .
-     *  @param 
-     *  @return ?
-     *  @precondition 
-     *  @postcondition 
-     */
+	/**
+	 * Displays a blank Product form, which can be filled in
+	 * and saved in order to add new products to Inventory.
+	 */
     public void displayProductForm() {
     	JPanel productForm = new JPanel();
     	productForm.setLayout(new GridBagLayout());
@@ -227,12 +237,13 @@ public class SellerScreen extends AbstractScreen {
     	return true;
     }
     
-    /** .
-     *  @param 
-     *  @return ?
-     *  @precondition 
-     *  @postcondition 
-     */
+    /**
+	 * Displays a pre-filled Product form, which can be changed
+	 * in order to update a product in Inventory, or the Product
+	 * can be deleted from Inventory.
+	 * 
+	 * @param product the Product that can be updated or deleted.
+	 */
     public void displayProductForm(Product product) {
     	JPanel productForm = new JPanel();
     	productForm.setLayout(new GridBagLayout());
@@ -331,10 +342,14 @@ public class SellerScreen extends AbstractScreen {
     	}
     }
 
-    /** Assembles a line for each Product in the Inventory.
-	 *  @param product		The Product to be displayed in the line
+    /** 
+     * Assembles and returns a JPanel for the supplied Product,
+     * with product summary. The Product name is clickable in
+     * order to update or delete the Product.
+     *  
+	 *  @param product		The Product represented by the JPanel.
+	 *  @return 			a JPanel filled with appropriate labels, buttons, etc.
 	 *  @precondition 		product is a valid reference
-	 *  @postcondition  	Line assembled
 	 */
     @Override
     public JPanel addLine(final Product product) {

@@ -21,10 +21,13 @@ import javax.swing.border.EtchedBorder;
 @SuppressWarnings("serial")
 public abstract class AbstractScreen extends JPanel {
 	
-    /** Constructs a AbstractBrowsePanel object.
-     *  @precondition 		none
-     *  @postcondition 		object created
-     */
+    /**
+	 * Constructs a AbstractScreen object.
+	 * 
+	 * @param ui a reference to the UI that created this screen.
+	 * @precondition 		none
+     * @postcondition 		object created
+	 */
     public AbstractScreen(UI ui) {
     	super();
     	headerPanel = new JPanel();

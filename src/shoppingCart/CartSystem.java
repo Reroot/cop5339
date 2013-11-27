@@ -2,10 +2,13 @@ package shoppingCart;
 
 import java.math.BigDecimal;
 
-/** A class representing a Shopping Cart application.
+/** The entry point to the Shopping Cart application.
  *  The application performs different functions depending on who logs in.
  *  It allows a seller to maintain an inventory of items available for sale
  *  and customers to browse and add items to their cart, and purchase the contents of their cart.
+ *  
+ *  CartSystem manages interactions between the UI and the DBManager, PaymentValidator, and UserList.
+ *  It also creates the same.
  *  @author Newman Souza
  *  @author Seth Moore
  */ 
@@ -45,7 +48,7 @@ public class CartSystem {
     	String type = userList.validate(username, password);
     	if (type != null) {
     		Inventory inventory = Inventory.getInstance();	// Inventory is a singleton, getInstance() guarantees that
-			inventory = dbManager.loadInventory(); 			//   this same instance will always be used it gets called.
+			inventory = dbManager.loadInventory(); 			//   this same instance will always be used when it gets called.
     	}
     	return type;
     }
