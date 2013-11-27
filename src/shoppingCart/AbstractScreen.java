@@ -33,6 +33,13 @@ public abstract class AbstractScreen extends JPanel {
     	this.ui = ui; 
     }
 
+    /**
+     * Calls methods that fill Header, Browse, and Side panels with components
+     * and listeners.
+     * This is a Template Method in the Template Method Pattern, with
+     * createheaderPanel() and createSidePanel() being abstract primitive
+     * methods.
+     */
     public void createScreen() {
     	
     	this.setLayout(new BorderLayout());
@@ -42,6 +49,10 @@ public abstract class AbstractScreen extends JPanel {
 		
     }
 
+    /**
+     * Sets up the BrowsePanel, in preparation for being populated
+     * with lines of Product information.
+     */
 	public void createBrowsePanel() {
 //    	browsePanel.setPreferredSize(new Dimension(400, 500));
 		JPanel outerBrowsePanel = new JPanel();
@@ -55,10 +66,13 @@ public abstract class AbstractScreen extends JPanel {
 		this.add(scrollPane, BorderLayout.CENTER);
 	}
 	
-    /** Populates a list of products.
+    /** Populates a browsePanel with a list of products.
+     * This is another Template Method, with addLine() being
+     * the abstract primitive method.
+     * 
 	 *  @param iterator		An Product iterator
 	 *  @precondition 		iterator is a valid reference
-	 *  @postcondition  	Product list populated
+	 *  @postcondition  	browsePanel is populated with lines of Products
 	 */
     public void populate(Iterator<Product> iterator) {
     	browsePanel.removeAll();
@@ -69,12 +83,31 @@ public abstract class AbstractScreen extends JPanel {
     	}
     }
     
+    /**
+     * Shows the user a pre-populated product form, which is
+     * editable for a seller.
+     * 
+     * @param product the Product whose information will be
+     * displayed in the product form.
+     */
     public abstract void displayProductForm(Product product);
+    
+    /**
+     * Primitive method called by createScreen() to create the appropriate header
+     * for the sub-class
+     */
     public abstract void createHeaderPanel();
+    
+    /**
+     * Primitive method called by createScreen() to create the appropriate side panel
+     * for the sub-class
+     */
     public abstract void createSidePanel();
 
-    /** Assembles a line for each Product in the Inventory.
+    /** Primitive method called by populate(). Assembles a line for
+     * 	each Product in the Inventory.
 	 *  @param product		The Product to be displayed in the line
+	 *  @return a JPanel containing the appropriate components/listeners
 	 *  @precondition 		product is a valid reference
 	 *  @postcondition  	Line assembled
 	 */

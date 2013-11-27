@@ -20,7 +20,13 @@ public class UserList implements Serializable {
     	users = new ArrayList<User>();
     }
 
-    // TODO Don't delete this method. Needed for JUnit test.
+    /**
+     * Creates and adds a new user to the UserList.
+     * 
+     * @param username the User's username
+     * @param password the User's password
+     * @param type the User's type
+     */
     public void addUser(String username, String password, String type) {
 		User user = new User(username, password, type);
 		users.add(user);
