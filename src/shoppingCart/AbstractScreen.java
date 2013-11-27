@@ -15,6 +15,8 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EtchedBorder;
 
 /** A class that assembles Jpanels for the UI.
+ * 
+ * AbstractClass in Template Method Pattern
  *  @author Newman Souza
  *  @author Seth Moore
  */ 

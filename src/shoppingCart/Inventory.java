@@ -7,6 +7,9 @@ import java.util.Iterator;
  * A ProductList that manages the Products in the Seller's inventory and the
  * seller's financial state.
  * 
+ * ConcreteAggregate in Iterator Pattern
+ * Singleton in Singleton Pattern
+ * 
  * @author Seth Moore
  * @author Newman Souza
  */

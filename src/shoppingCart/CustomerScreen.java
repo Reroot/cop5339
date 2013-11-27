@@ -27,6 +27,8 @@ import javax.swing.event.ChangeListener;
  *	A JPanel containing all the panels, buttons, listeners, etc. for
  *  the CustomerScreen.
  *  
+ *  ConcreteClass in Template Method Pattern
+ *  
  *  @author Newman Souza
  *  @author Seth Moore
  */ 

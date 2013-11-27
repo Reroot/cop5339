@@ -10,6 +10,8 @@ import javax.swing.event.ChangeListener;
 /**
  * A class that manages Product state.
  * 
+ * Subject in Observer Pattern
+ * 
  * @author Newman Souza
  * @author Seth Moore
  */

@@ -9,6 +9,9 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 /** A class that manages a list of products.
+ * 
+ * Subject in Observer Pattern
+ * 
  *  @author Newman Souza
  *  @author Seth Moore
  */ 

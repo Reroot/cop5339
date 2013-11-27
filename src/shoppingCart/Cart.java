@@ -5,6 +5,9 @@ import java.math.BigDecimal;
 /**
  * A ProductList that manages the Products in a customer's shopping cart.
  * 
+ * ConcreteAggregate in Iterator Pattern
+ * Singleton in Singleton Pattern
+ * 
  *  @author Newman Souza
  *  @author Seth Moore
  */

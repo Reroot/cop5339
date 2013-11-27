@@ -28,6 +28,8 @@ import javax.swing.event.ChangeListener;
  * A JPanel containing all the panels, buttons, listeners, etc. for
  * the customer's Checkout Screen.
  * 
+ * ConcreteClass in Template Method Pattern
+ * 
  *  @author Newman Souza
  *  @author Seth Moore
  */ 

@@ -6,6 +6,9 @@ import java.util.Iterator;
  * A decorator for a Iterator<Product>, which weeds out Products
  * that have quantity < 1.
  * 
+ * Decorator in Decorator Pattern
+ * ConcreteIterator in Iterator Pattern
+ * 
  * @author Seth Moore
  * @author Newman Souza
  */
