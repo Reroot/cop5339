@@ -236,7 +236,9 @@ public class CheckoutScreen extends AbstractScreen {
     	GridBagConstraints c = new GridBagConstraints();
     	if (browsePanel.getComponentCount() == 0) {
     		JPanel titleBar = new JPanel();
-    		titleBar.add(new JLabel("test"));
+    		titleBar.add(new JLabel("Name"));
+    		titleBar.add(new JLabel("Price"));
+    		titleBar.add(new JLabel("Quantity in cart"));
     		titleBar.setLayout(grid);
     		browsePanel.add(titleBar);
     	}
@@ -281,7 +283,7 @@ public class CheckoutScreen extends AbstractScreen {
     	);
     	line.add(label);
 
-    	label = new JLabel(product.getSellPrice().toString());
+    	label = new JLabel("$" + product.getSellPrice().toString());
     	line.add(label);
 
     	

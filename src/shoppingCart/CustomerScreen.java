@@ -191,7 +191,9 @@ public class CustomerScreen extends AbstractScreen {
     	GridBagConstraints c = new GridBagConstraints();
     	if (browsePanel.getComponentCount() == 0) {
     		JPanel titleBar = new JPanel();
-    		titleBar.add(new JLabel("test"));
+    		titleBar.add(new JLabel("Name"));
+    		titleBar.add(new JLabel("Price"));
+    		titleBar.add(new JLabel("Quantity available"));
     		titleBar.setLayout(grid);
     		browsePanel.add(titleBar);
     	}
@@ -227,7 +229,7 @@ public class CustomerScreen extends AbstractScreen {
 //    	c.gridy = 0;
     	line.add(label, c);
 
-    	label = new JLabel(product.getSellPrice().toString());
+    	label = new JLabel("$" + product.getSellPrice().toString());
 //    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.insets = new Insets(10,10,10,10);
     	c.weightx = 0.5;

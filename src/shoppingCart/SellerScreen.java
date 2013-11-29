@@ -76,15 +76,15 @@ public class SellerScreen extends AbstractScreen {
 	 */
 	@Override
 	public void createSidePanel() {
-		final JLabel costsLabel = new JLabel("Costs:" + Inventory.getInstance().getCosts());
-		final JLabel revenuesLabel = new JLabel("Revenues:" + Inventory.getInstance().getRevenues());
-		final JLabel profitsLabel = new JLabel("Profits:" + Inventory.getInstance().getRevenues().subtract(Inventory.getInstance().getCosts()));
+		final JLabel costsLabel = new JLabel("Costs: $" + Inventory.getInstance().getCosts());
+		final JLabel revenuesLabel = new JLabel("Revenues: $" + Inventory.getInstance().getRevenues());
+		final JLabel profitsLabel = new JLabel("Profits: $" + Inventory.getInstance().getRevenues().subtract(Inventory.getInstance().getCosts()));
 		sidePanel = new
 				JPanel() {
 					public void repaint() {
-						costsLabel.setText("Costs:" + Inventory.getInstance().getCosts());
-						revenuesLabel.setText("Revenues:" + Inventory.getInstance().getRevenues());
-						profitsLabel.setText("Profits:" + Inventory.getInstance().getRevenues().subtract(Inventory.getInstance().getCosts()));
+						costsLabel.setText("Costs: $" + Inventory.getInstance().getCosts());
+						revenuesLabel.setText("Revenues: $" + Inventory.getInstance().getRevenues());
+						profitsLabel.setText("Profits: $" + Inventory.getInstance().getRevenues().subtract(Inventory.getInstance().getCosts()));
 						super.repaint();
 					}
 			
@@ -359,7 +359,11 @@ public class SellerScreen extends AbstractScreen {
     	GridBagConstraints c = new GridBagConstraints();
     	if (browsePanel.getComponentCount() == 0) {
     		JPanel titleBar = new JPanel();
-    		titleBar.add(new JLabel("test"));
+    		titleBar.add(new JLabel("ID"));
+    		titleBar.add(new JLabel("Name"));
+    		titleBar.add(new JLabel("Invoice Price"));
+    		titleBar.add(new JLabel("Sell Price"));
+    		titleBar.add(new JLabel("Quantity"));
     		titleBar.setLayout(grid);
     		browsePanel.add(titleBar);
     	}

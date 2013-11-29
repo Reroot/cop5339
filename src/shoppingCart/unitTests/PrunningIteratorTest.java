@@ -71,6 +71,7 @@ public class PrunningIteratorTest {
 	@Test
 	public void testPrunningIterator() {
 		PrunningIterator iter = new PrunningIterator(inventory.iterator());
+		assertTrue(iter.hasNext());
 	}
 
 	/**
