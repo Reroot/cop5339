@@ -1,7 +1,7 @@
 /**
  * 
  */
-package shoppingCart;
+package shoppingCart.unitTests;
 
 import static org.junit.Assert.*;
 
@@ -12,6 +12,10 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import shoppingCart.Inventory;
+import shoppingCart.Product;
+import shoppingCart.PrunningIterator;
 
 /**
  *  @author Newman Souza
@@ -77,7 +81,6 @@ public class PrunningIteratorTest {
 		int count = 0;
 		while (iterator.hasNext()){
 			Product p = iterator.next();
-			System.out.println(p.getName());
 			count++;
 		}
 		assertTrue(count == 3);

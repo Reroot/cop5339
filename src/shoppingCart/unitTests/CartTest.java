@@ -1,7 +1,7 @@
 /**
  * 
  */
-package shoppingCart;
+package shoppingCart.unitTests;
 
 import static org.junit.Assert.*;
 
@@ -16,6 +16,9 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import shoppingCart.Cart;
+import shoppingCart.Product;
 
 /**
  *  @author Newman Souza
