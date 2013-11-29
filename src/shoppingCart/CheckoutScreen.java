@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.event.ChangeEvent;
@@ -71,13 +72,13 @@ public class CheckoutScreen extends AbstractScreen {
 	 */
 	@Override
 	public void createSidePanel() {
-		final JLabel itemsLabel = new JLabel("Items:" + Cart.getInstance().getQuantity());
-		final JLabel totalLabel = new JLabel("Total:" + Cart.getInstance().getTotal());
+		final JLabel itemsLabel = new JLabel("Items: " + Cart.getInstance().getQuantity());
+		final JLabel totalLabel = new JLabel("Total: $" + Cart.getInstance().getTotal());
 		sidePanel = new
 				JPanel() {
 					public void repaint() {
-						itemsLabel.setText("Items:" + Cart.getInstance().getQuantity());
-						totalLabel.setText("Total:" + Cart.getInstance().getTotal());
+						itemsLabel.setText("Items: " + Cart.getInstance().getQuantity());
+						totalLabel.setText("Total: $" + Cart.getInstance().getTotal());
 						super.repaint();
 					}
 			
@@ -99,17 +100,27 @@ public class CheckoutScreen extends AbstractScreen {
 		JPanel paymentForm = new JPanel();
 		paymentForm.setMaximumSize(new Dimension(200, 100));
 		paymentForm.setBorder(new EtchedBorder());
-		paymentForm.setLayout(new GridLayout(5,1));
+		paymentForm.setLayout(new GridLayout(5,2));
 		JLabel cardTypeLabel = new JLabel("Type:");
+		JTextField cardTypeTextField = new JTextField("");
 		JLabel cardholderLabel = new JLabel("Cardholder Name:");
-		final JLabel cardNumberLabel = new JLabel("Card Number:");
+		JTextField cardHolderTextField = new JTextField("");
+		JLabel cardNumberLabel = new JLabel("Card Number:");
+		final JTextField cardNumberTextField = new JTextField("");
 		JLabel expirationLabel = new JLabel("Expiration Date:");
+		JTextField expirationTextField = new JTextField("");
 		JLabel codeLabel = new JLabel("Security Code:");
+		JTextField codeTextField = new JTextField("");
 		paymentForm.add(cardTypeLabel);
+		paymentForm.add(cardTypeTextField);
 		paymentForm.add(cardholderLabel);
+		paymentForm.add(cardHolderTextField);
 		paymentForm.add(cardNumberLabel);
+		paymentForm.add(cardNumberTextField);
 		paymentForm.add(expirationLabel);
+		paymentForm.add(expirationTextField);
 		paymentForm.add(codeLabel);
+		paymentForm.add(codeTextField);
 		sidePanel.add(paymentForm);
 		JButton cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(new
@@ -124,7 +135,7 @@ public class CheckoutScreen extends AbstractScreen {
 		checkoutButton.addActionListener(new
     			ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						boolean result = ui.getCartSystem().pay(cardNumberLabel.toString(), Cart.getInstance().getTotal());
+						boolean result = ui.getCartSystem().pay(cardNumberTextField.getText(), Cart.getInstance().getTotal());
 						if (result) {
     						JOptionPane.showMessageDialog(null,
     								"Payment successful.");
