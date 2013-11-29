@@ -16,7 +16,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import shoppingCart.Product;
+import shoppingCart.model.Product;
 
 /**
  *  @author Newman Souza
@@ -69,7 +69,7 @@ public class ProductTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Product#hashCode()}.
+	 * Test method for {@link shoppingCart.model.Product#hashCode()}.
 	 */
 	@Test
 	public void testHashCode() {
@@ -86,7 +86,7 @@ public class ProductTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Product#Product(int, java.lang.String, java.lang.String, java.math.BigDecimal, java.math.BigDecimal, int)}.
+	 * Test method for {@link shoppingCart.model.Product#Product(int, java.lang.String, java.lang.String, java.math.BigDecimal, java.math.BigDecimal, int)}.
 	 */
 	@Test
 	public void testProduct() {
@@ -103,7 +103,7 @@ public class ProductTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Product#update(int, java.lang.String, java.lang.String, java.math.BigDecimal, java.math.BigDecimal, int)}.
+	 * Test method for {@link shoppingCart.model.Product#update(int, java.lang.String, java.lang.String, java.math.BigDecimal, java.math.BigDecimal, int)}.
 	 */
 	@Test
 	public void testUpdate() {
@@ -122,7 +122,7 @@ public class ProductTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Product#increment()}.
+	 * Test method for {@link shoppingCart.model.Product#increment()}.
 	 */
 	@Test
 	public void testIncrement() {
@@ -133,7 +133,7 @@ public class ProductTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Product#decrement()}.
+	 * Test method for {@link shoppingCart.model.Product#decrement()}.
 	 */
 	@Test
 	public void testDecrement() {
@@ -144,7 +144,7 @@ public class ProductTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Product#getID()}.
+	 * Test method for {@link shoppingCart.model.Product#getID()}.
 	 */
 	@Test
 	public void testGetID() {
@@ -152,7 +152,7 @@ public class ProductTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Product#getName()}.
+	 * Test method for {@link shoppingCart.model.Product#getName()}.
 	 */
 	@Test
 	public void testGetName() {
@@ -160,7 +160,7 @@ public class ProductTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Product#getDescription()}.
+	 * Test method for {@link shoppingCart.model.Product#getDescription()}.
 	 */
 	@Test
 	public void testGetDescription() {
@@ -168,7 +168,7 @@ public class ProductTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Product#getSellPrice()}.
+	 * Test method for {@link shoppingCart.model.Product#getSellPrice()}.
 	 */
 	@Test
 	public void testGetSellPrice() {
@@ -176,7 +176,7 @@ public class ProductTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Product#getInvoicePrice()}.
+	 * Test method for {@link shoppingCart.model.Product#getInvoicePrice()}.
 	 */
 	@Test
 	public void testGetInvoicePrice() {
@@ -184,7 +184,7 @@ public class ProductTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Product#getQuantity()}.
+	 * Test method for {@link shoppingCart.model.Product#getQuantity()}.
 	 */
 	@Test
 	public void testGetQuantity() {
@@ -192,7 +192,7 @@ public class ProductTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Product#clone()}.
+	 * Test method for {@link shoppingCart.model.Product#clone()}.
 	 */
 	@Test
 	public void testClone() {
@@ -203,7 +203,7 @@ public class ProductTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Product#addListener(javax.swing.event.ChangeListener)}.
+	 * Test method for {@link shoppingCart.model.Product#addListener(javax.swing.event.ChangeListener)}.
 	 */
 	@Test
 	public void testAddListener() {
@@ -220,7 +220,7 @@ public class ProductTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Product#removeListeners()}.
+	 * Test method for {@link shoppingCart.model.Product#removeListeners()}.
 	 */
 	@Test
 	public void testRemoveListeners() {
@@ -239,7 +239,7 @@ public class ProductTest {
 	}	
 	
 	/**
-	 * Test method for {@link shoppingCart.Product#equals(java.lang.Object)}.
+	 * Test method for {@link shoppingCart.model.Product#equals(java.lang.Object)}.
 	 */
 	@Test
 	public void testEqualsObject() {

@@ -17,8 +17,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import shoppingCart.Cart;
-import shoppingCart.Product;
+import shoppingCart.model.Cart;
+import shoppingCart.model.Product;
 
 /**
  *  @author Newman Souza
@@ -81,7 +81,7 @@ public class CartTest {
 	}
 	
 	/**
-	 * Test method for {@link shoppingCart.Cart#clear()}.
+	 * Test method for {@link shoppingCart.model.Cart#clear()}.
 	 */
 	@Test
 	public void testClear() {
@@ -94,7 +94,7 @@ public class CartTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Cart#increment(shoppingCart.Product)}.
+	 * Test method for {@link shoppingCart.model.Cart#increment(shoppingCart.model.Product)}.
 	 */
 	@Test
 	public void testIncrement() {
@@ -104,7 +104,7 @@ public class CartTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Cart#decrement(shoppingCart.Product)}.
+	 * Test method for {@link shoppingCart.model.Cart#decrement(shoppingCart.model.Product)}.
 	 */
 	@Test
 	public void testDecrement() {
@@ -114,7 +114,7 @@ public class CartTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Cart#getMatchingProduct(shoppingCart.Product)}.
+	 * Test method for {@link shoppingCart.model.Cart#getMatchingProduct(shoppingCart.model.Product)}.
 	 */
 	@Test
 	public void testGetMatchingProduct() {
@@ -130,7 +130,7 @@ public class CartTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Cart#add(shoppingCart.Product)}.
+	 * Test method for {@link shoppingCart.model.Cart#add(shoppingCart.model.Product)}.
 	 */
 	@Test
 	public void testAdd() {
@@ -142,7 +142,7 @@ public class CartTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Cart#remove(shoppingCart.Product)}.
+	 * Test method for {@link shoppingCart.model.Cart#remove(shoppingCart.model.Product)}.
 	 */
 	@Test
 	public void testRemove() {
@@ -151,7 +151,7 @@ public class CartTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Cart#iterator()}.
+	 * Test method for {@link shoppingCart.model.Cart#iterator()}.
 	 */
 	@Test
 	public void testIterator() {
@@ -171,7 +171,7 @@ public class CartTest {
 	}
 	
 	/**
-	 * Test method for {@link shoppingCart.Cart#getTotal()}.
+	 * Test method for {@link shoppingCart.model.Cart#getTotal()}.
 	 */
 	@Test
 	public void testGetTotal() {
@@ -179,7 +179,7 @@ public class CartTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Cart#getQuantity()}.
+	 * Test method for {@link shoppingCart.model.Cart#getQuantity()}.
 	 */
 	@Test
 	public void testGetQuantity() {
@@ -187,7 +187,7 @@ public class CartTest {
 	}
 	
 	/**
-	 * Test method for {@link shoppingCart.Cart#addListener(javax.swing.event.ChangeListener)}.
+	 * Test method for {@link shoppingCart.model.Cart#addListener(javax.swing.event.ChangeListener)}.
 	 */
 	@Test
 	public void testAddListener() {final StringBuffer sBuff = new StringBuffer();

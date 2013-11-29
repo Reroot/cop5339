@@ -13,7 +13,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import shoppingCart.CartSystem;
+import shoppingCart.system.CartSystem;
 
 /**
  *  @author Newman Souza
@@ -50,7 +50,7 @@ public class CartSystemTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.CartSystem#CartSystem()}.
+	 * Test method for {@link shoppingCart.system.CartSystem#CartSystem()}.
 	 */
 	@Test
 	public void testCartSystem() {
@@ -59,7 +59,7 @@ public class CartSystemTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.CartSystem#login(java.lang.String, java.lang.String)}.
+	 * Test method for {@link shoppingCart.system.CartSystem#login(java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	public void testLogin() {
@@ -68,7 +68,7 @@ public class CartSystemTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.CartSystem#pay(java.lang.String, java.math.BigDecimal)}.
+	 * Test method for {@link shoppingCart.system.CartSystem#pay(java.lang.String, java.math.BigDecimal)}.
 	 */
 	@Test
 	public void testPay() {

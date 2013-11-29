@@ -1,6 +1,10 @@
-package shoppingCart;
+package shoppingCart.system;
 
 import java.math.BigDecimal;
+
+import shoppingCart.gui.UI;
+import shoppingCart.model.Inventory;
+import shoppingCart.model.UserList;
 
 /** The entry point to the Shopping Cart application.
  *  The application performs different functions depending on who logs in.

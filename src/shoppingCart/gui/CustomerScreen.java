@@ -1,4 +1,4 @@
-package shoppingCart;
+package shoppingCart.gui;
 
 
 import java.awt.BorderLayout;
@@ -22,6 +22,10 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import shoppingCart.model.Cart;
+import shoppingCart.model.Inventory;
+import shoppingCart.model.Product;
 
 /** 
  *	A JPanel containing all the panels, buttons, listeners, etc. for

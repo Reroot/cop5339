@@ -1,4 +1,4 @@
-package shoppingCart;
+package shoppingCart.system;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -8,6 +8,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import javax.swing.JOptionPane;
+
+import shoppingCart.model.Inventory;
+import shoppingCart.model.UserList;
 
 /** A class that manages the Shopping Cart database.
  *  @author Newman Souza

@@ -13,9 +13,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import shoppingCart.Inventory;
-import shoppingCart.Product;
-import shoppingCart.PrunningIterator;
+import shoppingCart.model.Inventory;
+import shoppingCart.model.Product;
+import shoppingCart.model.PrunningIterator;
 
 /**
  *  @author Newman Souza
@@ -66,7 +66,7 @@ public class PrunningIteratorTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.PrunningIterator#PrunningIterator(java.util.Iterator)}.
+	 * Test method for {@link shoppingCart.model.PrunningIterator#PrunningIterator(java.util.Iterator)}.
 	 */
 	@Test
 	public void testPrunningIterator() {
@@ -75,7 +75,7 @@ public class PrunningIteratorTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.PrunningIterator#hasNext()}.
+	 * Test method for {@link shoppingCart.model.PrunningIterator#hasNext()}.
 	 */
 	@Test
 	public void testHasNext() {
@@ -88,7 +88,7 @@ public class PrunningIteratorTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.PrunningIterator#next()}.
+	 * Test method for {@link shoppingCart.model.PrunningIterator#next()}.
 	 */
 	@Test
 	public void testNext() {
@@ -99,7 +99,7 @@ public class PrunningIteratorTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.PrunningIterator#remove()}.
+	 * Test method for {@link shoppingCart.model.PrunningIterator#remove()}.
 	 */
 	@Test(expected=UnsupportedOperationException.class)
 	public void testRemove() {

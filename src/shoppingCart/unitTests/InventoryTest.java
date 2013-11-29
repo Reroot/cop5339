@@ -17,8 +17,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import shoppingCart.Inventory;
-import shoppingCart.Product;
+import shoppingCart.model.Inventory;
+import shoppingCart.model.Product;
 
 /**
  *  @author Newman Souza
@@ -78,7 +78,7 @@ public class InventoryTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Inventory#clear()}.
+	 * Test method for {@link shoppingCart.model.Inventory#clear()}.
 	 */
 	@Test
 	public void testClear() {
@@ -89,7 +89,7 @@ public class InventoryTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Inventory#increment(shoppingCart.Product)}.
+	 * Test method for {@link shoppingCart.model.Inventory#increment(shoppingCart.model.Product)}.
 	 */
 	@Test
 	public void testIncrement() {
@@ -102,7 +102,7 @@ public class InventoryTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Inventory#decrement(shoppingCart.Product)}.
+	 * Test method for {@link shoppingCart.model.Inventory#decrement(shoppingCart.model.Product)}.
 	 */
 	@Test
 	public void testDecrement() {
@@ -115,7 +115,7 @@ public class InventoryTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Inventory#getMatchingProduct(shoppingCart.Product)}.
+	 * Test method for {@link shoppingCart.model.Inventory#getMatchingProduct(shoppingCart.model.Product)}.
 	 */
 	@Test
 	public void testGetMatchingProduct() {
@@ -131,7 +131,7 @@ public class InventoryTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Inventory#add(shoppingCart.Product)}.
+	 * Test method for {@link shoppingCart.model.Inventory#add(shoppingCart.model.Product)}.
 	 */
 	@Test
 	public void testAdd() {
@@ -146,7 +146,7 @@ public class InventoryTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Inventory#remove(shoppingCart.Product)}.
+	 * Test method for {@link shoppingCart.model.Inventory#remove(shoppingCart.model.Product)}.
 	 */
 	@Test
 	public void testRemove() {
@@ -155,7 +155,7 @@ public class InventoryTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Inventory#iterator()}.
+	 * Test method for {@link shoppingCart.model.Inventory#iterator()}.
 	 */
 	@Test
 	public void testIterator() {
@@ -176,7 +176,7 @@ public class InventoryTest {
 	
 
 	/**
-	 * Test method for {@link shoppingCart.Inventory#getCosts()}.
+	 * Test method for {@link shoppingCart.model.Inventory#getCosts()}.
 	 */
 	@Test
 	public void testGetCosts() {
@@ -184,7 +184,7 @@ public class InventoryTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Inventory#getRevenues()}.
+	 * Test method for {@link shoppingCart.model.Inventory#getRevenues()}.
 	 */
 	@Test
 	public void testGetRevenues() {
@@ -192,7 +192,7 @@ public class InventoryTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.Inventory#getProfits()}.
+	 * Test method for {@link shoppingCart.model.Inventory#getProfits()}.
 	 */
 	@Test
 	public void testGetProfits() {
@@ -200,7 +200,7 @@ public class InventoryTest {
 	}
 	
 	/**
-	 * Test method for {@link shoppingCart.Inventory#getNewID()}.
+	 * Test method for {@link shoppingCart.model.Inventory#getNewID()}.
 	 */
 	@Test
 	public void testGetNewID() {
@@ -210,7 +210,7 @@ public class InventoryTest {
 	}
 	
 	/**
-	 * Test method for {@link shoppingCart.Inventory#update(shoppingCart.Product)}.
+	 * Test method for {@link shoppingCart.model.Inventory#update(shoppingCart.model.Product)}.
 	 */
 	@Test
 	public void testUpdate() {
@@ -229,7 +229,7 @@ public class InventoryTest {
 	}
 	
 	/**
-	 * Test method for {@link shoppingCart.Cart#addListener(javax.swing.event.ChangeListener)}.
+	 * Test method for {@link shoppingCart.model.Cart#addListener(javax.swing.event.ChangeListener)}.
 	 */
 	@Test
 	public void testAddListener() { 

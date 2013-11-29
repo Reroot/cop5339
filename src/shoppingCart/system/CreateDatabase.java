@@ -1,8 +1,12 @@
-package shoppingCart;
+package shoppingCart.system;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Iterator;
+
+import shoppingCart.model.Inventory;
+import shoppingCart.model.Product;
+import shoppingCart.model.UserList;
 
 /** A class that creates the database for the ShoppingCart Application.
  *  The database has 2 files: the Seller's Inventory and the application's UserList.

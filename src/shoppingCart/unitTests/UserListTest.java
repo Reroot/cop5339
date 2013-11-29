@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import shoppingCart.UserList;
+import shoppingCart.model.UserList;
 
 /**
  *  @author Newman Souza
@@ -48,7 +48,7 @@ public class UserListTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.UserList#UserList()}.
+	 * Test method for {@link shoppingCart.model.UserList#UserList()}.
 	 */
 	@Test
 	public void testUserList() {
@@ -57,7 +57,7 @@ public class UserListTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.UserList#addUser(java.lang.String, java.lang.String, java.lang.String)}.
+	 * Test method for {@link shoppingCart.model.UserList#addUser(java.lang.String, java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	public void testAddUser() {
@@ -68,7 +68,7 @@ public class UserListTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.UserList#validate(java.lang.String, java.lang.String)}.
+	 * Test method for {@link shoppingCart.model.UserList#validate(java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	public void testValidate() {UserList uList = new UserList();

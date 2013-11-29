@@ -1,4 +1,4 @@
-package shoppingCart;
+package shoppingCart.gui;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -17,6 +17,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
+
+import shoppingCart.model.Cart;
+import shoppingCart.model.Inventory;
+import shoppingCart.model.Product;
+import shoppingCart.model.PrunningIterator;
+import shoppingCart.system.CartSystem;
 
 /** A class that manages interaction with user, receives input and displays screens.
  *  @author Newman Souza

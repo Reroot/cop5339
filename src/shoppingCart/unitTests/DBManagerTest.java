@@ -14,10 +14,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import shoppingCart.DBManager;
-import shoppingCart.Inventory;
-import shoppingCart.Product;
-import shoppingCart.UserList;
+import shoppingCart.model.Inventory;
+import shoppingCart.model.Product;
+import shoppingCart.model.UserList;
+import shoppingCart.system.DBManager;
 
 /**
  *  @author Newman Souza
@@ -57,7 +57,7 @@ public class DBManagerTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.DBManager#loadInventory()}.
+	 * Test method for {@link shoppingCart.system.DBManager#loadInventory()}.
 	 */
 	@Test
 	public void testLoadInventory() {
@@ -81,7 +81,7 @@ public class DBManagerTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.DBManager#saveInventory(shoppingCart.Inventory)}.
+	 * Test method for {@link shoppingCart.system.DBManager#saveInventory(shoppingCart.model.Inventory)}.
 	 */
 	@Test
 	public void testSaveInventory() {
@@ -105,7 +105,7 @@ public class DBManagerTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.DBManager#loadUserList()}.
+	 * Test method for {@link shoppingCart.system.DBManager#loadUserList()}.
 	 */
 	@Test
 	public void testLoadUserList() {
@@ -124,7 +124,7 @@ public class DBManagerTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.DBManager#saveUserList(shoppingCart.UserList)}.
+	 * Test method for {@link shoppingCart.system.DBManager#saveUserList(shoppingCart.model.UserList)}.
 	 */
 	@Test
 	public void testSaveUserList() {

@@ -1,4 +1,6 @@
-package shoppingCart;
+package shoppingCart.gui;
+
+import shoppingCart.system.CartSystem;
 
 public class UITester {
 

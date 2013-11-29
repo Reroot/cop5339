@@ -1,4 +1,4 @@
-package shoppingCart;
+package shoppingCart.gui;
 
 
 import java.awt.BorderLayout;
@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EtchedBorder;
+
+import shoppingCart.model.Product;
 
 /** A class that assembles Jpanels for the UI.
  * 

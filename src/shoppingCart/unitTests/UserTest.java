@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import shoppingCart.User;
+import shoppingCart.model.User;
 
 /**
  *  @author Newman Souza
@@ -51,7 +51,7 @@ public class UserTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.User#User(java.lang.String, java.lang.String, java.lang.String)}.
+	 * Test method for {@link shoppingCart.model.User#User(java.lang.String, java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	public void testUser() {
@@ -62,7 +62,7 @@ public class UserTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.User#getUsername()}.
+	 * Test method for {@link shoppingCart.model.User#getUsername()}.
 	 */
 	@Test
 	public void testGetUsername() {
@@ -70,7 +70,7 @@ public class UserTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.User#getType()}.
+	 * Test method for {@link shoppingCart.model.User#getType()}.
 	 */
 	@Test
 	public void testGetType() {
@@ -78,7 +78,7 @@ public class UserTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.User#checkPassword(java.lang.String)}.
+	 * Test method for {@link shoppingCart.model.User#checkPassword(java.lang.String)}.
 	 */
 	@Test
 	public void testCheckPassword() {

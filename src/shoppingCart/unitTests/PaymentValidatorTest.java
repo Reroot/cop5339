@@ -13,7 +13,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import shoppingCart.PaymentValidator;
+import shoppingCart.system.PaymentValidator;
 
 /**
  *  @author Newman Souza
@@ -50,7 +50,7 @@ public class PaymentValidatorTest {
 	}
 
 	/**
-	 * Test method for {@link shoppingCart.PaymentValidator#validate(java.lang.String, java.math.BigDecimal)}.
+	 * Test method for {@link shoppingCart.system.PaymentValidator#validate(java.lang.String, java.math.BigDecimal)}.
 	 */
 	@Test
 	public void testValidate() {
