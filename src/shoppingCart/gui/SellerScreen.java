@@ -14,13 +14,10 @@ import java.math.BigDecimal;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.InputVerifier;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
@@ -57,9 +54,15 @@ public class SellerScreen extends AbstractScreen {
      */
 	@Override
     public void createHeaderPanel() {
-//    	headerPanel.setPreferredSize(new Dimension(600, 30));
     	headerPanel.setBorder(new EtchedBorder());
-    	headerPanel.add(new JLabel("Seller Screen"));
+		headerPanel.setLayout(new GridBagLayout());
+    	GridBagConstraints headerC = new GridBagConstraints();
+		headerC.anchor = GridBagConstraints.LINE_END;
+		headerC.weightx = 0.5;
+		headerC.gridx = 0;
+    	JLabel label = new JLabel("Seller Screen");
+		label.setFont(label.getFont().deriveFont(16.0f));
+    	headerPanel.add(label, headerC);
 		JButton logoutButton = new JButton("Logout");
     	logoutButton.addActionListener(new
     			ActionListener() {
@@ -69,7 +72,10 @@ public class SellerScreen extends AbstractScreen {
     				}
     			}
     		);
-    	headerPanel.add(logoutButton);
+		headerC.gridx = 1;
+		headerC.insets = new Insets(3,0,4,4);
+		headerC.anchor = GridBagConstraints.LINE_END;
+    	headerPanel.add(logoutButton, headerC);
     	this.add(headerPanel, BorderLayout.NORTH);
     }
     
@@ -138,37 +144,30 @@ public class SellerScreen extends AbstractScreen {
 
 		JLabel label;
     	label = new JLabel("ID:");
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.insets = new Insets(10,20,10,0);
     	c.weightx = 0.5;
     	c.gridx = 0;
     	c.gridy = 0;
     	productForm.add(label, c);
     	label = new JLabel("Name:");
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 1;
     	productForm.add(label, c);
     	label = new JLabel("Description: ");
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 2;
     	productForm.add(label, c);
     	label = new JLabel("Invoice Price:");
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 3;
     	productForm.add(label, c);
     	label = new JLabel("Sell Price:");
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 4;
     	productForm.add(label, c);
     	label = new JLabel("Quantity:");
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 5;
     	productForm.add(label, c);
 
     	int newID = Inventory.getInstance().getNewID();
 
     	label = new JLabel(String.valueOf(newID));
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.insets = new Insets(10,20,10,20);
     	c.weightx = 0.5;
     	c.gridx = 2;
@@ -177,23 +176,18 @@ public class SellerScreen extends AbstractScreen {
     	JTextField nameTextField = new JTextField(20);
     	nameTextField.requestFocus();
     	c.gridwidth = 3;
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 1;
     	productForm.add(nameTextField, c);
     	JTextField descriptionTextField = new JTextField(40);
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 2;
     	productForm.add(descriptionTextField, c);
     	JTextField invoicePriceTextField = new JTextField(20);
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 3;
     	productForm.add(invoicePriceTextField, c);
     	JTextField sellPriceTextField = new JTextField(20);
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 4;
     	productForm.add(sellPriceTextField, c);
     	JTextField quantityTextField = new JTextField(5);
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 5;
     	productForm.add(quantityTextField, c);
     	

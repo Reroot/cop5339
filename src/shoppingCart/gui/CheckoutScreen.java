@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.math.BigDecimal;
+import java.text.NumberFormat;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -18,7 +18,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
@@ -54,9 +53,15 @@ public class CheckoutScreen extends AbstractScreen {
      * Creates the header panel for the CheckoutScreen.
      */
 	public void createHeaderPanel() {
-//    	headerPanel.setPreferredSize(new Dimension(600, 30));
     	headerPanel.setBorder(new EtchedBorder());
-    	headerPanel.add(new JLabel("Checkout Screen"));
+		headerPanel.setLayout(new GridBagLayout());
+    	GridBagConstraints headerC = new GridBagConstraints();
+		headerC.anchor = GridBagConstraints.LINE_END;
+		headerC.weightx = 0.5;
+		headerC.gridx = 0;
+    	JLabel label = new JLabel("Checkout Screen");
+		label.setFont(label.getFont().deriveFont(16.0f));
+    	headerPanel.add(label, headerC);
 		JButton logoutButton = new JButton("Logout");
     	logoutButton.addActionListener(new
     			ActionListener() {
@@ -66,7 +71,10 @@ public class CheckoutScreen extends AbstractScreen {
     				}
     			}
     		);
-    	headerPanel.add(logoutButton);
+		headerC.gridx = 1;
+		headerC.insets = new Insets(3,0,4,4);
+		headerC.anchor = GridBagConstraints.LINE_END;
+    	headerPanel.add(logoutButton, headerC);
     	this.add(headerPanel, BorderLayout.NORTH);
     }
     
@@ -177,50 +185,40 @@ public class CheckoutScreen extends AbstractScreen {
 
     	JLabel label;
     	label = new JLabel("ID:");
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.insets = new Insets(10,20,10,0);
     	c.weightx = 0.5;
     	c.gridx = 0;
     	c.gridy = 0;
     	productForm.add(label, c);
     	label = new JLabel("Name:");
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 1;
     	productForm.add(label, c);
     	label = new JLabel("Description: ");
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 2;
     	productForm.add(label, c);
     	label = new JLabel("Price:");
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 3;
     	productForm.add(label, c);
     	label = new JLabel("Quantity:");
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 4;
     	productForm.add(label, c);
 
     	label = new JLabel(String.valueOf(product.getID()));
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.insets = new Insets(10,20,10,20);
     	c.weightx = 0.5;
     	c.gridx = 2;
     	c.gridy = 0;
     	productForm.add(label, c);
     	label = new JLabel(product.getName());
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 1;
     	productForm.add(label, c);
     	label = new JLabel(product.getDescription());
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 2;
     	productForm.add(label, c);
-    	label = new JLabel(String.valueOf(product.getSellPrice()));
-    	c.fill = GridBagConstraints.HORIZONTAL;
+    	label = new JLabel(String.valueOf(NumberFormat.getCurrencyInstance().format(product.getSellPrice())));
     	c.gridy = 3;
     	productForm.add(label, c);
     	label = new JLabel(String.valueOf(product.getQuantity()));
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 4;
     	productForm.add(label, c);
     	JOptionPane.showMessageDialog(ui, productForm, "Product Detail", JOptionPane.INFORMATION_MESSAGE);

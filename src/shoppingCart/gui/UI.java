@@ -3,18 +3,21 @@ package shoppingCart.gui;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Iterator;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 
@@ -90,28 +93,24 @@ public class UI extends JFrame{
      * @return the LoginScreen.
      */
     private JPanel createLoginScreen() {
-		JPanel loginScreen = new JPanel();
+       	JPanel loginScreen = new JPanel();
 		loginScreen.setLayout(new BorderLayout());
 		JPanel topPanel = new JPanel();
-		topPanel.add(new JLabel("Login Screen"));
+    	JLabel label = new JLabel("Login Screen");
+		label.setFont(label.getFont().deriveFont(16.0f));
+		topPanel.add(label);
 		topPanel.setBorder(new EtchedBorder());
-		loginScreen.add(topPanel, BorderLayout.PAGE_START);
-		
-		JPanel centerPanel = new JPanel();
-		loginScreen.add(centerPanel, BorderLayout.CENTER);
-		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
-		
-		final JTextField usernameField = new JTextField(20);
-		usernameField.setMaximumSize( usernameField.getPreferredSize() );
-		final JTextField passwordField = new JTextField(20);
-		passwordField.setMaximumSize( passwordField.getPreferredSize() );
+		loginScreen.add(topPanel, BorderLayout.NORTH);
+
+		final JTextField usernameField = new JTextField(10);
+		final JPasswordField passwordField = new JPasswordField(10);
     	JButton loginButton = new JButton("Login");
     	loginButton.addActionListener(new
     			ActionListener() {
     				public void actionPerformed(ActionEvent e) {
-    					String userType = cartSystem.login(usernameField.getText(), passwordField.getText());
+    					String userType = cartSystem.login(usernameField.getText(), String.valueOf(passwordField.getPassword()));
     					if (userType == null){
-    						JOptionPane.showMessageDialog(screenCards, "Invalid username/password pair.\nPlease try again.");
+    						JOptionPane.showMessageDialog(screenCards, "Invalid username / password.\n\nPlease try again.\n");
     						usernameField.setText("");
     						passwordField.setText("");
     					}
@@ -126,6 +125,7 @@ public class UI extends JFrame{
     				};
     			}
    		);
+    	// TODO DELETE
     	JButton newmanButton = new JButton("Newman");
     	newmanButton.addMouseListener(new
     			MouseAdapter() {
@@ -144,11 +144,41 @@ public class UI extends JFrame{
     				};
     			}
     	);
-    	centerPanel.add(usernameField);
-    	centerPanel.add(passwordField);
-    	centerPanel.add(loginButton);
-    	centerPanel.add(newmanButton);
-    	centerPanel.add(sethButton);
+
+       	JPanel centerPanel = new JPanel();
+       	centerPanel.setMaximumSize(new Dimension(200, 300));
+		centerPanel.setLayout(new GridBagLayout());
+    	GridBagConstraints loginC = new GridBagConstraints();
+    	label = new JLabel();
+    	label.setText("Username:");
+    	loginC.anchor = GridBagConstraints.LINE_END;
+		loginC.insets = new Insets(10,10,10,10);
+		loginC.weightx = 0.5;
+		loginC.gridx = 0;
+		loginC.gridy = 0;
+		centerPanel.add(label, loginC);
+    	label = new JLabel();
+    	label.setText("Password:");
+		loginC.gridy = 1;
+		centerPanel.add(label, loginC);
+		usernameField.setFont(usernameField.getFont().deriveFont(16.0f));
+    	loginC.anchor = GridBagConstraints.LINE_START;
+		loginC.gridx = 1;
+		loginC.gridy = 0;
+		centerPanel.add(usernameField, loginC);
+		passwordField.setFont(passwordField.getFont().deriveFont(16.0f));
+		loginC.gridy = 1;
+		centerPanel.add(passwordField, loginC);
+		loginC.gridx = 1;
+		loginC.gridy = 2;
+    	centerPanel.add(loginButton, loginC);
+
+    	// TODO DELETE
+    	loginC.gridy = 3;
+    	centerPanel.add(newmanButton, loginC);
+		loginC.gridy = 4;
+    	centerPanel.add(sethButton, loginC);
+		loginScreen.add(centerPanel, BorderLayout.CENTER);
 		return loginScreen;
 	}
 

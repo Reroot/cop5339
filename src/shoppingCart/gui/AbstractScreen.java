@@ -1,26 +1,19 @@
 package shoppingCart.gui;
 
-
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.Iterator;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.border.EtchedBorder;
-
 import shoppingCart.model.Product;
 
-/** A class that assembles Jpanels for the UI.
- * 
+/** 
+ * A class that assembles Jpanels for the UI.
  * AbstractClass in Template Method Pattern
- *  @author Newman Souza
- *  @author Seth Moore
+ * 
+ * @author Newman Souza
+ * @author Seth Moore
  */ 
 @SuppressWarnings("serial")
 public abstract class AbstractScreen extends JPanel {
@@ -28,7 +21,7 @@ public abstract class AbstractScreen extends JPanel {
     /**
 	 * Constructs a AbstractScreen object.
 	 * 
-	 * @param ui a reference to the UI that created this screen.
+	 * @param ui 			a reference to the UI that created this screen.
 	 * @precondition 		none
      * @postcondition 		object created
 	 */
@@ -41,11 +34,9 @@ public abstract class AbstractScreen extends JPanel {
     }
 
     /**
-     * Calls methods that fill Header, Browse, and Side panels with components
-     * and listeners.
-     * This is a Template Method in the Template Method Pattern, with
-     * createheaderPanel() and createSidePanel() being abstract primitive
-     * methods.
+     * Calls methods that fill Header, Browse, and Side panels with components and listeners.
+     * This is a Template Method in the Template Method Pattern, 
+     * with createheaderPanel() and createSidePanel() being abstract primitive methods.
      */
     public void createScreen() {
     	
@@ -62,14 +53,12 @@ public abstract class AbstractScreen extends JPanel {
      */
 	public void createBrowsePanel() {
 //    	browsePanel.setPreferredSize(new Dimension(400, 500));
-		JPanel outerBrowsePanel = new JPanel();
 		GridLayout grid = new GridLayout();
 		grid.setColumns(1); 
 		grid.setRows(0);
 		browsePanel.setLayout(grid);
-		outerBrowsePanel.add(browsePanel);
-		//JScrollPane scrollPane = new JScrollPane(innerbrowsePanel);
-		JScrollPane scrollPane = new JScrollPane(outerBrowsePanel);
+		JScrollPane scrollPane = new JScrollPane(browsePanel);
+		scrollPane.getVerticalScrollBar().setUnitIncrement(12);
 		this.add(scrollPane, BorderLayout.CENTER);
 	}
 	
@@ -94,8 +83,8 @@ public abstract class AbstractScreen extends JPanel {
      * Shows the user a pre-populated product form, which is
      * editable for a seller.
      * 
-     * @param product the Product whose information will be
-     * displayed in the product form.
+     * @param product 		the Product whose information will be
+     * 						displayed in the product form.
      */
     public abstract void displayProductForm(Product product);
     
@@ -113,8 +102,9 @@ public abstract class AbstractScreen extends JPanel {
 
     /** Primitive method called by populate(). Assembles a line for
      * 	each Product in the Inventory.
+     * 
 	 *  @param product		The Product to be displayed in the line
-	 *  @return a JPanel containing the appropriate components/listeners
+	 *  @return 			a JPanel containing the appropriate components/listeners
 	 *  @precondition 		product is a valid reference
 	 *  @postcondition  	Line assembled
 	 */

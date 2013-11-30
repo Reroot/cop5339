@@ -5,15 +5,14 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.NumberFormat;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -53,9 +52,15 @@ public class CustomerScreen extends AbstractScreen {
      */
 	@Override
     public void createHeaderPanel() {
-//    	headerPanel.setPreferredSize(new Dimension(600, 30));
     	headerPanel.setBorder(new EtchedBorder());
-    	headerPanel.add(new JLabel("Customer Screen"));
+		headerPanel.setLayout(new GridBagLayout());
+    	GridBagConstraints headerC = new GridBagConstraints();
+		headerC.anchor = GridBagConstraints.LINE_END;
+		headerC.weightx = 0.5;
+		headerC.gridx = 0;
+    	JLabel label = new JLabel("Customer Screen");
+		label.setFont(label.getFont().deriveFont(16.0f));
+    	headerPanel.add(label, headerC);
 		JButton logoutButton = new JButton("Logout");
     	logoutButton.addActionListener(new
     			ActionListener() {
@@ -65,7 +70,10 @@ public class CustomerScreen extends AbstractScreen {
     				}
     			}
     		);
-    	headerPanel.add(logoutButton);
+		headerC.gridx = 1;
+		headerC.insets = new Insets(3,0,4,4);
+		headerC.anchor = GridBagConstraints.LINE_END;
+    	headerPanel.add(logoutButton, headerC);
     	this.add(headerPanel, BorderLayout.NORTH);
     }
     
@@ -75,29 +83,61 @@ public class CustomerScreen extends AbstractScreen {
 	 */
 	@Override
 	public void createSidePanel() {
-		JLabel titleLabel = new JLabel("Cart Summary");
-		final JLabel itemsLabel = new JLabel("Items:" + Cart.getInstance().getQuantity());
-		final JLabel totalLabel = new JLabel("Total:" + Cart.getInstance().getTotal());
+		final JLabel itemsLabel = new JLabel(String.valueOf(Cart.getInstance().getQuantity()));
+		final JLabel totalLabel = new JLabel(String.valueOf(NumberFormat.getCurrencyInstance().format(Cart.getInstance().getTotal())));
 		sidePanel = new
 				JPanel() {
 					public void repaint() {
-						itemsLabel.setText("Items:" + Cart.getInstance().getQuantity());
-						totalLabel.setText("Total:" + Cart.getInstance().getTotal());
+						itemsLabel.setText(String.valueOf(Cart.getInstance().getQuantity()));
+						totalLabel.setText(String.valueOf(NumberFormat.getCurrencyInstance().format(Cart.getInstance().getTotal())));
 						super.repaint();
 					}
 			
 				};
-		sidePanel.setPreferredSize(new Dimension(200, 500));
-		sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
+//		sidePanel.setPreferredSize(new Dimension(200, 500));
 		sidePanel.setBorder(new EtchedBorder());
-		sidePanel.add(titleLabel);
+		sidePanel.setLayout(new GridBagLayout());
+    	GridBagConstraints panelC = new GridBagConstraints();
+		JLabel titleLabel = new JLabel("Cart Summary");
+		titleLabel.setFont(titleLabel.getFont().deriveFont(16.0f));
+		panelC.insets = new Insets(10,10,10,10);
+		panelC.weightx = 0.5;
+		panelC.gridx = 0;
+		panelC.gridy = 0;
+		sidePanel.add(titleLabel, panelC);
 		JPanel cartSummary = new JPanel();
-		cartSummary.setMaximumSize(new Dimension(250, 100));
+		cartSummary.setLayout(new GridBagLayout());
+    	GridBagConstraints summaryC = new GridBagConstraints();
+//		summaryC.fill = GridBagConstraints.HORIZONTAL;
+//		cartSummary.setMinimumSize(new Dimension(200, 100));
+		cartSummary.setPreferredSize(new Dimension(200, 100));
 		cartSummary.setBorder(new EtchedBorder());
-		cartSummary.setLayout(new GridLayout(3,1));
-		cartSummary.add(itemsLabel);
-		cartSummary.add(totalLabel);
-		sidePanel.add(cartSummary);
+//		cartSummary.setLayout(new GridLayout(3,1));
+
+		JLabel label;
+		label = new JLabel("Items:");
+		label.setFont(label.getFont().deriveFont(16.0f));
+		summaryC.anchor = GridBagConstraints.LINE_END;
+		summaryC.insets = new Insets(10,0,0,0);
+		summaryC.weightx = 0.5;
+		summaryC.gridx = 0;
+		summaryC.gridy = 0;
+		cartSummary.add(label, summaryC);
+		label = new JLabel("Total:");
+		label.setFont(label.getFont().deriveFont(16.0f));
+		summaryC.gridy = 1;
+		cartSummary.add(label, summaryC);
+		summaryC.insets = new Insets(10,0,0,20);
+		summaryC.gridwidth = 2;
+		summaryC.gridx = 1;
+		summaryC.gridy = 0;
+		itemsLabel.setFont(label.getFont().deriveFont(16.0f));
+		cartSummary.add(itemsLabel, summaryC);
+		summaryC.gridy = 1;
+		totalLabel.setFont(label.getFont().deriveFont(16.0f));
+		cartSummary.add(totalLabel, summaryC);
+		panelC.gridy = 1;
+		sidePanel.add(cartSummary, panelC);
 		JButton checkoutButton = new JButton("Checkout");
 		checkoutButton.addActionListener(new
     			ActionListener() {
@@ -106,7 +146,8 @@ public class CustomerScreen extends AbstractScreen {
 					}
 				}
 			);
-		sidePanel.add(checkoutButton);
+		panelC.gridy = 2;
+		sidePanel.add(checkoutButton, panelC);
 		Cart.getInstance().addListener(new
 				ChangeListener() {
 					@Override
@@ -132,50 +173,40 @@ public class CustomerScreen extends AbstractScreen {
 
     	JLabel label;
     	label = new JLabel("ID:");
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.insets = new Insets(10,20,10,0);
     	c.weightx = 0.5;
     	c.gridx = 0;
     	c.gridy = 0;
     	productForm.add(label, c);
     	label = new JLabel("Name:");
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 1;
     	productForm.add(label, c);
     	label = new JLabel("Description: ");
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 2;
     	productForm.add(label, c);
     	label = new JLabel("Price:");
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 3;
     	productForm.add(label, c);
     	label = new JLabel("Quantity:");
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 4;
     	productForm.add(label, c);
 
     	label = new JLabel(String.valueOf(product.getID()));
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.insets = new Insets(10,20,10,20);
     	c.weightx = 0.5;
     	c.gridx = 2;
     	c.gridy = 0;
     	productForm.add(label, c);
     	label = new JLabel(product.getName());
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 1;
     	productForm.add(label, c);
     	label = new JLabel(product.getDescription());
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 2;
     	productForm.add(label, c);
-    	label = new JLabel(String.valueOf(product.getSellPrice()));
-    	c.fill = GridBagConstraints.HORIZONTAL;
+    	label = new JLabel(String.valueOf(NumberFormat.getCurrencyInstance().format(product.getSellPrice())));
     	c.gridy = 3;
     	productForm.add(label, c);
     	label = new JLabel(String.valueOf(product.getQuantity()));
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 4;
     	productForm.add(label, c);
     	JOptionPane.showMessageDialog(ui, productForm, "Product Detail", JOptionPane.INFORMATION_MESSAGE);
@@ -192,14 +223,38 @@ public class CustomerScreen extends AbstractScreen {
     @Override
     public JPanel addLine(final Product product) {
     	GridBagLayout grid = new GridBagLayout();
-    	GridBagConstraints c = new GridBagConstraints();
+    	GridBagConstraints lineC = new GridBagConstraints();
     	if (browsePanel.getComponentCount() == 0) {
-    		JPanel titleBar = new JPanel();
-    		titleBar.add(new JLabel("Name"));
-    		titleBar.add(new JLabel("Price"));
-    		titleBar.add(new JLabel("Quantity available"));
-    		titleBar.setLayout(grid);
-    		browsePanel.add(titleBar);
+    		JPanel headerLine = new JPanel();
+        	headerLine.setLayout(grid);
+    		JLabel nameHeaderLabel = new JLabel("Name");
+        	nameHeaderLabel.setPreferredSize(new Dimension(100, 25));
+        	lineC.fill = GridBagConstraints.HORIZONTAL;
+        	lineC.anchor = GridBagConstraints.CENTER;
+        	lineC.gridwidth = 4;
+        	lineC.insets = new Insets(10,5,0,5);
+        	lineC.weightx = 0.4;
+        	lineC.gridx = 0;
+        	lineC.gridy = 0;
+        	headerLine.add(nameHeaderLabel, lineC);
+    		JLabel priceHeaderLabel = new JLabel("Price");
+        	priceHeaderLabel.setPreferredSize(new Dimension(70, 25));
+        	lineC.anchor = GridBagConstraints.LINE_END;
+        	lineC.fill = GridBagConstraints.NONE;
+        	lineC.gridwidth = 1;
+        	lineC.weightx = 0.2;
+        	lineC.gridx = 4;
+        	headerLine.add(priceHeaderLabel, lineC);
+        	lineC.anchor = GridBagConstraints.CENTER;
+        	lineC.gridx = 5;
+    		JLabel quantityHeaderLabel = new JLabel("Quantity");
+    		quantityHeaderLabel.setPreferredSize(new Dimension(50, 25));
+        	headerLine.add(quantityHeaderLabel, lineC);
+        	lineC.gridx = 6;
+    		JLabel buttonHeaderLabel = new JLabel();
+    		buttonHeaderLabel.setPreferredSize(new Dimension(30, 25));
+        	headerLine.add(buttonHeaderLabel, lineC);
+    		browsePanel.add(headerLine);
     	}
     	final JButton addButton = new JButton("Add to Cart");
     	final JLabel quantityLabel = new JLabel(String.valueOf(product.getQuantity()));
@@ -214,38 +269,41 @@ public class CustomerScreen extends AbstractScreen {
     				}
     			};
     	line.setLayout(grid);
-//   	c.fill = GridBagConstraints.HORIZONTAL;
-    	JLabel label;
     	
-    	label = new JLabel(product.getName());
-    	label.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED)); 
-    	label.addMouseListener(new
+    	JLabel nameLabel = new JLabel(product.getName());
+    	nameLabel.setPreferredSize(new Dimension(100, 25));
+    	nameLabel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED)); 
+    	nameLabel.addMouseListener(new
     			MouseAdapter(){
     				public void mouseClicked(MouseEvent e) {
     					displayProductForm(product);
     				};
     			}
     	);
-//    	c.fill = GridBagConstraints.HORIZONTAL;
-    	c.insets = new Insets(10,10,10,10);
-    	c.weightx = 0.5;
-    	c.gridx = 0;
-//    	c.gridy = 0;
-    	line.add(label, c);
+    	lineC.fill = GridBagConstraints.HORIZONTAL;
+    	lineC.anchor = GridBagConstraints.CENTER;
+    	lineC.gridwidth = 4;
+    	lineC.insets = new Insets(10,5,0,5);
+    	lineC.weightx = 0.4;
+    	lineC.gridx = 0;
+    	lineC.gridy = 0;
+    	line.add(nameLabel, lineC);
 
-    	label = new JLabel("$" + product.getSellPrice().toString());
-//    	c.fill = GridBagConstraints.HORIZONTAL;
-    	c.insets = new Insets(10,10,10,10);
-    	c.weightx = 0.5;
-    	c.gridx = 1;
-    	line.add(label, c);
-
-//    	c.fill = GridBagConstraints.HORIZONTAL;
-    	c.insets = new Insets(10,10,10,10);
-    	c.weightx = 0.5;
-    	c.gridx = 2;
-    	line.add(quantityLabel, c);
-
+    	JLabel priceLabel = new JLabel(String.valueOf(NumberFormat.getCurrencyInstance().format(product.getSellPrice())));
+//    	priceLabel = new JLabel("$" + product.getSellPrice().toString());
+    	priceLabel.setPreferredSize(new Dimension(70, 25));
+    	priceLabel.setHorizontalAlignment(JLabel.RIGHT);
+    	lineC.anchor = GridBagConstraints.LINE_END;
+    	lineC.fill = GridBagConstraints.NONE;
+    	lineC.gridwidth = 1;
+    	lineC.weightx = 0.2;
+    	lineC.gridx = 4;
+    	line.add(priceLabel, lineC);
+    	
+    	lineC.gridx = 5;
+    	quantityLabel.setPreferredSize(new Dimension(50, 25));
+    	quantityLabel.setHorizontalAlignment(JLabel.RIGHT);
+    	line.add(quantityLabel, lineC);
     	
     	addButton.addActionListener(new
     			ActionListener(){
@@ -257,11 +315,11 @@ public class CustomerScreen extends AbstractScreen {
 					};
     			}
     	);
-//    	c.fill = GridBagConstraints.HORIZONTAL;
-    	c.insets = new Insets(10,10,10,10);
-    	c.weightx = 0.5;
-    	c.gridx = 3;
-    	line.add(addButton, c);
+		addButton.setFont(addButton.getFont().deriveFont(10.0f));
+    	addButton.setMargin(new Insets(1,1,1,1));
+    	lineC.gridx = 6;
+    	line.add(addButton, lineC);
+    	
     	product.addListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
