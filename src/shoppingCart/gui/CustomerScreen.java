@@ -40,7 +40,6 @@ public class CustomerScreen extends AbstractScreen {
 	
 	/**
 	 * Constructs a CustomerScreen object.
-	 * 
 	 * @param ui a reference to the UI that created this screen.
 	 */
     public CustomerScreen(UI ui) {
@@ -162,7 +161,6 @@ public class CustomerScreen extends AbstractScreen {
 
 	/**
 	 * Displays a Product's details.
-	 * 
 	 * @param product
 	 *            the Product whose details are to be displayed.
 	 */

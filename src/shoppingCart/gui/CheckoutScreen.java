@@ -257,7 +257,7 @@ public class CheckoutScreen extends AbstractScreen {
    /**
     * Displays a Product's details.
     * 
-    * @param product the Product whose details are to be displayed.
+    * @param product 	the Product whose details are to be displayed.
     */
     public void displayProductForm(Product product) {
     	JPanel productForm = new JPanel();
