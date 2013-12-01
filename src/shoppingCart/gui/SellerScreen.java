@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -86,41 +87,80 @@ public class SellerScreen extends AbstractScreen {
 	 */
 	@Override
 	public void createSidePanel() {
-		final JLabel costsLabel = new JLabel("Costs: $" + Inventory.getInstance().getCosts());
-		final JLabel revenuesLabel = new JLabel("Revenues: $" + Inventory.getInstance().getRevenues());
-		final JLabel profitsLabel = new JLabel("Profits: $" + Inventory.getInstance().getRevenues().subtract(Inventory.getInstance().getCosts()));
+		final JLabel revenuesLabel = new JLabel(String.valueOf(NumberFormat.getCurrencyInstance().format(Inventory.getInstance().getRevenues())));
+		final JLabel costsLabel = new JLabel(String.valueOf(NumberFormat.getCurrencyInstance().format(Inventory.getInstance().getCosts())));
+		final JLabel profitsLabel = new JLabel(String.valueOf(NumberFormat.getCurrencyInstance().format(
+				Inventory.getInstance().getRevenues().subtract(Inventory.getInstance().getCosts()))));
 		sidePanel = new
 				JPanel() {
 					public void repaint() {
-						costsLabel.setText("Costs: $" + Inventory.getInstance().getCosts());
-						revenuesLabel.setText("Revenues: $" + Inventory.getInstance().getRevenues());
-						profitsLabel.setText("Profits: $" + Inventory.getInstance().getRevenues().subtract(Inventory.getInstance().getCosts()));
+						costsLabel.setText(String.valueOf(NumberFormat.getCurrencyInstance().format(Inventory.getInstance().getCosts())));
+						revenuesLabel.setText(String.valueOf(NumberFormat.getCurrencyInstance().format(Inventory.getInstance().getRevenues())));
+						profitsLabel.setText(String.valueOf(NumberFormat.getCurrencyInstance().format(
+								Inventory.getInstance().getRevenues().subtract(Inventory.getInstance().getCosts()))));
 						super.repaint();
 					}
-			
 				};
-		sidePanel.setPreferredSize(new Dimension(200, 500));
-		sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
 		sidePanel.setBorder(new EtchedBorder());
+		sidePanel.setPreferredSize(new Dimension(240, 600));
+		JPanel panel = new JPanel();
+		panel.setSize(sidePanel.getPreferredSize());
+		panel.setLayout(new GridBagLayout());
 		JLabel titleLabel = new JLabel("Financial Information");
-		sidePanel.add(titleLabel);
+		titleLabel.setFont(titleLabel.getFont().deriveFont(16.0f));
+    	GridBagConstraints panelC = new GridBagConstraints();
+		panelC.insets = new Insets(10,10,10,10);
+		panelC.weightx = 1;
+		panelC.gridx = 0;
+		panelC.gridy = 0;
+		panel.add(titleLabel, panelC);
 		JPanel sellerFinancials = new JPanel();
-		sellerFinancials.setMaximumSize(new Dimension(200, 100));
-		sellerFinancials.setBorder(new EtchedBorder());
-		sellerFinancials.setLayout(new GridLayout(3,1));
-		sellerFinancials.add(costsLabel);
-		sellerFinancials.add(revenuesLabel);
-		sellerFinancials.add(profitsLabel);
-		sidePanel.add(sellerFinancials);
-		JButton checkoutButton = new JButton("Add Product");
-		checkoutButton.addActionListener(new
+		sellerFinancials.setLayout(new GridBagLayout());
+    	GridBagConstraints financialsC = new GridBagConstraints();
+    	sellerFinancials.setPreferredSize(new Dimension(220, 140));
+    	sellerFinancials.setBorder(new EtchedBorder());
+
+		JLabel label;
+		label = new JLabel("Revenues:");
+		label.setFont(label.getFont().deriveFont(16.0f));
+		financialsC.anchor = GridBagConstraints.LINE_END;
+		financialsC.insets = new Insets(10,0,10,0);
+		financialsC.weightx = 0.5;
+		financialsC.gridx = 0;
+		financialsC.gridy = 0;
+		sellerFinancials.add(label, financialsC);
+		label = new JLabel("Costs:");
+		label.setFont(label.getFont().deriveFont(16.0f));
+		financialsC.gridy = 1;
+		sellerFinancials.add(label, financialsC);
+		label = new JLabel("Profit:");
+		label.setFont(label.getFont().deriveFont(16.0f));
+		financialsC.gridy = 2;
+		sellerFinancials.add(label, financialsC);
+		financialsC.insets = new Insets(10,0,10,20);
+		financialsC.gridwidth = 2;
+		financialsC.gridx = 1;
+		financialsC.gridy = 0;
+		revenuesLabel.setFont(label.getFont().deriveFont(16.0f));
+		sellerFinancials.add(revenuesLabel, financialsC);
+		financialsC.gridy = 1;
+		costsLabel.setFont(label.getFont().deriveFont(16.0f));
+		sellerFinancials.add(costsLabel, financialsC);
+		financialsC.gridy = 2;
+		profitsLabel.setFont(label.getFont().deriveFont(16.0f));
+		sellerFinancials.add(profitsLabel, financialsC);
+		panelC.gridy = 1;
+		panel.add(sellerFinancials, panelC);
+		JButton addProductButton = new JButton("Add Product");
+		addProductButton.addActionListener(new
     			ActionListener() {
 					public void actionPerformed(ActionEvent e) {
     					displayProductForm();
 					}
 				}
 			);
-		sidePanel.add(checkoutButton);
+		panelC.gridy = 2;
+		panel.add(addProductButton, panelC);
 		Inventory.getInstance().addListener(new
 				ChangeListener() {
 					@Override
@@ -129,6 +169,7 @@ public class SellerScreen extends AbstractScreen {
 					}
 					
 		});
+		sidePanel.add(panel);
 		this.add(sidePanel, BorderLayout.EAST);
 	}
 
@@ -252,35 +293,28 @@ public class SellerScreen extends AbstractScreen {
 
 		JLabel label;
     	label = new JLabel("ID:");
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.insets = new Insets(10,20,10,0);
     	c.weightx = 0.5;
     	c.gridx = 0;
     	c.gridy = 0;
     	productForm.add(label, c);
     	label = new JLabel("Name:");
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 1;
     	productForm.add(label, c);
     	label = new JLabel("Description: ");
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 2;
     	productForm.add(label, c);
     	label = new JLabel("Invoice Price:");
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 3;
     	productForm.add(label, c);
     	label = new JLabel("Sell Price:");
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 4;
     	productForm.add(label, c);
     	label = new JLabel("Quantity:");
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 5;
     	productForm.add(label, c);
 
     	label = new JLabel(String.valueOf(product.getID()));
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.insets = new Insets(10,20,10,20);
     	c.weightx = 0.5;
     	c.gridx = 2;
@@ -290,23 +324,18 @@ public class SellerScreen extends AbstractScreen {
     	nameTextField.setSize(200, (int)nameTextField.getSize().getHeight());
     	nameTextField.requestFocus();
     	c.gridwidth = 3;
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 1;
     	productForm.add(nameTextField, c);
     	JTextField descriptionTextField = new JTextField(product.getDescription());
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 2;
     	productForm.add(descriptionTextField, c);
     	JTextField invoicePriceTextField = new JTextField(String.valueOf(product.getInvoicePrice()));
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 3;
     	productForm.add(invoicePriceTextField, c);
     	JTextField sellPriceTextField = new JTextField(String.valueOf(product.getSellPrice()));
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 4;
     	productForm.add(sellPriceTextField, c);
     	JTextField quantityTextField = new JTextField(String.valueOf(product.getQuantity()));
-    	c.fill = GridBagConstraints.HORIZONTAL;
     	c.gridy = 5;
     	productForm.add(quantityTextField, c);
     	
@@ -354,49 +383,75 @@ public class SellerScreen extends AbstractScreen {
     @Override
     public JPanel addLine(final Product product) {
     	GridBagLayout grid = new GridBagLayout();
-    	GridBagConstraints c = new GridBagConstraints();
+    	GridBagConstraints headerC = new GridBagConstraints();
     	if (browsePanel.getComponentCount() == 0) {
-    		JPanel titleBar = new JPanel();
-    		titleBar.add(new JLabel("ID"));
-    		titleBar.add(new JLabel("Name"));
-    		titleBar.add(new JLabel("Invoice Price"));
-    		titleBar.add(new JLabel("Sell Price"));
-    		titleBar.add(new JLabel("Quantity"));
-    		titleBar.setLayout(grid);
-    		browsePanel.add(titleBar);
+    		JPanel headerLine = new JPanel();
+        	headerLine.setLayout(grid);
+    		JLabel idHeaderLabel = new JLabel("ID");
+        	idHeaderLabel.setPreferredSize(new Dimension(10, 25));
+        	headerC.fill = GridBagConstraints.HORIZONTAL;
+        	headerC.anchor = GridBagConstraints.CENTER;
+        	headerC.insets = new Insets(10,5,0,5);
+        	headerC.weightx = 0.1;
+        	headerC.gridx = 0;
+        	headerC.gridy = 0;
+        	headerLine.add(idHeaderLabel, headerC);
+    		JLabel nameHeaderLabel = new JLabel("Name");
+        	nameHeaderLabel.setPreferredSize(new Dimension(120, 25));
+        	headerC.gridwidth = 4;
+        	headerC.weightx = 0.3;
+        	headerC.gridx = 1;
+        	headerLine.add(nameHeaderLabel, headerC);
+    		JLabel invoicePriceHeaderLabel = new JLabel("Invoice Price");
+        	invoicePriceHeaderLabel.setPreferredSize(new Dimension(74, 25));
+        	invoicePriceHeaderLabel.setHorizontalAlignment(JLabel.RIGHT);
+        	headerC.anchor = GridBagConstraints.LINE_END;
+        	headerC.fill = GridBagConstraints.NONE;
+        	headerC.gridwidth = 1;
+        	headerC.weightx = 0.2;
+        	headerC.gridx = 5;
+        	headerLine.add(invoicePriceHeaderLabel, headerC);
+    		JLabel sellPriceHeaderLabel = new JLabel("Sell Price");
+        	sellPriceHeaderLabel.setPreferredSize(new Dimension(70, 25));
+        	sellPriceHeaderLabel.setHorizontalAlignment(JLabel.RIGHT);
+        	headerC.anchor = GridBagConstraints.LINE_END;
+        	headerC.fill = GridBagConstraints.NONE;
+        	headerC.gridx = 6;
+        	headerLine.add(sellPriceHeaderLabel, headerC);
+        	headerC.anchor = GridBagConstraints.CENTER;
+        	headerC.gridx = 7;
+    		JLabel quantityHeaderLabel = new JLabel("Quantity");
+    		quantityHeaderLabel.setPreferredSize(new Dimension(50, 25));
+        	quantityHeaderLabel.setHorizontalAlignment(JLabel.RIGHT);
+        	headerLine.add(quantityHeaderLabel, headerC);
+    		browsePanel.add(headerLine);
     	}
     	final JLabel nameLabel = new JLabel(product.getName());
-        final JLabel invoicePriceLabel = new JLabel(product.getInvoicePrice().toString());
-    	final JLabel sellPriceLabel = new JLabel(product.getSellPrice().toString());
+        final JLabel invoicePriceLabel = new JLabel(String.valueOf(NumberFormat.getCurrencyInstance().format(product.getInvoicePrice())));
+    	final JLabel sellPriceLabel = new JLabel(String.valueOf(NumberFormat.getCurrencyInstance().format(product.getSellPrice())));
         final JLabel quantityLabel = new JLabel(String.valueOf(product.getQuantity()));
     	final JPanel line = new
     			JPanel() {
     				public void repaint() {
     					nameLabel.setText(product.getName());
-    					invoicePriceLabel.setText(String.valueOf(product.getInvoicePrice()));
-    					sellPriceLabel.setText(String.valueOf(product.getSellPrice()));
+    					invoicePriceLabel.setText(String.valueOf(NumberFormat.getCurrencyInstance().format(product.getInvoicePrice())));
+    					sellPriceLabel.setText(String.valueOf(NumberFormat.getCurrencyInstance().format(product.getSellPrice())));
     					quantityLabel.setText(String.valueOf(product.getQuantity()));
     					super.repaint();
     				}
     			};
-    	product.addListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				line.repaint();
-			}
-		});
-    	
+    	line.setLayout(grid);
 
-//    	GridBagLayout grid = new GridBagLayout();
-//		GridBagConstraints c = new GridBagConstraints();    	
-//    	line.setLayout(grid);
         JLabel idLabel = new JLabel(String.valueOf(product.getID()));
-//        c.fill = GridBagConstraints.HORIZONTAL;
-//        c.gridwidth = 1;
-//        c.gridx = 0;
-//        c.gridy = 0;
-//        line.add(label, c);
-        line.add(idLabel);
+    	idLabel.setPreferredSize(new Dimension(10, 25));
+    	GridBagConstraints lineC = new GridBagConstraints();
+    	lineC.fill = GridBagConstraints.HORIZONTAL;
+    	lineC.insets = new Insets(10,5,0,5);
+    	lineC.gridwidth = 1;
+    	lineC.weightx = 0.1;
+    	lineC.gridx = 0;
+    	lineC.gridy = 0;
+    	line.add(idLabel, lineC);
 
         nameLabel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED)); 
         nameLabel.addMouseListener(new
@@ -406,34 +461,38 @@ public class SellerScreen extends AbstractScreen {
     				};
     			}
     	);
-//        c.fill = GridBagConstraints.HORIZONTAL;
-//        c.gridwidth = 2;
-//        c.gridx = 1;
-//        c.gridy = 0;
-//    	line.add(label, c);
-        line.add(nameLabel);
+    	nameLabel.setPreferredSize(new Dimension(120, 25));
+    	lineC.gridwidth = 4;
+    	lineC.weightx = 0.3;
+    	lineC.gridx = 1;
+        line.add(nameLabel, lineC);
 
-//        c.fill = GridBagConstraints.HORIZONTAL;
-//        c.gridwidth = 1;
-//        c.gridx = 1;
-//        c.gridy = 0;
-//    	line.add(label, c);
-        line.add(invoicePriceLabel);
+    	invoicePriceLabel.setPreferredSize(new Dimension(70, 25));
+    	invoicePriceLabel.setHorizontalAlignment(JLabel.RIGHT);
+    	lineC.anchor = GridBagConstraints.LINE_END;
+    	lineC.fill = GridBagConstraints.NONE;
+    	lineC.gridwidth = 1;
+    	lineC.weightx = 0.2;
+    	lineC.gridx = 5;
+        line.add(invoicePriceLabel, lineC);
 
-//        c.fill = GridBagConstraints.HORIZONTAL;
-//        c.gridwidth = 1;
-//        c.gridx = 4;
-//        c.gridy = 0;
-//    	line.add(label, c);
-        line.add(sellPriceLabel);
+    	sellPriceLabel.setPreferredSize(new Dimension(74, 25));
+    	sellPriceLabel.setHorizontalAlignment(JLabel.RIGHT);
+    	lineC.gridx = 6;
+        line.add(sellPriceLabel, lineC);
 
-//        c.fill = GridBagConstraints.HORIZONTAL;
-//        c.gridwidth = 1;
-//        c.gridx = 5;
-//        c.gridy = 0;
-//    	line.add(label, c);
-        line.add(quantityLabel);
+		quantityLabel.setPreferredSize(new Dimension(50, 25));
+    	quantityLabel.setHorizontalAlignment(JLabel.RIGHT);
+    	lineC.anchor = GridBagConstraints.CENTER;
+    	lineC.gridx = 7;
+        line.add(quantityLabel, lineC);
 
+    	product.addListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				line.repaint();
+			}
+		});
     	return line;
     }
 

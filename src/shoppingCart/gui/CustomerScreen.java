@@ -94,31 +94,30 @@ public class CustomerScreen extends AbstractScreen {
 					}
 			
 				};
-//		sidePanel.setPreferredSize(new Dimension(200, 500));
 		sidePanel.setBorder(new EtchedBorder());
-		sidePanel.setLayout(new GridBagLayout());
-    	GridBagConstraints panelC = new GridBagConstraints();
+		sidePanel.setPreferredSize(new Dimension(240, 600));
+		JPanel panel = new JPanel();
+		panel.setSize(sidePanel.getPreferredSize());
+		panel.setLayout(new GridBagLayout());
 		JLabel titleLabel = new JLabel("Cart Summary");
 		titleLabel.setFont(titleLabel.getFont().deriveFont(16.0f));
+    	GridBagConstraints panelC = new GridBagConstraints();
 		panelC.insets = new Insets(10,10,10,10);
-		panelC.weightx = 0.5;
+		panelC.weightx = 1;
 		panelC.gridx = 0;
 		panelC.gridy = 0;
-		sidePanel.add(titleLabel, panelC);
+		panel.add(titleLabel, panelC);
 		JPanel cartSummary = new JPanel();
 		cartSummary.setLayout(new GridBagLayout());
     	GridBagConstraints summaryC = new GridBagConstraints();
-//		summaryC.fill = GridBagConstraints.HORIZONTAL;
-//		cartSummary.setMinimumSize(new Dimension(200, 100));
 		cartSummary.setPreferredSize(new Dimension(200, 100));
 		cartSummary.setBorder(new EtchedBorder());
-//		cartSummary.setLayout(new GridLayout(3,1));
 
 		JLabel label;
 		label = new JLabel("Items:");
 		label.setFont(label.getFont().deriveFont(16.0f));
 		summaryC.anchor = GridBagConstraints.LINE_END;
-		summaryC.insets = new Insets(10,0,0,0);
+		summaryC.insets = new Insets(10,0,10,0);
 		summaryC.weightx = 0.5;
 		summaryC.gridx = 0;
 		summaryC.gridy = 0;
@@ -127,7 +126,7 @@ public class CustomerScreen extends AbstractScreen {
 		label.setFont(label.getFont().deriveFont(16.0f));
 		summaryC.gridy = 1;
 		cartSummary.add(label, summaryC);
-		summaryC.insets = new Insets(10,0,0,20);
+		summaryC.insets = new Insets(10,0,10,20);
 		summaryC.gridwidth = 2;
 		summaryC.gridx = 1;
 		summaryC.gridy = 0;
@@ -137,7 +136,7 @@ public class CustomerScreen extends AbstractScreen {
 		totalLabel.setFont(label.getFont().deriveFont(16.0f));
 		cartSummary.add(totalLabel, summaryC);
 		panelC.gridy = 1;
-		sidePanel.add(cartSummary, panelC);
+		panel.add(cartSummary, panelC);
 		JButton checkoutButton = new JButton("Checkout");
 		checkoutButton.addActionListener(new
     			ActionListener() {
@@ -147,7 +146,7 @@ public class CustomerScreen extends AbstractScreen {
 				}
 			);
 		panelC.gridy = 2;
-		sidePanel.add(checkoutButton, panelC);
+		panel.add(checkoutButton, panelC);
 		Cart.getInstance().addListener(new
 				ChangeListener() {
 					@Override
@@ -156,6 +155,7 @@ public class CustomerScreen extends AbstractScreen {
 					}
 					
 		});
+		sidePanel.add(panel);
 		this.add(sidePanel, BorderLayout.EAST);
 	}
 
@@ -223,37 +223,37 @@ public class CustomerScreen extends AbstractScreen {
     @Override
     public JPanel addLine(final Product product) {
     	GridBagLayout grid = new GridBagLayout();
-    	GridBagConstraints lineC = new GridBagConstraints();
+    	GridBagConstraints headerC = new GridBagConstraints();
     	if (browsePanel.getComponentCount() == 0) {
     		JPanel headerLine = new JPanel();
         	headerLine.setLayout(grid);
     		JLabel nameHeaderLabel = new JLabel("Name");
-        	nameHeaderLabel.setPreferredSize(new Dimension(100, 25));
-        	lineC.fill = GridBagConstraints.HORIZONTAL;
-        	lineC.anchor = GridBagConstraints.CENTER;
-        	lineC.gridwidth = 4;
-        	lineC.insets = new Insets(10,5,0,5);
-        	lineC.weightx = 0.4;
-        	lineC.gridx = 0;
-        	lineC.gridy = 0;
-        	headerLine.add(nameHeaderLabel, lineC);
+        	nameHeaderLabel.setPreferredSize(new Dimension(120, 25));
+        	headerC.fill = GridBagConstraints.HORIZONTAL;
+        	headerC.anchor = GridBagConstraints.CENTER;
+        	headerC.gridwidth = 4;
+        	headerC.insets = new Insets(10,5,0,5);
+        	headerC.weightx = 0.4;
+        	headerC.gridx = 0;
+        	headerC.gridy = 0;
+        	headerLine.add(nameHeaderLabel, headerC);
     		JLabel priceHeaderLabel = new JLabel("Price");
         	priceHeaderLabel.setPreferredSize(new Dimension(70, 25));
-        	lineC.anchor = GridBagConstraints.LINE_END;
-        	lineC.fill = GridBagConstraints.NONE;
-        	lineC.gridwidth = 1;
-        	lineC.weightx = 0.2;
-        	lineC.gridx = 4;
-        	headerLine.add(priceHeaderLabel, lineC);
-        	lineC.anchor = GridBagConstraints.CENTER;
-        	lineC.gridx = 5;
+        	headerC.anchor = GridBagConstraints.LINE_END;
+        	headerC.fill = GridBagConstraints.NONE;
+        	headerC.gridwidth = 1;
+        	headerC.weightx = 0.2;
+        	headerC.gridx = 4;
+        	headerLine.add(priceHeaderLabel, headerC);
+        	headerC.gridx = 5;
     		JLabel quantityHeaderLabel = new JLabel("Quantity");
     		quantityHeaderLabel.setPreferredSize(new Dimension(50, 25));
-        	headerLine.add(quantityHeaderLabel, lineC);
-        	lineC.gridx = 6;
+        	headerLine.add(quantityHeaderLabel, headerC);
+        	headerC.anchor = GridBagConstraints.CENTER;
+        	headerC.gridx = 6;
     		JLabel buttonHeaderLabel = new JLabel();
     		buttonHeaderLabel.setPreferredSize(new Dimension(30, 25));
-        	headerLine.add(buttonHeaderLabel, lineC);
+        	headerLine.add(buttonHeaderLabel, headerC);
     		browsePanel.add(headerLine);
     	}
     	final JButton addButton = new JButton("Add to Cart");
@@ -271,7 +271,7 @@ public class CustomerScreen extends AbstractScreen {
     	line.setLayout(grid);
     	
     	JLabel nameLabel = new JLabel(product.getName());
-    	nameLabel.setPreferredSize(new Dimension(100, 25));
+    	nameLabel.setPreferredSize(new Dimension(120, 25));
     	nameLabel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED)); 
     	nameLabel.addMouseListener(new
     			MouseAdapter(){
@@ -280,8 +280,8 @@ public class CustomerScreen extends AbstractScreen {
     				};
     			}
     	);
+    	GridBagConstraints lineC = new GridBagConstraints();
     	lineC.fill = GridBagConstraints.HORIZONTAL;
-    	lineC.anchor = GridBagConstraints.CENTER;
     	lineC.gridwidth = 4;
     	lineC.insets = new Insets(10,5,0,5);
     	lineC.weightx = 0.4;
