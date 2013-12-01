@@ -1,11 +1,14 @@
 package shoppingCart.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.Iterator;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
 import shoppingCart.model.Product;
 
 /** 
@@ -52,10 +55,8 @@ public abstract class AbstractScreen extends JPanel {
      * with lines of Product information.
      */
 	public void createBrowsePanel() {
-//    	browsePanel.setPreferredSize(new Dimension(400, 500));
 		GridLayout grid = new GridLayout();
 		grid.setColumns(1); 
-//		grid.setRows(0);
 		browsePanel.setLayout(grid);
 		JScrollPane scrollPane = new JScrollPane(browsePanel);
 		scrollPane.getVerticalScrollBar().setUnitIncrement(12);

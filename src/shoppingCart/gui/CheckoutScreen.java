@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.math.BigDecimal;
 import java.text.NumberFormat;
 
 import javax.swing.BorderFactory;
@@ -223,15 +224,17 @@ public class CheckoutScreen extends AbstractScreen {
 		payButton.addActionListener(new
     			ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						boolean result = ui.getCartSystem().pay(cardNumberTextField.getText(), Cart.getInstance().getTotal());
-						if (result) {
-    						JOptionPane.showMessageDialog(null,
-    								"Payment successful.");
-        					Cart.getInstance().clear();
-        					ui.displayCustomerScreen();
+						if (Cart.getInstance().getTotal().compareTo(BigDecimal.ZERO) > 0) {
+							boolean result = ui.getCartSystem().pay(cardNumberTextField.getText(), Cart.getInstance().getTotal());
+							if (result) {
+	    						JOptionPane.showMessageDialog(null, "Payment successful.");
+	        					Cart.getInstance().clear();
+	        					ui.displayCustomerScreen();
+							} else {
+								JOptionPane.showMessageDialog(null, "Payment failed.");
+							}
 						} else {
-							JOptionPane.showMessageDialog(null,
-									"Payment failed.");
+    						JOptionPane.showMessageDialog(null, "Cart is empty.");
 						}
 					}
 				}

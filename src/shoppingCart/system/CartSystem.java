@@ -11,7 +11,7 @@ import shoppingCart.model.UserList;
  *  It allows a seller to maintain an inventory of items available for sale
  *  and customers to browse and add items to their cart, and purchase the contents of their cart.
  *  
- *  CartSystem manages interactions between the UI and the DBManager, PaymentValidator, and UserList.
+ *  CartSystem manages interactions between the UI and DBManager, PaymentValidator, and UserList.
  *  It also creates the same.
  *  @author Newman Souza
  *  @author Seth Moore
@@ -32,7 +32,7 @@ public class CartSystem {
     }
 
     /** Creates a CartSystem
-     *  @param args not used
+     *  @param args 		not used
      */
 	public static void main(String[] args) {
 		CartSystem cartSystem = new CartSystem();

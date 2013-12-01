@@ -120,7 +120,7 @@ public class SellerScreen extends AbstractScreen {
 
 		JLabel label;
 		label = new JLabel("Revenues:");
-		label.setFont(label.getFont().deriveFont(16.0f));
+		label.setFont(label.getFont().deriveFont(15.0f));
 		financialsC.anchor = GridBagConstraints.LINE_END;
 		financialsC.insets = new Insets(10,0,10,0);
 		financialsC.weightx = 0.5;
@@ -128,24 +128,24 @@ public class SellerScreen extends AbstractScreen {
 		financialsC.gridy = 0;
 		sellerFinancials.add(label, financialsC);
 		label = new JLabel("Costs:");
-		label.setFont(label.getFont().deriveFont(16.0f));
+		label.setFont(label.getFont().deriveFont(15.0f));
 		financialsC.gridy = 1;
 		sellerFinancials.add(label, financialsC);
 		label = new JLabel("Profit:");
-		label.setFont(label.getFont().deriveFont(16.0f));
+		label.setFont(label.getFont().deriveFont(15.0f));
 		financialsC.gridy = 2;
 		sellerFinancials.add(label, financialsC);
 		financialsC.insets = new Insets(10,0,10,20);
 		financialsC.gridwidth = 2;
 		financialsC.gridx = 1;
 		financialsC.gridy = 0;
-		revenuesLabel.setFont(label.getFont().deriveFont(16.0f));
+		revenuesLabel.setFont(label.getFont().deriveFont(15.0f));
 		sellerFinancials.add(revenuesLabel, financialsC);
 		financialsC.gridy = 1;
-		costsLabel.setFont(label.getFont().deriveFont(16.0f));
+		costsLabel.setFont(label.getFont().deriveFont(15.0f));
 		sellerFinancials.add(costsLabel, financialsC);
 		financialsC.gridy = 2;
-		profitsLabel.setFont(label.getFont().deriveFont(16.0f));
+		profitsLabel.setFont(label.getFont().deriveFont(15.0f));
 		sellerFinancials.add(profitsLabel, financialsC);
 		panelC.gridy = 1;
 		panel.add(sellerFinancials, panelC);
