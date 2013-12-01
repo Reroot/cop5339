@@ -102,7 +102,7 @@ public class CustomerScreen extends AbstractScreen {
 		JLabel titleLabel = new JLabel("Cart Summary");
 		titleLabel.setFont(titleLabel.getFont().deriveFont(16.0f));
     	GridBagConstraints panelC = new GridBagConstraints();
-		panelC.insets = new Insets(10,10,10,10);
+		panelC.insets = new Insets(10,10,3,10);
 		panelC.weightx = 1;
 		panelC.gridx = 0;
 		panelC.gridy = 0;
@@ -135,6 +135,7 @@ public class CustomerScreen extends AbstractScreen {
 		summaryC.gridy = 1;
 		totalLabel.setFont(label.getFont().deriveFont(16.0f));
 		cartSummary.add(totalLabel, summaryC);
+		panelC.insets = new Insets(0,10,10,10);
 		panelC.gridy = 1;
 		panel.add(cartSummary, panelC);
 		JButton checkoutButton = new JButton("Checkout");

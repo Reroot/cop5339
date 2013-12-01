@@ -84,56 +84,131 @@ public class CheckoutScreen extends AbstractScreen {
 	 */
 	@Override
 	public void createSidePanel() {
-		final JLabel itemsLabel = new JLabel("Items: " + Cart.getInstance().getQuantity());
-		final JLabel totalLabel = new JLabel("Total: $" + Cart.getInstance().getTotal());
+		final JLabel itemsLabel = new JLabel(String.valueOf(Cart.getInstance().getQuantity()));
+		final JLabel totalLabel = new JLabel(String.valueOf(NumberFormat.getCurrencyInstance().format(Cart.getInstance().getTotal())));
 		sidePanel = new
 				JPanel() {
 					public void repaint() {
-						itemsLabel.setText("Items: " + Cart.getInstance().getQuantity());
-						totalLabel.setText("Total: $" + Cart.getInstance().getTotal());
+						itemsLabel.setText(String.valueOf(Cart.getInstance().getQuantity()));
+						totalLabel.setText(String.valueOf(NumberFormat.getCurrencyInstance().format(Cart.getInstance().getTotal())));
 						super.repaint();
 					}
 			
 				};
-		sidePanel.setPreferredSize(new Dimension(200, 500));
-		sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
 		sidePanel.setBorder(new EtchedBorder());
+		sidePanel.setPreferredSize(new Dimension(240, 600));
+		JPanel panel = new JPanel();
+		panel.setSize(sidePanel.getPreferredSize());
+		panel.setLayout(new GridBagLayout());
 		JLabel titleLabel = new JLabel("Cart Summary");
-		sidePanel.add(titleLabel);
+		titleLabel.setFont(titleLabel.getFont().deriveFont(16.0f));
+    	GridBagConstraints panelC = new GridBagConstraints();
+		panelC.insets = new Insets(10,10,3,10);
+		panelC.weightx = 1;
+		panelC.gridx = 0;
+		panelC.gridy = 0;
+		panel.add(titleLabel, panelC);
 		JPanel cartSummary = new JPanel();
-		cartSummary.setMaximumSize(new Dimension(200, 100));
+		cartSummary.setLayout(new GridBagLayout());
+    	GridBagConstraints summaryC = new GridBagConstraints();
+		cartSummary.setPreferredSize(new Dimension(210, 100));
 		cartSummary.setBorder(new EtchedBorder());
-		cartSummary.setLayout(new GridLayout(3,1));
-		cartSummary.add(itemsLabel);
-		cartSummary.add(totalLabel);
-		sidePanel.add(cartSummary);
+
+		JLabel label;
+		label = new JLabel("Items:");
+		label.setFont(label.getFont().deriveFont(16.0f));
+		summaryC.anchor = GridBagConstraints.LINE_END;
+		summaryC.insets = new Insets(10,0,10,0);
+		summaryC.weightx = 0.5;
+		summaryC.gridx = 0;
+		summaryC.gridy = 0;
+		cartSummary.add(label, summaryC);
+		label = new JLabel("Total:");
+		label.setFont(label.getFont().deriveFont(16.0f));
+		summaryC.gridy = 1;
+		cartSummary.add(label, summaryC);
+		summaryC.insets = new Insets(10,0,10,20);
+		summaryC.gridwidth = 2;
+		summaryC.gridx = 1;
+		summaryC.gridy = 0;
+		itemsLabel.setFont(label.getFont().deriveFont(16.0f));
+		cartSummary.add(itemsLabel, summaryC);
+		summaryC.gridy = 1;
+		totalLabel.setFont(label.getFont().deriveFont(16.0f));
+		cartSummary.add(totalLabel, summaryC);
+		panelC.insets = new Insets(0,10,0,10);
+		panelC.gridy = 1;
+		panel.add(cartSummary, panelC);
+		
 		JLabel formLabel = new JLabel("Payment Information");
-		sidePanel.add(formLabel);
+		formLabel.setFont(titleLabel.getFont().deriveFont(16.0f));
+		panelC.insets = new Insets(30,10,3,10);
+		panelC.weightx = 1;
+		panelC.gridy = 3;
+		panel.add(formLabel, panelC);
 		JPanel paymentForm = new JPanel();
-		paymentForm.setMaximumSize(new Dimension(200, 100));
+		paymentForm.setLayout(new GridBagLayout());
+    	GridBagConstraints formC = new GridBagConstraints();
+		paymentForm.setPreferredSize(new Dimension(210, 260));
 		paymentForm.setBorder(new EtchedBorder());
-		paymentForm.setLayout(new GridLayout(5,2));
-		JLabel cardTypeLabel = new JLabel("Type:");
-		JTextField cardTypeTextField = new JTextField("");
-		JLabel cardholderLabel = new JLabel("Cardholder Name:");
-		JTextField cardHolderTextField = new JTextField("");
-		JLabel cardNumberLabel = new JLabel("Card Number:");
-		final JTextField cardNumberTextField = new JTextField("");
-		JLabel expirationLabel = new JLabel("Expiration Date:");
-		JTextField expirationTextField = new JTextField("");
-		JLabel codeLabel = new JLabel("Security Code:");
-		JTextField codeTextField = new JTextField("");
-		paymentForm.add(cardTypeLabel);
-		paymentForm.add(cardTypeTextField);
-		paymentForm.add(cardholderLabel);
-		paymentForm.add(cardHolderTextField);
-		paymentForm.add(cardNumberLabel);
-		paymentForm.add(cardNumberTextField);
-		paymentForm.add(expirationLabel);
-		paymentForm.add(expirationTextField);
-		paymentForm.add(codeLabel);
-		paymentForm.add(codeTextField);
-		sidePanel.add(paymentForm);
+		
+		label = new JLabel("Type:");
+//		formC.fill = GridBagConstraints.NONE;
+		formC.anchor = GridBagConstraints.LINE_START;
+		formC.insets = new Insets(5,5,0,5);
+		formC.gridwidth = 2;
+		formC.weightx = 0.2;
+		formC.gridx = 0;
+		formC.gridy = 0;
+		paymentForm.add(label, formC);
+		label = new JLabel("Cardholder Name:");
+		formC.gridy = 2;
+		paymentForm.add(label, formC);
+		label = new JLabel("Card Number:");
+		formC.gridy = 4;
+		paymentForm.add(label, formC);
+		label = new JLabel("Expiration Date:");
+		formC.gridwidth = 1;
+		formC.gridy = 6;
+		paymentForm.add(label, formC);
+		label = new JLabel("Security Code:");
+		formC.gridy = 7;
+		paymentForm.add(label, formC);
+		
+		JTextField cardTypeTextField = new JTextField();
+		cardTypeTextField.setPreferredSize(new Dimension(195, 25));
+		cardTypeTextField.setText("MasterCard");
+		formC.gridwidth = 2;
+		formC.insets = new Insets(5,5,3,5);
+		formC.weightx = 1;
+		formC.gridy = 1;
+		paymentForm.add(cardTypeTextField, formC);
+		JTextField cardholderTextField = new JTextField();
+		cardholderTextField.setPreferredSize(new Dimension(195, 25));
+		cardholderTextField.setText("John Smith");
+		formC.gridy = 3;
+		paymentForm.add(cardholderTextField, formC);
+		final JTextField cardNumberTextField = new JTextField();
+		cardNumberTextField.setPreferredSize(new Dimension(195, 25));
+		cardNumberTextField.setText("1234-5678-1234-5678");
+		formC.gridy = 5;
+		paymentForm.add(cardNumberTextField, formC);
+		JTextField expirationTextField = new JTextField();
+		expirationTextField.setPreferredSize(new Dimension(52, 25));
+		expirationTextField.setText("10/2015");
+		formC.anchor = GridBagConstraints.LINE_END;
+		formC.gridwidth = 1;
+		formC.gridx = 1;
+		formC.gridy = 6;
+		paymentForm.add(expirationTextField, formC);
+		JTextField codeTextField = new JTextField();
+		codeTextField.setPreferredSize(new Dimension(26, 25));
+		codeTextField.setText("123");
+		formC.gridy = 7;
+		paymentForm.add(codeTextField, formC);
+		panelC.insets = new Insets(0,10,10,10);
+		panelC.gridy = 4;
+		panel.add(paymentForm, panelC);
 		JButton cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(new
     			ActionListener() {
@@ -142,9 +217,12 @@ public class CheckoutScreen extends AbstractScreen {
 					}
 				}
 			);
-		sidePanel.add(cancelButton);
-		JButton checkoutButton = new JButton("Pay");
-		checkoutButton.addActionListener(new
+		panelC.anchor = GridBagConstraints.LINE_START;
+    	panelC.insets = new Insets(0,40,0,5);
+		panelC.gridy = 5;
+		panel.add(cancelButton, panelC);
+		JButton payButton = new JButton("Pay");
+		payButton.addActionListener(new
     			ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						boolean result = ui.getCartSystem().pay(cardNumberTextField.getText(), Cart.getInstance().getTotal());
@@ -160,7 +238,9 @@ public class CheckoutScreen extends AbstractScreen {
 					}
 				}
 			);
-		sidePanel.add(checkoutButton);
+		panelC.anchor = GridBagConstraints.LINE_END;
+    	panelC.insets = new Insets(0,5,0,40);
+		panel.add(payButton, panelC);
 		Cart.getInstance().addListener(new
 				ChangeListener() {
 					@Override
@@ -169,6 +249,7 @@ public class CheckoutScreen extends AbstractScreen {
 					}
 					
 		});
+		sidePanel.add(panel);
 		this.add(sidePanel, BorderLayout.EAST);
 	}
 
