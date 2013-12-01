@@ -316,17 +316,42 @@ public class CheckoutScreen extends AbstractScreen {
     @Override
     public JPanel addLine(final Product product) {
     	GridBagLayout grid = new GridBagLayout();
-    	GridBagConstraints c = new GridBagConstraints();
+    	GridBagConstraints headerC = new GridBagConstraints();
     	if (browsePanel.getComponentCount() == 0) {
-    		JPanel titleBar = new JPanel();
-    		titleBar.add(new JLabel("Name"));
-    		titleBar.add(new JLabel("Price"));
-    		titleBar.add(new JLabel("Quantity in cart"));
-    		titleBar.setLayout(grid);
-    		browsePanel.add(titleBar);
+    		JPanel headerLine = new JPanel();
+        	headerLine.setLayout(grid);
+    		JLabel nameHeaderLabel = new JLabel("Name");
+        	nameHeaderLabel.setPreferredSize(new Dimension(120, 25));
+        	headerC.fill = GridBagConstraints.HORIZONTAL;
+        	headerC.anchor = GridBagConstraints.CENTER;
+        	headerC.gridwidth = 4;
+        	headerC.insets = new Insets(10,15,0,5);
+        	headerC.weightx = 0.4;
+        	headerC.gridx = 0;
+        	headerC.gridy = 0;
+        	headerLine.add(nameHeaderLabel, headerC);
+    		JLabel priceHeaderLabel = new JLabel("Price");
+        	priceHeaderLabel.setPreferredSize(new Dimension(90, 25));
+        	priceHeaderLabel.setHorizontalAlignment(JLabel.RIGHT);
+        	headerC.anchor = GridBagConstraints.LINE_END;
+        	headerC.fill = GridBagConstraints.NONE;
+        	headerC.gridwidth = 1;
+        	headerC.weightx = 0.2;
+        	headerC.gridx = 4;
+        	headerLine.add(priceHeaderLabel, headerC);
+        	headerC.gridx = 5;
+    		JLabel quantityHeaderLabel = new JLabel("Quantity");
+    		quantityHeaderLabel.setPreferredSize(new Dimension(50, 25));
+        	headerLine.add(quantityHeaderLabel, headerC);
+        	headerC.anchor = GridBagConstraints.CENTER;
+        	headerC.gridx = 6;
+    		JLabel buttonHeaderLabel = new JLabel();
+    		buttonHeaderLabel.setPreferredSize(new Dimension(30, 25));
+        	headerLine.add(buttonHeaderLabel, headerC);
+    		browsePanel.add(headerLine);
     	}
-    	final JButton incrementButton = new JButton("Increment");
-    	final JButton decrementButton = new JButton("Decrement");
+    	final JButton incrementButton = new JButton("+");
+    	final JButton decrementButton = new JButton("-");
     	final JLabel quantityLabel = new JLabel(String.valueOf(product.getQuantity()));
     	final JPanel line = new
     			JPanel() {
@@ -347,30 +372,42 @@ public class CheckoutScreen extends AbstractScreen {
     					super.repaint();
     				}
     			};
-    	product.addListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				line.repaint();
-			}
-		});
-    	JLabel label;
-    	
-    	label = new JLabel(product.getName());
-    	label.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED)); 
-    	label.addMouseListener(new
+    	line.setLayout(grid);
+
+    	JLabel nameLabel = new JLabel(product.getName());
+    	nameLabel.setPreferredSize(new Dimension(120, 35));
+    	nameLabel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED)); 
+    	nameLabel.addMouseListener(new
     			MouseAdapter(){
     				public void mouseClicked(MouseEvent e) {
     					displayProductForm(product);
     				};
     			}
     	);
-    	line.add(label);
+    	GridBagConstraints lineC = new GridBagConstraints();
+    	lineC.fill = GridBagConstraints.HORIZONTAL;
+    	lineC.gridwidth = 4;
+    	lineC.insets = new Insets(10,15,0,5);
+    	lineC.weightx = 0.4;
+    	lineC.gridx = 0;
+    	lineC.gridy = 0;
+    	line.add(nameLabel, lineC);
 
-    	label = new JLabel("$" + product.getSellPrice().toString());
-    	line.add(label);
-
+    	JLabel priceLabel = new JLabel(String.valueOf(NumberFormat.getCurrencyInstance().format(product.getSellPrice())));
+    	priceLabel.setPreferredSize(new Dimension(70, 35));
+    	priceLabel.setHorizontalAlignment(JLabel.RIGHT);
+    	lineC.anchor = GridBagConstraints.LINE_END;
+    	lineC.fill = GridBagConstraints.NONE;
+    	lineC.gridwidth = 1;
+    	lineC.weightx = 0.2;
+    	lineC.gridx = 4;
+    	line.add(priceLabel, lineC);
     	
-    	line.add(quantityLabel);
+    	lineC.anchor = GridBagConstraints.CENTER;
+    	lineC.gridx = 5;
+    	quantityLabel.setPreferredSize(new Dimension(50, 43));
+    	quantityLabel.setHorizontalAlignment(JLabel.RIGHT);
+    	line.add(quantityLabel, lineC);
 
     	incrementButton.addActionListener(new
     			ActionListener(){
@@ -380,8 +417,13 @@ public class CheckoutScreen extends AbstractScreen {
     				};
     			}
     	);
-
-    	line.add(incrementButton);
+//		incrementButton.setFont(incrementButton.getFont().deriveFont(16.0f));
+    	incrementButton.setMargin(new Insets(0,4,0,4));
+    	incrementButton.setSize(new Dimension(10, 2));
+//    	incrementButton.setBorder(null);
+    	lineC.anchor = GridBagConstraints.NORTH;
+    	lineC.gridx = 6;
+    	line.add(incrementButton, lineC);
     	
     	decrementButton.addActionListener(new
     			ActionListener(){
@@ -391,7 +433,20 @@ public class CheckoutScreen extends AbstractScreen {
     				};
     			}
     	);
-    	line.add(decrementButton);
+//		decrementButton.setFont(decrementButton.getFont().deriveFont(16.0f));
+    	decrementButton.setMargin(new Insets(0,5,0,6));
+    	decrementButton.setSize(new Dimension(10, 2));
+//    	decrementButton.setBorder(null);
+//    	lineC.gridx = 6;
+    	lineC.anchor = GridBagConstraints.SOUTH;
+    	line.add(decrementButton, lineC);
+
+    	product.addListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				line.repaint();
+			}
+		});
     	return line;
     }
 

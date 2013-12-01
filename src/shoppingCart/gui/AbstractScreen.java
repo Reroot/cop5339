@@ -55,7 +55,7 @@ public abstract class AbstractScreen extends JPanel {
 //    	browsePanel.setPreferredSize(new Dimension(400, 500));
 		GridLayout grid = new GridLayout();
 		grid.setColumns(1); 
-		grid.setRows(0);
+//		grid.setRows(0);
 		browsePanel.setLayout(grid);
 		JScrollPane scrollPane = new JScrollPane(browsePanel);
 		scrollPane.getVerticalScrollBar().setUnitIncrement(12);

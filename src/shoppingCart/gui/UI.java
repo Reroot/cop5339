@@ -5,6 +5,7 @@ import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -187,6 +188,12 @@ public class UI extends JFrame{
     public void displaySellerScreen() {
     	Iterator<Product> iter = inventory.iterator();
     	sellerScreen.populate(iter);
+		GridLayout grid = (GridLayout)sellerScreen.browsePanel.getLayout();
+    	if (sellerScreen.browsePanel.getComponentCount() < 14) {
+    		grid.setRows(14);
+    	} else {
+    		grid.setRows(0);
+    	}
     	((CardLayout)(screenCards.getLayout())).show(screenCards, SELLERPANEL);
     }
 
@@ -197,6 +204,12 @@ public class UI extends JFrame{
     public void displayCustomerScreen() {
     	PrunningIterator pIter = new PrunningIterator(inventory.iterator());
     	customerScreen.populate(pIter);
+		GridLayout grid = (GridLayout)customerScreen.browsePanel.getLayout();
+    	if (customerScreen.browsePanel.getComponentCount() < 14) {
+    		grid.setRows(14);
+    	} else {
+    		grid.setRows(0);
+    	}
     	((CardLayout)(screenCards.getLayout())).show(screenCards, CUSTOMERPANEL);
     }
 
@@ -210,6 +223,12 @@ public class UI extends JFrame{
 			JOptionPane.showMessageDialog(screenCards, "Cart is empty.");
     	} else {
         	checkoutScreen.populate(pIter);
+    		GridLayout grid = (GridLayout)checkoutScreen.browsePanel.getLayout();
+        	if (checkoutScreen.browsePanel.getComponentCount() < 9) {
+        		grid.setRows(9);
+        	} else {
+        		grid.setRows(0);
+        	}
         	((CardLayout)(screenCards.getLayout())).show(screenCards, CHECKOUTPANEL);
     	}
     }

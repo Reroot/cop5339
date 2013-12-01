@@ -233,7 +233,7 @@ public class CustomerScreen extends AbstractScreen {
         	headerC.fill = GridBagConstraints.HORIZONTAL;
         	headerC.anchor = GridBagConstraints.CENTER;
         	headerC.gridwidth = 4;
-        	headerC.insets = new Insets(10,5,0,5);
+        	headerC.insets = new Insets(10,15,0,5);
         	headerC.weightx = 0.4;
         	headerC.gridx = 0;
         	headerC.gridy = 0;
@@ -246,11 +246,11 @@ public class CustomerScreen extends AbstractScreen {
         	headerC.weightx = 0.2;
         	headerC.gridx = 4;
         	headerLine.add(priceHeaderLabel, headerC);
+        	headerC.anchor = GridBagConstraints.CENTER;
         	headerC.gridx = 5;
     		JLabel quantityHeaderLabel = new JLabel("Quantity");
     		quantityHeaderLabel.setPreferredSize(new Dimension(50, 25));
         	headerLine.add(quantityHeaderLabel, headerC);
-        	headerC.anchor = GridBagConstraints.CENTER;
         	headerC.gridx = 6;
     		JLabel buttonHeaderLabel = new JLabel();
     		buttonHeaderLabel.setPreferredSize(new Dimension(30, 25));
@@ -284,14 +284,13 @@ public class CustomerScreen extends AbstractScreen {
     	GridBagConstraints lineC = new GridBagConstraints();
     	lineC.fill = GridBagConstraints.HORIZONTAL;
     	lineC.gridwidth = 4;
-    	lineC.insets = new Insets(10,5,0,5);
+    	lineC.insets = new Insets(10,15,0,5);
     	lineC.weightx = 0.4;
     	lineC.gridx = 0;
     	lineC.gridy = 0;
     	line.add(nameLabel, lineC);
 
     	JLabel priceLabel = new JLabel(String.valueOf(NumberFormat.getCurrencyInstance().format(product.getSellPrice())));
-//    	priceLabel = new JLabel("$" + product.getSellPrice().toString());
     	priceLabel.setPreferredSize(new Dimension(70, 25));
     	priceLabel.setHorizontalAlignment(JLabel.RIGHT);
     	lineC.anchor = GridBagConstraints.LINE_END;
@@ -318,6 +317,7 @@ public class CustomerScreen extends AbstractScreen {
     	);
 		addButton.setFont(addButton.getFont().deriveFont(10.0f));
     	addButton.setMargin(new Insets(1,1,1,1));
+    	lineC.insets = new Insets(0,5,0,15);
     	lineC.gridx = 6;
     	line.add(addButton, lineC);
     	
