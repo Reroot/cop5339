@@ -117,7 +117,7 @@ public class SellerScreen extends AbstractScreen {
 		JPanel sellerFinancials = new JPanel();
 		sellerFinancials.setLayout(new GridBagLayout());
     	GridBagConstraints financialsC = new GridBagConstraints();
-    	sellerFinancials.setPreferredSize(new Dimension(220, 140));
+    	sellerFinancials.setPreferredSize(new Dimension(210, 140));
     	sellerFinancials.setBorder(new EtchedBorder());
 
 		JLabel label;
@@ -209,26 +209,36 @@ public class SellerScreen extends AbstractScreen {
     	int newID = Inventory.getInstance().getNewID();
 
     	label = new JLabel(String.valueOf(newID));
+    	c.fill = GridBagConstraints.NONE;
+    	c.anchor = GridBagConstraints.LINE_START;
     	c.insets = new Insets(10,20,10,20);
     	c.weightx = 0.5;
     	c.gridx = 2;
     	c.gridy = 0;
     	productForm.add(label, c);
-    	JTextField nameTextField = new JTextField(20);
+    	JTextField nameTextField = new JTextField();
+    	nameTextField.setPreferredSize(new Dimension(200, 25));
     	nameTextField.requestFocus();
     	c.gridwidth = 3;
     	c.gridy = 1;
     	productForm.add(nameTextField, c);
-    	JTextField descriptionTextField = new JTextField(40);
+    	JTextField descriptionTextField = new JTextField();
+    	descriptionTextField.setPreferredSize(new Dimension(300, 25));
     	c.gridy = 2;
     	productForm.add(descriptionTextField, c);
-    	JTextField invoicePriceTextField = new JTextField(20);
+    	JTextField invoicePriceTextField = new JTextField();
+    	invoicePriceTextField.setPreferredSize(new Dimension(70, 25));
+    	invoicePriceTextField.setHorizontalAlignment(JTextField.RIGHT);
     	c.gridy = 3;
     	productForm.add(invoicePriceTextField, c);
-    	JTextField sellPriceTextField = new JTextField(20);
+    	JTextField sellPriceTextField = new JTextField();
+    	sellPriceTextField.setPreferredSize(new Dimension(70, 25));
+    	sellPriceTextField.setHorizontalAlignment(JTextField.RIGHT);
     	c.gridy = 4;
     	productForm.add(sellPriceTextField, c);
-    	JTextField quantityTextField = new JTextField(5);
+    	JTextField quantityTextField = new JTextField();
+    	quantityTextField.setPreferredSize(new Dimension(50, 25));
+    	quantityTextField.setHorizontalAlignment(JTextField.RIGHT);
     	c.gridy = 5;
     	productForm.add(quantityTextField, c);
     	
@@ -315,27 +325,36 @@ public class SellerScreen extends AbstractScreen {
     	productForm.add(label, c);
 
     	label = new JLabel(String.valueOf(product.getID()));
+    	c.fill = GridBagConstraints.NONE;
+    	c.anchor = GridBagConstraints.LINE_START;
     	c.insets = new Insets(10,20,10,20);
     	c.weightx = 0.5;
     	c.gridx = 2;
     	c.gridy = 0;
     	productForm.add(label, c);
     	JTextField nameTextField = new JTextField(product.getName());
-    	nameTextField.setSize(200, (int)nameTextField.getSize().getHeight());
+    	nameTextField.setPreferredSize(new Dimension(200, 25));
     	nameTextField.requestFocus();
     	c.gridwidth = 3;
     	c.gridy = 1;
     	productForm.add(nameTextField, c);
     	JTextField descriptionTextField = new JTextField(product.getDescription());
+    	descriptionTextField.setPreferredSize(new Dimension(300, 25));
     	c.gridy = 2;
     	productForm.add(descriptionTextField, c);
     	JTextField invoicePriceTextField = new JTextField(String.valueOf(product.getInvoicePrice()));
+    	invoicePriceTextField.setPreferredSize(new Dimension(70, 25));
+    	invoicePriceTextField.setHorizontalAlignment(JTextField.RIGHT);
     	c.gridy = 3;
     	productForm.add(invoicePriceTextField, c);
     	JTextField sellPriceTextField = new JTextField(String.valueOf(product.getSellPrice()));
+    	sellPriceTextField.setPreferredSize(new Dimension(70, 25));
+    	sellPriceTextField.setHorizontalAlignment(JTextField.RIGHT);
     	c.gridy = 4;
     	productForm.add(sellPriceTextField, c);
     	JTextField quantityTextField = new JTextField(String.valueOf(product.getQuantity()));
+    	quantityTextField.setPreferredSize(new Dimension(50, 25));
+    	quantityTextField.setHorizontalAlignment(JTextField.RIGHT);
     	c.gridy = 5;
     	productForm.add(quantityTextField, c);
     	

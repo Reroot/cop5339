@@ -110,7 +110,7 @@ public class CustomerScreen extends AbstractScreen {
 		JPanel cartSummary = new JPanel();
 		cartSummary.setLayout(new GridBagLayout());
     	GridBagConstraints summaryC = new GridBagConstraints();
-		cartSummary.setPreferredSize(new Dimension(200, 100));
+		cartSummary.setPreferredSize(new Dimension(210, 100));
 		cartSummary.setBorder(new EtchedBorder());
 
 		JLabel label;
