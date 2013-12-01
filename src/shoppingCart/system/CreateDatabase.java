@@ -77,15 +77,6 @@ public class CreateDatabase {
 		System.out.println("Saving UserList...");
 		dbManager.saveUserList(userList);
 		System.out.println("Loading UserList...");
-		UserList userFromFile = dbManager.loadUserList();
-//		System.out.println();
-//		System.out.println("Displaying users from loaded UserList:");
-//		Iterator<User> loadedUserIter = userFromFile.iterator();
-//		while (loadedUserIter.hasNext()) {
-//    		User user = (User)loadedUserIter.next();
-//    		System.out.print("  " + user.getUsername() + ", ");
-//    		System.out.print(user.getPassword() + ", ");
-//    		System.out.println(user.getType());
-//		}
+		dbManager.loadUserList();
 	}
 }

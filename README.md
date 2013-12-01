@@ -1,18 +1,46 @@
-cop5339
-=======
+Shopping Cart Application
 
-COP5339 project
+Instructions:
 
-* 11/30/13 (1)
-- renamed doc folder to javadocs
-- renamed documentation folder to docs
-- replaced Inventory items :)
-- removed unused imports from code
-- added currency format to prices
-- added scrollPane speed control for browsePanel
-- changed font sizes on all panels
-- changed password type from JTextField to JPasswordField
-- changed layout format for Login Screen
-- changed layout format for all Customer panels
-- changed layout format for Seller header Panel
-- changed layout format for Checkout header Panel
+   1) To create/restore initial database:
+      - run CreateDatabase.java
+   
+   2) To run application:
+      - run CartSystem.java
+
+
+Directory structure:
+
+   cop5339
+      \
+      src
+          \
+          shoppingCart.gui
+          \
+          shoppingCart.model
+          \
+          shoppingCart.system
+          \
+          shoppingCart.unitTests
+      \
+      database
+      \
+      docs
+          \
+          PDF files
+          \
+          UML diagrams
+      \
+      javadocs
+
+
+Notes:
+
+   1) database folder contains database files using Java Serialization
+
+   2) PDF files folder contains PDF version of:
+      - Application Requirements document
+      - Source code
+      - Screen mock-ups
+      
+   3) UML diagrams folder contains original Violet diagram files

@@ -31,18 +31,16 @@ public class CartSystem {
 		userList = dbManager.loadUserList();
     }
 
-    /**
-     * Creates a CartSystem
-     * 
-     * @param args not used
+    /** Creates a CartSystem
+     *  @param args not used
      */
 	public static void main(String[] args) {
 		CartSystem cartSystem = new CartSystem();
 	}
     
-    /** Takes a user's username and password, and, if they are a valid username/password
-     * 		pair, returns the User's type to the caller and loads the Inventory. Otherwise
-     * 		returns null.
+    /** Takes a user's username and password, and, if they are a valid username/password pair, 
+     *  returns the User's type to the caller and loads the Inventory. 
+     *  Otherwise returns null.
      *  @param username		the User's username
      *  @param password		the User's password
      *  @return 			the User's type or null
@@ -58,7 +56,8 @@ public class CartSystem {
     }
 
     /** Processes payment for for items in Customer's cart.
-     *  @param  			the customer's payment information
+     *  @param cardNumber 	the customer's credit card number
+     *  @param total		the total amount to be charged
      *  @return 			true if successful and false otherwise
      *  @precondition 		none
      *  @postcondition 		payment processed
@@ -71,10 +70,8 @@ public class CartSystem {
     	return result;
     }
     
-    /**
-     * Saves the current state of the Inventory.
-     * 
-     * @precondition appropriate file permissions are available to DBManager.
+    /** Saves the current state of the Inventory.
+     *  @precondition 		appropriate file permissions are available to DBManager.
      */
     public void saveInventory() {
     	Inventory inventory = Inventory.getInstance();

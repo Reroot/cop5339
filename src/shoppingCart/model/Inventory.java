@@ -92,10 +92,10 @@ public class Inventory extends ProductList {
 	 * Increments, by one, the quantity of a Product that equals the
      * supplied Product, and decreases revenues by the Product's sellPrice.
      * 
-     *  @param the Product whose matching Product will be decremented.
-     *  @precondition getMatchingProduct(product) != null
-     *  @precondition getMatchingProduct(product).getQuantity() > 0
-     *  @postcondition getMatchingProduct(product).getQuantity() >= 0
+     *  @param product		the Product whose matching Product will be decremented.
+     *  @precondition 		getMatchingProduct(product) != null
+     *  @precondition 		getMatchingProduct(product).getQuantity() > 0
+     *  @postcondition 		getMatchingProduct(product).getQuantity() >= 0
 	 */
 	public void increment(Product product){
 		super.increment(product);
