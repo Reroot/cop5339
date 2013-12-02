@@ -46,11 +46,6 @@ public class Inventory extends ProductList {
 	public BigDecimal getCosts(){
 		return costs;
 	}
-
-	// TODO DELETE
-	public void setCosts(BigDecimal costs){
-		this.costs = costs;
-	}
 	
 	/**
 	 * Accessor method for revenues
@@ -61,11 +56,6 @@ public class Inventory extends ProductList {
 		return revenues;
 	}
 
-	// TODO DELETE
-	public void setRevenues(BigDecimal revenues){
-		this.revenues = revenues;
-	}
-	
 	/**
 	 * Calculates and returns the seller's profits, based on revenues - costs
 	 * 

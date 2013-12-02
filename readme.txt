@@ -3,27 +3,27 @@ Shopping Cart Application
 Instructions:
 
 	1) To compile the application:
-		- From the command line in cop5339\src folder, enter the following:
+		- From the command line in project\src folder, enter the following:
 			javac shoppingCart\system\CartSystem.java
 
 	2) To run the application
-		- From the command line in cop5339 folder, enter the following:
+		- From the command line in project folder, enter the following:
 			java -cp .\src shoppingCart.system.CartSystem
 
 	3) To create/restore initial database:
-		- From the command line in cop5339\src folder, enter the following:
+		- From the command line in project\src folder, enter the following:
 			javac shoppingCart\system\CreateDatabase.java
-		- From the command line in cop5339 folder, enter the following:
+		- From the command line in project folder, enter the following:
 			java -cp .\src shoppingCart.system.CreateDatabase
 			
 	4) To run application from jar file:
-		- From the command line in cop5339 folder, enter the following:
+		- From the command line in project folder, enter the following:
 			java -jar bin\ShoppingCart.jar
 
 
 Directory structure:
 
-   cop5339
+   project
       \
       src
           \

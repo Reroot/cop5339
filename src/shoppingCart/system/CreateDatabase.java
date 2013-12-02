@@ -10,6 +10,7 @@ import shoppingCart.model.UserList;
 
 /** A class that creates the database for the ShoppingCart Application.
  *  The database has 2 files: the Seller's Inventory and the application's UserList.
+ *  This is only used for demonstration purposes.
  *  @author Newman Souza
  *  @author Seth Moore
  */ 
@@ -22,11 +23,7 @@ public class CreateDatabase {
 		UserList userList = new UserList();
 
 		// creates Inventory
-	    System.out.println("Removing all products from Inventory...");
-	    userList.clear();
-		System.out.println("Creating new inventory...");
-		inventory.setCosts(new BigDecimal("0"));
-		inventory.setRevenues(new BigDecimal("30000"));
+	  	System.out.println("Creating new inventory...");
 		inventory.add(new Product(101, "COP4331 Book - PDF", "COP4331 Book (Cay Horstmann) - PDF", new BigDecimal("25.00"), new BigDecimal("50.00"), 5));
 		inventory.add(new Product(102, "COP4331 Book - Paperback", "COP4331 Book (Cay Horstmann) - Paperback", new BigDecimal("35.00"), new BigDecimal("70.00"), 100));
 		inventory.add(new Product(103, "COP4331 HW-1", "Solutions for Homework 1", new BigDecimal("20.00"), new BigDecimal("30.00"), 10));
@@ -46,6 +43,10 @@ public class CreateDatabase {
 		inventory.add(new Product(117, "Newman's picture", "Newman's autographed picture", new BigDecimal("5.00"), new BigDecimal("10.00"), 2));
 		inventory.add(new Product(118, "Seth's picture", "Seth's autographed picture", new BigDecimal("5.00"), new BigDecimal("10.00"), 2));
 		inventory.add(new Product(119, "Cardei's picture", "Cardei's autographed picture", new BigDecimal("5000.00"), new BigDecimal("10000.00"), 1));
+		Product p = new Product(120, "big item", "expensive item", new BigDecimal("0.00"), new BigDecimal("30000.00"), 1);
+		inventory.add(p);
+		inventory.decrement(p);
+		inventory.remove(p);
 		System.out.println();
 		System.out.println("Saving Inventory...");
 		dbManager.saveInventory(inventory);
@@ -66,8 +67,6 @@ public class CreateDatabase {
 	    System.out.println();
 
 		// creates UserList
-	    System.out.println("Removing all users from UserList...");
-	    userList.clear();
 	    System.out.println("Creating new UserList...");
 		userList.addUser("Newman", "newman", "Seller");
 		userList.addUser("Seth", "seth", "Customer");

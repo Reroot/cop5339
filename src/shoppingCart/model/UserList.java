@@ -32,14 +32,6 @@ public class UserList implements Serializable {
 		users.add(user);
     }
 
-    // TODO TO BE DELETED
-    /** Deletes all users from UserList.
-     */
-    public void clear() {
-    	users.clear();
-    }
-
-
     /** Validates user credentials.
 	 *  @param username		User's username
 	 *  @param password		User's password

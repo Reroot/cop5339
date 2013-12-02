@@ -115,7 +115,7 @@ public class DBManagerTest {
 		userList.addUser("name", "word", "pe");
 		DBManager db = new DBManager();
 		db.saveUserList(userList, userSaveFile);
-		userList.clear();
+		userList = new UserList();
 		userList = db.loadUserList(userSaveFile);
 		assertEquals(userList.validate("user", "pass"), "ty");
 		
@@ -134,7 +134,7 @@ public class DBManagerTest {
 		userList.addUser("name", "word", "pe");
 		DBManager db = new DBManager();
 		db.saveUserList(userList, userSaveFile);
-		userList.clear();
+		userList = new UserList();
 		userList = db.loadUserList(userSaveFile);
 		assertEquals(userList.validate("user", "pass"), "ty");
 		

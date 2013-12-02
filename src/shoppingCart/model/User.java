@@ -47,10 +47,7 @@ public class User implements Serializable {
     	return (this.password.equals(password));
     }
 
-    // TODO TO BE DELETED
-    public String getPassword() {
-    	return this.password;
-    }
+   
 
     /** The User's username. 
      */

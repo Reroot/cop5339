@@ -27,7 +27,7 @@ public class CartSystem {
     	dbManager = new DBManager();
     	paymentValidator = new PaymentValidator();
     	UI ui = new UI(this);
-    	userList = new UserList();
+    	//userList = new UserList();
 		userList = dbManager.loadUserList();
     }
 
