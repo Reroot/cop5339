@@ -81,6 +81,7 @@ public class PrunningIteratorTest {
 	public void testHasNext() {
 		int count = 0;
 		while (iterator.hasNext()){
+			@SuppressWarnings("unused")
 			Product p = iterator.next();
 			count++;
 		}

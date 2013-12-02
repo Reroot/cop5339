@@ -152,7 +152,6 @@ public class CheckoutScreen extends AbstractScreen {
 		paymentForm.setBorder(new EtchedBorder());
 		
 		label = new JLabel("Type:");
-//		formC.fill = GridBagConstraints.NONE;
 		formC.anchor = GridBagConstraints.LINE_START;
 		formC.insets = new Insets(5,5,0,5);
 		formC.gridwidth = 2;
@@ -418,10 +417,8 @@ public class CheckoutScreen extends AbstractScreen {
     				};
     			}
     	);
-//		incrementButton.setFont(incrementButton.getFont().deriveFont(16.0f));
     	incrementButton.setMargin(new Insets(0,4,0,4));
     	incrementButton.setSize(new Dimension(10, 2));
-//    	incrementButton.setBorder(null);
     	lineC.anchor = GridBagConstraints.NORTH;
     	lineC.gridx = 6;
     	line.add(incrementButton, lineC);
@@ -434,11 +431,8 @@ public class CheckoutScreen extends AbstractScreen {
     				};
     			}
     	);
-//		decrementButton.setFont(decrementButton.getFont().deriveFont(16.0f));
     	decrementButton.setMargin(new Insets(0,5,0,6));
     	decrementButton.setSize(new Dimension(10, 2));
-//    	decrementButton.setBorder(null);
-//    	lineC.gridx = 6;
     	lineC.anchor = GridBagConstraints.SOUTH;
     	line.add(decrementButton, lineC);
 

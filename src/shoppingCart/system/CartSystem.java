@@ -16,6 +16,7 @@ import shoppingCart.model.UserList;
  *  @author Newman Souza
  *  @author Seth Moore
  */ 
+@SuppressWarnings("unused")
 public class CartSystem {
 
     /** Constructs a CartSystem object.
@@ -27,7 +28,6 @@ public class CartSystem {
     	dbManager = new DBManager();
     	paymentValidator = new PaymentValidator();
     	UI ui = new UI(this);
-    	//userList = new UserList();
 		userList = dbManager.loadUserList();
     }
 

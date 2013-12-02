@@ -37,6 +37,8 @@ Directory structure:
       \
       database
       \
+      bin
+      \
       docs
           \
           PDF files

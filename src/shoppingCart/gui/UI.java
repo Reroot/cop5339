@@ -9,8 +9,6 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.Iterator;
 
 import javax.swing.JButton;
@@ -124,26 +122,7 @@ public class UI extends JFrame{
     				};
     			}
    		);
-    	// TODO DELETE
-    	JButton newmanButton = new JButton("Newman");
-    	newmanButton.addMouseListener(new
-    			MouseAdapter() {
-    				public void mouseClicked(MouseEvent e) {
-    					String userType = cartSystem.login("Newman", "newman");
-    					displaySellerScreen();
-    				};
-    			}
-    	);
-    	JButton sethButton = new JButton("Seth");
-       	sethButton.addMouseListener(new
-    			MouseAdapter() {
-    				public void mouseClicked(MouseEvent e) {
-    					String userType = cartSystem.login("Seth", "seth");
-    					displayCustomerScreen();
-    				};
-    			}
-    	);
-
+    	
        	JPanel centerPanel = new JPanel();
        	centerPanel.setMaximumSize(new Dimension(200, 300));
 		centerPanel.setLayout(new GridBagLayout());
@@ -172,12 +151,7 @@ public class UI extends JFrame{
 		loginC.gridy = 2;
     	centerPanel.add(loginButton, loginC);
 
-    	// TODO DELETE
-    	loginC.gridy = 3;
-    	centerPanel.add(newmanButton, loginC);
-		loginC.gridy = 4;
-    	centerPanel.add(sethButton, loginC);
-		loginScreen.add(centerPanel, BorderLayout.CENTER);
+    	loginScreen.add(centerPanel, BorderLayout.CENTER);
 		return loginScreen;
 	}
 

@@ -1,18 +1,16 @@
 package shoppingCart.gui;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.Iterator;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import shoppingCart.model.Product;
 
 /** 
- * A class that assembles Jpanels for the UI.
+ * A class that assembles JPanels for the UI.
  * AbstractClass in Template Method Pattern
  * 
  * @author Newman Souza
