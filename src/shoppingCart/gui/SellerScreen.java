@@ -226,17 +226,14 @@ public class SellerScreen extends AbstractScreen {
     	productForm.add(descriptionTextField, c);
     	JTextField invoicePriceTextField = new JTextField();
     	invoicePriceTextField.setPreferredSize(new Dimension(70, 25));
-    	invoicePriceTextField.setHorizontalAlignment(JTextField.RIGHT);
     	c.gridy = 3;
     	productForm.add(invoicePriceTextField, c);
     	JTextField sellPriceTextField = new JTextField();
     	sellPriceTextField.setPreferredSize(new Dimension(70, 25));
-    	sellPriceTextField.setHorizontalAlignment(JTextField.RIGHT);
     	c.gridy = 4;
     	productForm.add(sellPriceTextField, c);
     	JTextField quantityTextField = new JTextField();
     	quantityTextField.setPreferredSize(new Dimension(50, 25));
-    	quantityTextField.setHorizontalAlignment(JTextField.RIGHT);
     	c.gridy = 5;
     	productForm.add(quantityTextField, c);
     	
@@ -342,17 +339,14 @@ public class SellerScreen extends AbstractScreen {
     	productForm.add(descriptionTextField, c);
     	JTextField invoicePriceTextField = new JTextField(String.valueOf(product.getInvoicePrice()));
     	invoicePriceTextField.setPreferredSize(new Dimension(70, 25));
-    	invoicePriceTextField.setHorizontalAlignment(JTextField.RIGHT);
     	c.gridy = 3;
     	productForm.add(invoicePriceTextField, c);
     	JTextField sellPriceTextField = new JTextField(String.valueOf(product.getSellPrice()));
     	sellPriceTextField.setPreferredSize(new Dimension(70, 25));
-    	sellPriceTextField.setHorizontalAlignment(JTextField.RIGHT);
     	c.gridy = 4;
     	productForm.add(sellPriceTextField, c);
     	JTextField quantityTextField = new JTextField(String.valueOf(product.getQuantity()));
     	quantityTextField.setPreferredSize(new Dimension(50, 25));
-    	quantityTextField.setHorizontalAlignment(JTextField.RIGHT);
     	c.gridy = 5;
     	productForm.add(quantityTextField, c);
     	
