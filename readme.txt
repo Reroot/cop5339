@@ -9,8 +9,8 @@ Instructions:
 	2) To run the application
 		- From the command line in project folder, enter the following:
 			java -cp .\src shoppingCart.system.CartSystem
-			(or run ShoppingCart.bat to from project folder to run jar file)
-		- To login as the seller, use the username "Newman" and password "newman"
+			(or run ShoppingCart.bat from project folder to run jar file)
+		- To login as a seller, use username "Newman" and password "newman"
 		- To login as a customer, use username "Seth" and password "seth"
 
 	3) To create/restore initial database:
@@ -60,9 +60,12 @@ Notes:
       - Source code
       - Screen mock-ups
       
-   3) UML diagrams folder contains original Violet diagram files
+   3) UML diagrams folder contains original Violet UML diagram files
    
    4) When the seller updates a product, if the new quantity is greater
-      than the old quantity, costs will increase. Costs will not change
-      if the new quantity is lower, the same, or the product is deleted.
-      This is the intended behavior.
+      than the old quantity, costs will increase. However, Costs will not 
+	  change if the new quantity is lower, or if the product is deleted.
+      This is the intended behavior. We consider it to be inventory loss.
+
+   
+	

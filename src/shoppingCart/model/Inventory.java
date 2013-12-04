@@ -143,7 +143,7 @@ public class Inventory extends ProductList {
 		if (oldQuantity < newQuantity){
 			costs = costs.add(product.getInvoicePrice().multiply(BigDecimal.valueOf(newQuantity - oldQuantity)));
 		}
-		p.update(product.getID(), product.getName(), product.getDescription(), product.getSellPrice(), product.getInvoicePrice(), product.getQuantity());
+		p.update(product.getID(), product.getName(), product.getDescription(), product.getInvoicePrice(), product.getSellPrice(), product.getQuantity());
 		notifyListeners();
 	}
 	
